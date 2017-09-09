@@ -10,7 +10,9 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/modules/auth" />
+            <option value="$PROJECT_DIR$/modules/common" />
             <option value="$PROJECT_DIR$/modules/record" />
+            <option value="$PROJECT_DIR$/modules/resource" />
             <option value="$PROJECT_DIR$/modules/social-network" />
             <option value="$PROJECT_DIR$/modules/watch-management" />
             <option value="$PROJECT_DIR$/modules/work-dictionary" />

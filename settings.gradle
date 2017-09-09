@@ -1,4 +1,4 @@
-include ':app'
+include ':app', ':common', ':resource'
 
 def modulesRopotDir = new File('modules')
 
@@ -16,3 +16,9 @@ project(':work-dictionary').projectDir = new File(modulesRopotDir, 'work-diction
 
 include ':social-network'
 project(':social-network').projectDir = new File(modulesRopotDir, 'social-network')
+
+include ':common'
+project(':common').projectDir = new File(modulesRopotDir, 'common')
+
+include ':resource'
+project(':resource').projectDir = new File(modulesRopotDir, 'resource')
