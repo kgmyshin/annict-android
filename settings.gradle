@@ -1,0 +1,18 @@
+include ':app'
+
+def modulesRopotDir = new File('modules')
+
+include ':auth'
+project(':auth').projectDir = new File(modulesRopotDir, 'auth')
+
+include ':record'
+project(':record').projectDir = new File(modulesRopotDir, 'record')
+
+include ':watch-management'
+project(':watch-management').projectDir = new File(modulesRopotDir, 'watch-management')
+
+include ':work-dictionary'
+project(':work-dictionary').projectDir = new File(modulesRopotDir, 'work-dictionary')
+
+include ':social-network'
+project(':social-network').projectDir = new File(modulesRopotDir, 'social-network')

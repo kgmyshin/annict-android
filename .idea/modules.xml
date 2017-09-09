@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/annict-android.iml" filepath="$PROJECT_DIR$/annict-android.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/modules/auth/auth.iml" filepath="$PROJECT_DIR$/modules/auth/auth.iml" />
+      <module fileurl="file://$PROJECT_DIR$/modules/record/record.iml" filepath="$PROJECT_DIR$/modules/record/record.iml" />
+      <module fileurl="file://$PROJECT_DIR$/modules/social-network/social-network.iml" filepath="$PROJECT_DIR$/modules/social-network/social-network.iml" />
+      <module fileurl="file://$PROJECT_DIR$/modules/watch-management/watch-management.iml" filepath="$PROJECT_DIR$/modules/watch-management/watch-management.iml" />
+      <module fileurl="file://$PROJECT_DIR$/modules/work-dictionary/work-dictionary.iml" filepath="$PROJECT_DIR$/modules/work-dictionary/work-dictionary.iml" />
+    </modules>
+  </component>
+</project>
