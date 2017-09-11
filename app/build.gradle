@@ -35,7 +35,7 @@ dependencies {
     implementation deps.support.appCompat
     implementation deps.support.constraintLayout
 
-    implementation deps.binding
+    kapt deps.binding.compiler
 
     implementation deps.dagger.runtime
     kapt deps.dagger.compiler

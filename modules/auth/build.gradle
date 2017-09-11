@@ -29,14 +29,20 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
+    implementation deps.kotlin
+
     implementation project(":common")
 
     implementation deps.support.appCompat
 
-    implementation deps.binding
+    kapt deps.binding.compiler
 
     implementation deps.dagger.runtime
     kapt deps.dagger.compiler
+
+    implementation deps.retrofit.core
+    implementation deps.retrofit.adapterRxJava2
+    implementation deps.retrofit.converterGson
 
     testImplementation deps.junit
 }
