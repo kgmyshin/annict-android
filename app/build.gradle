@@ -30,6 +30,8 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
+    implementation project(":common")
+
     implementation deps.support.appCompat
     implementation deps.support.constraintLayout
 
@@ -37,6 +39,8 @@ dependencies {
 
     implementation deps.dagger.runtime
     kapt deps.dagger.compiler
+
+
 
     testImplementation deps.junit
 }
