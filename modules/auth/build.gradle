@@ -14,12 +14,12 @@ android {
     }
     buildTypes {
         debug {
-            buildConfigField "String", "ANNICT_CLIENT_ID", "\"${props.debugAnnictClientId}/\""
-            buildConfigField "String", "ANNICT_CLIENT_SECRET", "\"${props.debugAnnictClientScret}/\""
+            buildConfigField "String", "ANNICT_CLIENT_ID", "\"${props.debugAnnictClientId}\""
+            buildConfigField "String", "ANNICT_CLIENT_SECRET", "\"${props.debugAnnictClientScret}\""
         }
         release {
-            buildConfigField "String", "ANNICT_CLIENT_ID", "\"${props.releaseAnnictClientId}/\""
-            buildConfigField "String", "ANNICT_CLIENT_SECRET", "\"${props.releaseAnnictClientScret}/\""
+            buildConfigField "String", "ANNICT_CLIENT_ID", "\"${props.releaseAnnictClientId}\""
+            buildConfigField "String", "ANNICT_CLIENT_SECRET", "\"${props.releaseAnnictClientScret}\""
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
