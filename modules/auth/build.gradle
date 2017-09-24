@@ -55,4 +55,5 @@ dependencies {
     implementation deps.retrofit.converterGson
 
     testImplementation deps.junit
+    testImplementation deps.mockito
 }
