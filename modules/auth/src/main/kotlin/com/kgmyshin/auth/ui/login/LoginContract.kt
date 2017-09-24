@@ -28,10 +28,4 @@ interface LoginContract {
 
     }
 
-    interface ScreenTransition {
-
-        fun moveToHome()
-
-    }
-
 }

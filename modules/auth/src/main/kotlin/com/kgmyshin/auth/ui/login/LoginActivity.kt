@@ -1,10 +1,11 @@
 package com.kgmyshin.auth.ui.login
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.kgmyshin.auth.R
 
-class LoginActivity : AppCompatActivity(), LoginContract.ScreenTransition {
+class LoginActivity : AppCompatActivity(), ScreenTransition {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,6 +19,11 @@ class LoginActivity : AppCompatActivity(), LoginContract.ScreenTransition {
     }
 
     override fun moveToHome() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        Intent().apply {
+            setClassName(
+                    applicationContext.packageName,
+                    "com.kgmyshin.auth.ui.MainActivity"
+            )
+        }.let { startActivity(it) }
     }
 }

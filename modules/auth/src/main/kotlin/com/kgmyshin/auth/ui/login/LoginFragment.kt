@@ -30,7 +30,7 @@ class LoginFragment : Fragment(), LoginContract.View {
     override fun onAttach(context: Context?) {
         super.onAttach(context)
         ContainerApplicationHelper.get(activity).getComponent(AuthComponent::class).inject(this)
-        val screenTransition = (context as? LoginContract.ScreenTransition) ?: throw ClassCastException("must cast ScreenTransition")
+        val screenTransition = (context as? ScreenTransition) ?: throw ClassCastException("must cast ScreenTransition")
         presenter.setUp(
                 this,
                 screenTransition
@@ -107,11 +107,11 @@ class LoginFragment : Fragment(), LoginContract.View {
     }
 
     override fun dismissProgress() {
-//        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        binding.progressContainer.visibility = View.GONE
     }
 
     override fun showProgress() {
-//        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        binding.progressContainer.visibility = View.VISIBLE
     }
 
 }

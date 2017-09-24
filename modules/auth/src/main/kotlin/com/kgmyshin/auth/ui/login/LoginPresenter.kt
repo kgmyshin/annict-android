@@ -23,12 +23,12 @@ internal class LoginPresenter @Inject constructor(
     }
 
     private lateinit var view: LoginContract.View
-    private lateinit var screenTransition: LoginContract.ScreenTransition
+    private lateinit var screenTransition: ScreenTransition
     private val disposables = CompositeDisposable()
 
     override fun setUp(
             view: LoginContract.View,
-            screenTransition: LoginContract.ScreenTransition
+            screenTransition: ScreenTransition
     ) {
         this.view = view
         this.screenTransition = screenTransition
@@ -42,7 +42,7 @@ internal class LoginPresenter @Inject constructor(
     }
 
     override fun onLoaded(url: String) {
-        if (isLoginCompleted(url)) {
+        if (isLoginCompletedUrl(url)) {
             val code = extractAuthCode(url)
             authorizeUseCase.execute(code)
                     .doOnSubscribe {
@@ -50,6 +50,7 @@ internal class LoginPresenter @Inject constructor(
                     }
                     .observeOn(uiScheduler)
                     .subscribe({
+                                   screenTransition.moveToHome()
                                    view.dismissProgress()
                                },
                                { throwable ->
@@ -67,7 +68,7 @@ internal class LoginPresenter @Inject constructor(
         disposables.clear()
     }
 
-    private fun isLoginCompleted(url: String): Boolean {
+    private fun isLoginCompletedUrl(url: String): Boolean {
         val p = Pattern.compile(LOGIN_COMPLETE_URL_PATTERN)
         val m = p.matcher(url)
         return m.find()
