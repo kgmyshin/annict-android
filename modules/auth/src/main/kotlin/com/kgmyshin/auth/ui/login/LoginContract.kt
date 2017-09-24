@@ -1,5 +1,8 @@
 package com.kgmyshin.auth.ui.login
 
+import com.kgmyshin.common.view.BaseView
+import com.kgmyshin.common.view.HasProgress
+
 interface LoginContract {
 
     interface Presenter {
@@ -19,7 +22,7 @@ interface LoginContract {
 
     }
 
-    interface View {
+    interface View : BaseView, HasProgress {
 
         fun load(url: String)
 

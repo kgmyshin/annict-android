@@ -6,9 +6,11 @@ import dagger.Module
 import dagger.Provides
 
 @Module
-class AuthUiModule {
+internal class AuthUiModule {
 
     @Provides
-    fun provide_LoginContract_Presenter(): LoginContract.Presenter = LoginPresenter()
+    fun provide_LoginContract_Presenter(
+            loginPresenter: LoginPresenter
+    ): LoginContract.Presenter = loginPresenter
 
 }

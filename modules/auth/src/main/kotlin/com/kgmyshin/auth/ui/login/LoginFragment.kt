@@ -47,31 +47,32 @@ class LoginFragment : Fragment(), LoginContract.View {
                 container,
                 false
         )
-        CookieManager.getInstance().setAcceptCookie(true)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            CookieManager.getInstance().setAcceptThirdPartyCookies(
-                    binding.webView,
-                    true
-            )
+            CookieManager.getInstance().removeAllCookies(null)
+            CookieManager.getInstance().flush()
+        } else {
+            val cookieSyncMngr = CookieSyncManager.createInstance(context.applicationContext)
+            cookieSyncMngr.startSync()
+            val cookieManager = CookieManager.getInstance()
+            cookieManager.removeAllCookie()
+            cookieManager.removeSessionCookie()
+            cookieSyncMngr.stopSync()
+            cookieSyncMngr.sync()
         }
+        binding.webView.clearCache(true)
         binding.webView.apply {
             settings.javaScriptEnabled = true
-            settings.setAppCacheEnabled(true)
             settings.javaScriptCanOpenWindowsAutomatically = true
             settings.setSupportMultipleWindows(true)
-            settings.allowFileAccess = true
-            settings.useWideViewPort = true
-            settings.loadWithOverviewMode = true
             settings.cacheMode = WebSettings.LOAD_NO_CACHE
-            settings.domStorageEnabled = true
-            settings.databaseEnabled = true
-            settings.setSupportMultipleWindows(true)
             webViewClient = object : WebViewClient() {
                 override fun shouldOverrideUrlLoading(
                         view: WebView?,
                         url: String?
                 ): Boolean {
-                    url?.let { presenter.onLoaded(it) }
+                    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+                        url?.let { presenter.onLoaded(it) }
+                    }
                     return super.shouldOverrideUrlLoading(
                             view,
                             url
@@ -103,6 +104,14 @@ class LoginFragment : Fragment(), LoginContract.View {
 
     override fun load(url: String) {
         binding.webView.loadUrl(url)
+    }
+
+    override fun dismissProgress() {
+//        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun showProgress() {
+//        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
 }

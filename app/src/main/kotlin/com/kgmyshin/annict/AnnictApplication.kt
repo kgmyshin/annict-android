@@ -1,8 +1,8 @@
 package com.kgmyshin.annict
 
 import com.kgmyshin.auth.AuthComponent
+import com.kgmyshin.auth.AuthModule
 import com.kgmyshin.auth.DaggerAuthComponent
-import com.kgmyshin.auth.ui.AuthUiModule
 import com.kgmyshin.common.di.Component
 import com.kgmyshin.common.di.ContainerApplication
 import java.util.*
@@ -17,7 +17,7 @@ class AnnictApplication : ContainerApplication() {
         componentMap.put(
                 AuthComponent::class,
                 DaggerAuthComponent.builder()
-                        .authUiModule(AuthUiModule())
+                        .authModule(AuthModule(this))
                         .build()
         )
     }
