@@ -1,6 +1,5 @@
-package com.kgmyshin.auth.infra.localStore
+package com.kgmyshin.auth.infra.localStore.impl
 
-import com.kgmyshin.auth.infra.localStore.impl.AccessTokenLocalStoreImpl
 import com.kgmyshin.auth.infra.pref.AccessTokenPreference
 import org.junit.Before
 import org.junit.Test
@@ -8,7 +7,7 @@ import org.mockito.Mock
 import org.mockito.Mockito
 import org.mockito.MockitoAnnotations
 
-class AccessTokenLocalStoreTest {
+class AccessTokenLocalStoreImplTest {
 
     @Mock
     private lateinit var accessTokenPreference: AccessTokenPreference
