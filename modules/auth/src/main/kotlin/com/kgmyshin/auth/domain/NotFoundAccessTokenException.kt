@@ -1,3 +1,3 @@
-package com.kgmyshin.auth.infra.localStore
+package com.kgmyshin.auth.domain
 
 internal class NotFoundAccessTokenException : RuntimeException()
