@@ -40,9 +40,9 @@ dependencies {
     implementation deps.dagger.runtime
     kapt deps.dagger.compiler
 
-    implementation deps.rxjava.core
-    implementation deps.rxjava.android
-    implementation deps.rxjava.kotlin
+    implementation deps.rxjava2.core
+    implementation deps.rxjava2.android
+    implementation deps.rxjava2.kotlin
 
     testImplementation deps.junit
 }
