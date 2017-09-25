@@ -59,6 +59,7 @@ internal class LoginPresenter @Inject constructor(
                                            throwable,
                                            null
                                    )
+                                   view.dismissProgress()
                                })
                     .addTo(disposables)
         }
