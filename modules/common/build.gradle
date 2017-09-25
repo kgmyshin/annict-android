@@ -31,6 +31,10 @@ dependencies {
 
     implementation deps.kotlin
 
+    implementation deps.rxjava2.core
+    implementation deps.rxjava2.android
+    implementation deps.rxjava2.kotlin
+
     implementation deps.support.appCompat
 
     kapt deps.binding.compiler
