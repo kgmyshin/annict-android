@@ -29,7 +29,7 @@ class AccessTokenRepositoryImplTest {
         val repository = AccessTokenRepositoryImpl(accessTokenLocalStore)
         val single = repository.exists()
 
-        // find
+        // then
         single.test().await().assertValue(true).assertComplete()
     }
 
@@ -42,7 +42,7 @@ class AccessTokenRepositoryImplTest {
         val repository = AccessTokenRepositoryImpl(accessTokenLocalStore)
         val single = repository.exists()
 
-        // find
+        // then
         single.test().await().assertValue(false).assertComplete()
     }
 
