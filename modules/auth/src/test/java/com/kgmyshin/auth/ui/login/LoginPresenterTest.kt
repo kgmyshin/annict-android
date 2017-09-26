@@ -77,7 +77,7 @@ class LoginPresenterTest {
     }
 
     @Test
-    fun testOnLoad_ThrowRuntimeError() {
+    fun testOnLoad_ThrowRuntimeException() {
         // given
         val loginCompletedUrl = "https://annict.jp/oauth/authorize/123456789abcdefg#_=_"
         val exception = RuntimeException()
