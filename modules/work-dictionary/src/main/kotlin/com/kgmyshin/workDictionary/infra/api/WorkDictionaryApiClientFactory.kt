@@ -1,4 +1,4 @@
-package com.kgmyshin.auth.infra.api
+package com.kgmyshin.workDictionary.infra.api
 
 import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
@@ -6,16 +6,15 @@ import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
-internal class AuthApiClientFactory {
+internal class WorkDictionaryApiClientFactory {
 
-    fun create(): AuthApiClient =
+    fun create(): WorkDictionaryApiClient =
             Retrofit.Builder()
                     .baseUrl("https://api.annict.com")
                     .client(OkHttpClient())
                     .addConverterFactory(GsonConverterFactory.create(GsonBuilder().setDateFormat("YYYY-MM-DDTHH:MM:SSZ").create()))
                     .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                     .build()
-                    .create(AuthApiClient::class.java)
-
+                    .create(WorkDictionaryApiClient::class.java)
 
 }
