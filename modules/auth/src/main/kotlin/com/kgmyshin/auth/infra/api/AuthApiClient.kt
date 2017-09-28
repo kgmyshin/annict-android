@@ -13,7 +13,4 @@ internal interface AuthApiClient {
     @POST("/oauth/token")
     fun publishToken(@Body req: PublishTokenRequestJson): Single<PublishTokenResponseJson>
 
-    @GET("/oauth/token/info")
-    fun getTokenInfo(): Single<GetTokenInfoResponseJson>
-
 }
