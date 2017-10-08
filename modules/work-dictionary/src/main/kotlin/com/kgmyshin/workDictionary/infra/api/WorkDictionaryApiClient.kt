@@ -1,6 +1,7 @@
 package com.kgmyshin.workDictionary.infra.api
 
 import com.kgmyshin.workDictionary.infra.api.json.GetEpisodeListRequestJson
+import com.kgmyshin.workDictionary.infra.api.json.GetEpisodeListResponseJson
 import com.kgmyshin.workDictionary.infra.api.json.GetWorkListRequestJson
 import com.kgmyshin.workDictionary.infra.api.json.GetWorkListResponseJson
 import io.reactivex.Single
@@ -13,6 +14,6 @@ internal interface WorkDictionaryApiClient {
     fun getWorkList(@Body req: GetWorkListRequestJson): Single<GetWorkListResponseJson>
 
     @GET("/v1/episodes")
-    fun getEpisodeList(@Body req: GetEpisodeListRequestJson): Single<GetWorkListResponseJson>
+    fun getEpisodeList(@Body req: GetEpisodeListRequestJson): Single<GetEpisodeListResponseJson>
 
 }

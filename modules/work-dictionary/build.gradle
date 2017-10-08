@@ -31,6 +31,7 @@ dependencies {
 
     implementation deps.kotlin
 
+    implementation project(":auth")
     implementation project(":common")
 
     implementation deps.support.appCompat

@@ -35,6 +35,10 @@ dependencies {
     implementation deps.rxjava2.android
     implementation deps.rxjava2.kotlin
 
+    implementation deps.retrofit.core
+    implementation deps.retrofit.adapterRxJava2
+    implementation deps.retrofit.converterGson
+
     implementation deps.support.appCompat
 
     kapt deps.binding.compiler
