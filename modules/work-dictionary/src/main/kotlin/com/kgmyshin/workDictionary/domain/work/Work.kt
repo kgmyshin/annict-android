@@ -1,9 +1,17 @@
 package com.kgmyshin.workDictionary.domain.work
 
 import com.kgmyshin.common.dddSupport.Entity
-import com.kgmyshin.workDictionary.domain.work.episode.Episode
+import java.util.*
 
 internal class Work(
         id: WorkId,
-        val episodeList: List<Episode>
+        title: String,
+        titleKana: String,
+        season: Season,
+        releasedOn: Date,
+        officialSiteUrl: String,
+        twitterUserName: String?,
+        imageUrl: String?,
+        episodesCount: Int,
+        watchersCount: Int
 ) : Entity<WorkId>(id)

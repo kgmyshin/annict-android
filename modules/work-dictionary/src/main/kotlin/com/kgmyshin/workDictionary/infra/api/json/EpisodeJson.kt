@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 
 internal data class EpisodeJson(
         @SerializedName("id") val id: String,
-        @SerializedName("number") val number: Int,
+        @SerializedName("number") val number: Int?,
         @SerializedName("number_text") val numberText: String,
         @SerializedName("sort_number") val sortNumber: Int,
         @SerializedName("title") val title: String,

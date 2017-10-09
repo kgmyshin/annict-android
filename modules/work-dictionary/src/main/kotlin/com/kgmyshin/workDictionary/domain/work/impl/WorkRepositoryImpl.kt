@@ -7,7 +7,7 @@ import com.kgmyshin.workDictionary.domain.work.Work
 import com.kgmyshin.workDictionary.domain.work.WorkId
 import com.kgmyshin.workDictionary.domain.work.WorkRepository
 import com.kgmyshin.workDictionary.infra.api.WorkDictionaryApiClient
-import com.kgmyshin.workDictionary.infra.api.json.*
+import com.kgmyshin.workDictionary.infra.api.json.GetWorkListRequestJson
 import io.reactivex.Maybe
 import io.reactivex.Scheduler
 import io.reactivex.Single
@@ -39,19 +39,9 @@ internal class WorkRepositoryImpl(
                                     filterIds = id.value,
                                     accessToken = accessToken
                             )
-                    ).flatMap { getWorkListResponseJson ->
-                        apiClient.getEpisodeList(GetEpisodeListRequestJson(
-                                filterWorkId = getWorkListResponseJson.workJsonList[0].id,
-                                accessToken = accessToken
-                        )).map { getEpisodeListResponseJson ->
-                            Pair(
-                                    getWorkListResponseJson.workJsonList[0],
-                                    getEpisodeListResponseJson.episodeJsonList
-                            )
-                        }
-                    }
+                    )
                 }.map {
-                    WorkConverter.convertToDomainModel(it)
+                    WorkConverter.convertToDomainModel(it.workJsonList[0])
                 }.doOnSuccess { work ->
                     idCache.put(
                             work.id,
@@ -70,14 +60,9 @@ internal class WorkRepositoryImpl(
                                     filterTitle = keyword,
                                     accessToken = accessToken
                             )
-                    ).flatMap { getWorkListResponseJson ->
-                        getEpisodeListJsonList(
-                                getWorkListResponseJson,
-                                accessToken
-                        )
-                    }
-                }.map { pairList ->
-                    pairList.map { WorkConverter.convertToDomainModel(it) }
+                    )
+                }.map {
+                    WorkConverter.convertToDomainModel(it.workJsonList)
                 }.doOnSuccess { workList ->
                     keywordCache.put(
                             keyword,
@@ -102,14 +87,9 @@ internal class WorkRepositoryImpl(
                                     filterSeason = season.name,
                                     accessToken = accessToken
                             )
-                    ).flatMap { getWorkListResponseJson ->
-                        getEpisodeListJsonList(
-                                getWorkListResponseJson,
-                                accessToken
-                        )
-                    }
-                }.map { pairList ->
-                    pairList.map { WorkConverter.convertToDomainModel(it) }
+                    )
+                }.map {
+                    WorkConverter.convertToDomainModel(it.workJsonList)
                 }.doOnSuccess { workList ->
                     seasonCache.put(
                             season,
@@ -132,21 +112,13 @@ internal class WorkRepositoryImpl(
                     apiClient.getWorkList(
                             GetWorkListRequestJson(
                                     sortWatchersCount = "asc",
-                                    accessToken = accessToken
+                                    accessToken = accessToken,
+                                    perPage = 50
                             )
-                    ).flatMap { getWorkListResponseJson ->
-                        getEpisodeListJsonList(
-                                getWorkListResponseJson,
-                                accessToken
-                        )
-                    }
-                }.map { pairList ->
-                    pairList.map { WorkConverter.convertToDomainModel(it) }
-                }.doOnSuccess { workList ->
-                    popularCache.put(
-                            SYMBOL_POPULAR,
-                            workList
                     )
+                }.map {
+                    WorkConverter.convertToDomainModel(it.workJsonList)
+                }.doOnSuccess { workList ->
                     workList.forEach {
                         idCache.put(
                                 it.id,
@@ -155,24 +127,6 @@ internal class WorkRepositoryImpl(
                     }
                 }.subscribeOn(ioScheduler)
             }
-
-    private fun getEpisodeListJsonList(
-            getWorkListResponseJson: GetWorkListResponseJson,
-            accessToken: String
-    ): Single<List<Pair<WorkJson, List<EpisodeJson>>>> =
-            getWorkListResponseJson.workJsonList.map { workJson ->
-                apiClient.getEpisodeList(
-                        GetEpisodeListRequestJson(
-                                filterWorkId = workJson.id,
-                                accessToken = accessToken
-                        )
-                ).map { getEpisodeListResponseJson ->
-                    Pair(
-                            workJson,
-                            getEpisodeListResponseJson.episodeJsonList
-                    )
-                }
-            }.let { Single.concat(it) }.toList()
 
 }
 
