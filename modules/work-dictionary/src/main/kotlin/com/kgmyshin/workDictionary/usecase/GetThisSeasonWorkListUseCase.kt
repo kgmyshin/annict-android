@@ -3,8 +3,8 @@ package com.kgmyshin.workDictionary.usecase
 import com.kgmyshin.workDictionary.domain.work.Work
 import io.reactivex.Single
 
-internal interface SearchWorksUseCase {
+internal interface GetThisSeasonWorkListUseCase {
 
-    fun execute(keyword: String): Single<List<Work>>
+    fun execute(): Single<List<Work>>
 
 }

@@ -21,6 +21,15 @@ internal class Season(val name: String) : ValueObject {
             return Season(toSeasonName(c))
         }
 
+        fun beforeSeason(): Season {
+            val c = Calendar.getInstance()
+            c.add(
+                    Calendar.MONTH,
+                    -3
+            )
+            return Season(toSeasonName(c))
+        }
+
 
         private fun toSeasonName(calendar: Calendar): String {
             val seasonStr = when (calendar.get(Calendar.MONTH) + 1) {

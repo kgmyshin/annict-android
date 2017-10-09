@@ -1,17 +1,16 @@
-package com.kgmyshin.workDictionary.domain.work
+package com.kgmyshin.workDictionary.ui.work
 
-import com.kgmyshin.common.dddSupport.Entity
 import java.util.*
 
-internal class Work(
-        id: WorkId,
+data class WorkViewModel(
+        val id: String,
         val title: String,
         val titleKana: String,
-        val season: Season,
+        val season: SeasonViewModel,
         val releasedOn: Date,
         val officialSiteUrl: String,
         val twitterUserName: String?,
         val imageUrl: String?,
         val episodesCount: Int,
         val watchersCount: Int
-) : Entity<WorkId>(id)
+)
