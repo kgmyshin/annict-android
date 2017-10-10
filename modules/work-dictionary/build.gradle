@@ -35,6 +35,7 @@ dependencies {
     implementation project(":common")
 
     implementation deps.support.appCompat
+    implementation deps.support.recyclerView
 
     kapt deps.binding.compiler
 
@@ -48,6 +49,8 @@ dependencies {
     implementation deps.retrofit.core
     implementation deps.retrofit.adapterRxJava2
     implementation deps.retrofit.converterGson
+
+    implementation deps.picasso
 
     testImplementation deps.junit
 }

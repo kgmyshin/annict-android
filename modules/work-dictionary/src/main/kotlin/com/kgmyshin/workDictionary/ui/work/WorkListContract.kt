@@ -18,6 +18,8 @@ interface WorkListContract {
 
         fun onDetach()
 
+        fun onClickWork(workViewModel: WorkViewModel)
+
     }
 
     interface View : BaseView, HasProgress {

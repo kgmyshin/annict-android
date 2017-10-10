@@ -3,6 +3,7 @@ package com.kgmyshin.workDictionary.ui.work.popular
 import com.kgmyshin.common.errorHandler.ErrorHandler
 import com.kgmyshin.workDictionary.ui.work.ScreenTransition
 import com.kgmyshin.workDictionary.ui.work.WorkListContract
+import com.kgmyshin.workDictionary.ui.work.WorkViewModel
 import com.kgmyshin.workDictionary.ui.work.WorkViewModelConverter
 import com.kgmyshin.workDictionary.usecase.GetPopularWorkListUseCase
 import io.reactivex.Scheduler
@@ -55,5 +56,9 @@ internal class PopularWorkListPresenter @Inject constructor(
 
     override fun onDetach() {
         disposables.clear()
+    }
+
+    override fun onClickWork(workViewModel: WorkViewModel) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 }
