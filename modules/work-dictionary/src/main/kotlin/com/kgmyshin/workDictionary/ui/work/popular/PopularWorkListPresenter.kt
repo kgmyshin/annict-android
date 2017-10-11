@@ -16,7 +16,7 @@ internal class PopularWorkListPresenter @Inject constructor(
         private val getPopularWorkListUseCase: GetPopularWorkListUseCase,
         @Named("ui") private val uiSchduler: Scheduler,
         private val errorHandler: ErrorHandler
-) : WorkListContract.Presenter {
+) : PopularWorkListContract.Presenter {
 
     private lateinit var view: WorkListContract.View
     private lateinit var screenTransition: ScreenTransition

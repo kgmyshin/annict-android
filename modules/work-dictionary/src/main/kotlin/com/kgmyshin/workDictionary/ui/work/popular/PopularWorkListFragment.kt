@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.kgmyshin.common.di.ContainerApplicationHelper
+import com.kgmyshin.workDictionary.WorkDictionaryComponent
 import com.kgmyshin.workDictionary.ui.work.ScreenTransition
 import com.kgmyshin.workDictionary.ui.work.WorkListContract
 import com.kgmyshin.workDictionary.ui.work.WorkListFragment
@@ -22,8 +24,7 @@ class PopularWorkListFragment : WorkListFragment(), WorkListContract.View {
 
     override fun onAttach(context: Context?) {
         super.onAttach(context)
-        // TODO: inject実装
-        //        ContainerApplicationHelper.get(activity).getComponent(WorkDictionaryComponent::class).inject(this)
+        ContainerApplicationHelper.get(activity).getComponent(WorkDictionaryComponent::class).inject(this)
         val screenTransition = (context as? ScreenTransition) ?: throw ClassCastException("must cast ScreenTransition")
         presenter.setUp(
                 this,

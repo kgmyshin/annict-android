@@ -16,7 +16,7 @@ internal class ThisSeasonWorkListPresenter @Inject constructor(
         private val getThisSeasonWorkListUseCase: GetThisSeasonWorkListUseCase,
         @Named("ui") private val uiSchduler: Scheduler,
         private val errorHandler: ErrorHandler
-) : WorkListContract.Presenter {
+) : ThisSeasonWorkListContract.Presenter {
 
     private lateinit var view: WorkListContract.View
     private lateinit var screenTransition: ScreenTransition

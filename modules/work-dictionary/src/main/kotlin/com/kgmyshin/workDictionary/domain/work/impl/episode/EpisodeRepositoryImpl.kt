@@ -11,9 +11,10 @@ import com.kgmyshin.workDictionary.infra.api.json.GetEpisodeListRequestJson
 import io.reactivex.Maybe
 import io.reactivex.Scheduler
 import io.reactivex.Single
+import javax.inject.Inject
 import javax.inject.Named
 
-internal class EpisodeRepositoryImpl(
+internal class EpisodeRepositoryImpl @Inject constructor(
         private val apiClient: WorkDictionaryApiClient,
         private val getAccessTokenService: GetAccessTokenService,
         @Named("io") private val ioScheduler: Scheduler
