@@ -14,7 +14,7 @@ import javax.inject.Named
 
 internal class PopularWorkListPresenter @Inject constructor(
         private val getPopularWorkListUseCase: GetPopularWorkListUseCase,
-        @Named("ui") private val uiSchduler: Scheduler,
+        @Named("ui") private val uiScheduler: Scheduler,
         private val errorHandler: ErrorHandler
 ) : PopularWorkListContract.Presenter {
 
@@ -35,7 +35,7 @@ internal class PopularWorkListPresenter @Inject constructor(
                 .doOnSubscribe {
                     view.showProgress()
                 }
-                .observeOn(uiSchduler)
+                .observeOn(uiScheduler)
                 .subscribe({ workList ->
                                view.setUp(WorkViewModelConverter.convertToViewModel(workList))
                                view.dismissProgress()

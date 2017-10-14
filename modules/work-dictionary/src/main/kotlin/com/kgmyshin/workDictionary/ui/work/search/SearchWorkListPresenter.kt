@@ -12,7 +12,7 @@ import javax.inject.Named
 
 internal class SearchWorkListPresenter @Inject constructor(
         private val searchWorkListUseCase: SearchWorkListUseCase,
-        @Named("ui") private val uiSchduler: Scheduler,
+        @Named("ui") private val uiScheduler: Scheduler,
         private val errorHandler: ErrorHandler
 ) : SearchWorkListContract.Presenter {
 
@@ -36,7 +36,7 @@ internal class SearchWorkListPresenter @Inject constructor(
                 .doOnSubscribe {
                     view.showProgress()
                 }
-                .observeOn(uiSchduler)
+                .observeOn(uiScheduler)
                 .subscribe({ workList ->
                                view.setUp(WorkViewModelConverter.convertToViewModel(workList))
                                view.dismissProgress()

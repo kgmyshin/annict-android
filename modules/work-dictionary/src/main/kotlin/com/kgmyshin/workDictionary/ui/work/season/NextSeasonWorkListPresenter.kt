@@ -14,7 +14,7 @@ import javax.inject.Named
 
 internal class NextSeasonWorkListPresenter @Inject constructor(
         private val getNextSeasonWorkListUseCase: GetNextSeasonWorkListUseCase,
-        @Named("ui") private val uiSchduler: Scheduler,
+        @Named("ui") private val uiScheduler: Scheduler,
         private val errorHandler: ErrorHandler
 ) : NextSeasonWorkListContract.Presenter {
 
@@ -35,7 +35,7 @@ internal class NextSeasonWorkListPresenter @Inject constructor(
                 .doOnSubscribe {
                     view.showProgress()
                 }
-                .observeOn(uiSchduler)
+                .observeOn(uiScheduler)
                 .subscribe({ workList ->
                                view.setUp(WorkViewModelConverter.convertToViewModel(workList))
                                view.dismissProgress()
