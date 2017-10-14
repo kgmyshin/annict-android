@@ -32,10 +32,8 @@ internal class BeforeSeasonWorkListPresenter @Inject constructor(
 
     override fun onCreateView() {
         getBeforeSeasonWorkListUseCase.execute()
-                .doOnSubscribe {
-                    view.showProgress()
-                }
                 .observeOn(uiScheduler)
+                .doOnSubscribe { view.showProgress() }
                 .subscribe({ workList ->
                                view.setUp(WorkViewModelConverter.convertToViewModel(workList))
                                view.dismissProgress()
@@ -58,7 +56,5 @@ internal class BeforeSeasonWorkListPresenter @Inject constructor(
         disposables.clear()
     }
 
-    override fun onClickWork(workViewModel: WorkViewModel) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    override fun onClickWork(workViewModel: WorkViewModel) = screenTransition.moveToDetail()
 }

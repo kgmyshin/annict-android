@@ -13,14 +13,12 @@ internal object BindingAdapter {
             view: ImageView?,
             imageUrl: String?
     ) {
-        if (view == null && imageUrl == null) {
+        if (view == null || imageUrl == null) {
             return
         }
-        view?.let {
-            Picasso.with(it.context)
-                    .load(imageUrl)
-                    .into(view)
-        }
+        Picasso.with(view.context)
+                .load(imageUrl)
+                .into(view)
     }
 
     @BindingAdapter("workList")
@@ -29,16 +27,14 @@ internal object BindingAdapter {
             view: RecyclerView?,
             workList: List<WorkViewModel>?
     ) {
-        if (view == null && workList == null) {
+        if (view == null || workList == null) {
             return
         }
-        view?.let {
-            val adapter = WorkListAdapter(
-                    it.context,
-                    workList!!
-            )
-            view.adapter = adapter
-        }
+        val adapter = WorkListAdapter(
+                view.context,
+                workList
+        )
+        view.adapter = adapter
     }
 
 }
