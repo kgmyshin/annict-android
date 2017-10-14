@@ -1,6 +1,7 @@
 package com.kgmyshin.workDictionary.usecase
 
 import com.kgmyshin.workDictionary.domain.work.WorkRepository
+import com.kgmyshin.workDictionary.domain.work.episode.EpisodeRepository
 import com.kgmyshin.workDictionary.usecase.impl.*
 import dagger.Module
 import dagger.Provides
@@ -37,5 +38,10 @@ internal class WorkDictionaryUseCaseModule {
     fun provideSearchWorkListUseCase(
             workRepository: WorkRepository
     ): SearchWorkListUseCase = SearchWorkListUseCaseImpl(workRepository)
+
+    @Provides
+    fun provideEpisodeListUseCase(
+            episodeRepository: EpisodeRepository
+    ): GetEpisodeListUseCase = GetEpisodeListUseCaseImpl(episodeRepository)
 
 }

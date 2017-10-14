@@ -1,5 +1,7 @@
 package com.kgmyshin.workDictionary.ui
 
+import com.kgmyshin.workDictionary.ui.work.detail.WorkDetailContract
+import com.kgmyshin.workDictionary.ui.work.detail.WorkDetailPresenter
 import com.kgmyshin.workDictionary.ui.work.popular.PopularWorkListContract
 import com.kgmyshin.workDictionary.ui.work.popular.PopularWorkListPresenter
 import com.kgmyshin.workDictionary.ui.work.search.SearchWorkListContract
@@ -35,5 +37,10 @@ internal class WorkDictionaryUiModule {
     fun provide_ThisWorkListContract_Presenter(
             thisSeasonWorkListPresenter: ThisSeasonWorkListPresenter
     ): ThisSeasonWorkListContract.Presenter = thisSeasonWorkListPresenter
+
+    @Provides
+    fun provide_WorkDetailContract_Presenter(
+            workDetailPresenter: WorkDetailPresenter
+    ): WorkDetailContract.Presenter = workDetailPresenter
 
 }
