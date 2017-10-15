@@ -1,7 +1,6 @@
 package com.kgmyshin.workDictionary.infra.api.json
 
 import com.google.gson.annotations.SerializedName
-import java.util.*
 
 
 internal data class WorkJson(
@@ -12,8 +11,8 @@ internal data class WorkJson(
         @SerializedName("media_text") val mediaText: String,
         @SerializedName("season_name") val seasonName: String,
         @SerializedName("season_name_text") val seasonNameText: String,
-        @SerializedName("released_on") val releasedOn: Date,
-        @SerializedName("released_on_about") val releasedOnAbout: Date,
+        @SerializedName("released_on") val releasedOn: String?,
+        @SerializedName("released_on_about") val releasedOnAbout: String?,
         @SerializedName("official_site_url") val officialSiteUrl: String,
         @SerializedName("wikipedia_url") val wikipediaUrl: String,
         @SerializedName("twitter_username") val twitterUserName: String,

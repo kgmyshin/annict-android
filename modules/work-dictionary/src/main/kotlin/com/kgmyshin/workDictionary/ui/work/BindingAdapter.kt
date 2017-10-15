@@ -13,7 +13,11 @@ internal object BindingAdapter {
             view: ImageView?,
             imageUrl: String?
     ) {
-        if (view == null || imageUrl == null) {
+        if (view == null) {
+            return
+        }
+        if (imageUrl == null || imageUrl.isEmpty()) {
+            view.setImageDrawable(null)
             return
         }
         Picasso.with(view.context)

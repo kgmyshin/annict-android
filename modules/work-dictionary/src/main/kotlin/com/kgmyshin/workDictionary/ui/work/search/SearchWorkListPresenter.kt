@@ -2,6 +2,7 @@ package com.kgmyshin.workDictionary.ui.work.search
 
 import com.kgmyshin.common.errorHandler.ErrorHandler
 import com.kgmyshin.workDictionary.ui.work.ScreenTransition
+import com.kgmyshin.workDictionary.ui.work.WorkViewModel
 import com.kgmyshin.workDictionary.ui.work.WorkViewModelConverter
 import com.kgmyshin.workDictionary.usecase.SearchWorkListUseCase
 import io.reactivex.Scheduler
@@ -18,20 +19,24 @@ internal class SearchWorkListPresenter @Inject constructor(
 
     private lateinit var view: SearchWorkListContract.View
     private lateinit var screenTransition: ScreenTransition
-    private lateinit var keyword: String
     private val disposables = CompositeDisposable()
 
     override fun setUp(
             view: SearchWorkListContract.View,
-            screenTransition: ScreenTransition,
-            keyword: String
+            screenTransition: ScreenTransition
     ) {
         this.view = view
         this.screenTransition = screenTransition
-        this.keyword = keyword
     }
 
-    override fun onCreateView() {
+    override fun onAttach() {
+    }
+
+    override fun onDetach() {
+        disposables.clear()
+    }
+
+    override fun onUpdateKeyword(keyword: String) {
         searchWorkListUseCase.execute(keyword)
                 .doOnSubscribe {
                     view.showProgress()
@@ -52,10 +57,5 @@ internal class SearchWorkListPresenter @Inject constructor(
                 .addTo(disposables)
     }
 
-    override fun onAttach() {
-    }
-
-    override fun onDetach() {
-        disposables.clear()
-    }
+    override fun onClickWork(workViewModel: WorkViewModel) = screenTransition.moveToDetail()
 }

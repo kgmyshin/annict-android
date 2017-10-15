@@ -12,7 +12,7 @@ internal class AuthApiClientFactory {
             Retrofit.Builder()
                     .baseUrl("https://api.annict.com")
                     .client(OkHttpClient())
-                    .addConverterFactory(GsonConverterFactory.create(GsonBuilder().setDateFormat("YYYY-MM-DDTHH:MM:SSZ").create()))
+                    .addConverterFactory(GsonConverterFactory.create(GsonBuilder().setDateFormat("YYYY-MM-DD'T'HH:MM:SS'Z'").create()))
                     .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                     .build()
                     .create(AuthApiClient::class.java)

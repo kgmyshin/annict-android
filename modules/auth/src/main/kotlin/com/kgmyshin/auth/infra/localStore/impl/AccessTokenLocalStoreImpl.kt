@@ -17,6 +17,7 @@ internal class AccessTokenLocalStoreImpl(private val accessTokenPreference: Acce
     }
 
     override fun put(accessToken: String): Completable = Completable.create { source ->
+
         accessTokenPreference.put(accessToken)
         source.onComplete()
     }

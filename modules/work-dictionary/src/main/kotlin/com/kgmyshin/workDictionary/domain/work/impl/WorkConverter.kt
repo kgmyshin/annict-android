@@ -16,7 +16,6 @@ internal object WorkConverter {
                     title = json.title,
                     titleKana = json.titleKana,
                     season = Season(json.seasonName),
-                    releasedOn = json.releasedOn,
                     officialSiteUrl = json.officialSiteUrl,
                     twitterUserName = json.twitterUserName,
                     imageUrl = json.imagesJson.recommendedUrl,

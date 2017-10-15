@@ -1,3 +1,7 @@
 <resources>
+    <string name="app_name">Work-Dictionary
+    </string>
     <string name="episode_number">第%1$d話</string>
+    <string name="title_search">検索</string>
+    <string name="searchable_hint">キーワード入力</string>
 </resources>

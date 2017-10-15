@@ -11,16 +11,16 @@ interface SearchWorkListContract {
 
         fun setUp(
                 view: View,
-                screenTransition: ScreenTransition,
-                keyword: String
+                screenTransition: ScreenTransition
         )
 
-        fun onCreateView()
+        fun onUpdateKeyword(keyword: String)
 
         fun onAttach()
 
         fun onDetach()
 
+        fun onClickWork(workViewModel: WorkViewModel)
     }
 
     interface View : BaseView, HasProgress {

@@ -22,7 +22,7 @@ class LoginActivity : AppCompatActivity(), ScreenTransition {
         Intent().apply {
             setClassName(
                     applicationContext.packageName,
-                    "om.kgmyshin.annict.MainActivity"
+                    "com.kgmyshin.workDictionary.ui.work.search.SearchWorkListActivity"
             )
         }.let { startActivity(it) }
     }

@@ -7,7 +7,6 @@ import com.kgmyshin.workDictionary.domain.work.Work
 import com.kgmyshin.workDictionary.domain.work.WorkId
 import com.kgmyshin.workDictionary.domain.work.WorkRepository
 import com.kgmyshin.workDictionary.infra.api.WorkDictionaryApiClient
-import com.kgmyshin.workDictionary.infra.api.json.GetWorkListRequestJson
 import io.reactivex.Maybe
 import io.reactivex.Scheduler
 import io.reactivex.Single
@@ -36,10 +35,8 @@ internal class WorkRepositoryImpl @Inject constructor(
             } else {
                 getAccessTokenService.execute().flatMap { accessToken ->
                     apiClient.getWorkList(
-                            GetWorkListRequestJson(
-                                    filterIds = id.value,
-                                    accessToken = accessToken
-                            )
+                            filterIds = id.value,
+                            accessToken = accessToken
                     )
                 }.map {
                     WorkConverter.convertToDomainModel(it.workJsonList[0])
@@ -57,10 +54,8 @@ internal class WorkRepositoryImpl @Inject constructor(
             } else {
                 getAccessTokenService.execute().flatMap { accessToken ->
                     apiClient.getWorkList(
-                            GetWorkListRequestJson(
-                                    filterTitle = keyword,
-                                    accessToken = accessToken
-                            )
+                            filterTitle = keyword,
+                            accessToken = accessToken
                     )
                 }.map {
                     WorkConverter.convertToDomainModel(it.workJsonList)
@@ -84,10 +79,8 @@ internal class WorkRepositoryImpl @Inject constructor(
             } else {
                 getAccessTokenService.execute().flatMap { accessToken ->
                     apiClient.getWorkList(
-                            GetWorkListRequestJson(
-                                    filterSeason = season.name,
-                                    accessToken = accessToken
-                            )
+                            filterSeason = season.name,
+                            accessToken = accessToken
                     )
                 }.map {
                     WorkConverter.convertToDomainModel(it.workJsonList)
@@ -111,11 +104,9 @@ internal class WorkRepositoryImpl @Inject constructor(
             } else {
                 getAccessTokenService.execute().flatMap { accessToken ->
                     apiClient.getWorkList(
-                            GetWorkListRequestJson(
-                                    sortWatchersCount = "asc",
-                                    accessToken = accessToken,
-                                    perPage = 50
-                            )
+                            sortWatchersCount = "asc",
+                            accessToken = accessToken,
+                            perPage = 50
                     )
                 }.map {
                     WorkConverter.convertToDomainModel(it.workJsonList)

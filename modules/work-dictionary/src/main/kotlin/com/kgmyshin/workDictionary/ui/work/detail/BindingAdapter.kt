@@ -3,7 +3,7 @@ package com.kgmyshin.workDictionary.ui.work.detail
 import android.databinding.BindingAdapter
 import android.support.v7.widget.RecyclerView
 
-object BindingAdapter {
+internal object BindingAdapter {
 
     @BindingAdapter("workDetail")
     @JvmStatic

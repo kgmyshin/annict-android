@@ -13,7 +13,6 @@ internal object WorkViewModelConverter {
                     title = work.title,
                     titleKana = work.titleKana,
                     season = SeasonViewModelConverter.convertToViewModel(work.season),
-                    releasedOn = work.releasedOn,
                     officialSiteUrl = work.officialSiteUrl,
                     twitterUserName = work.twitterUserName,
                     imageUrl = work.imageUrl,

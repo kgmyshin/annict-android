@@ -34,9 +34,11 @@ class BeforeSeasonWorkListFragment : WorkListFragment(), WorkListContract.View {
         presenter.onAttach()
     }
 
-    override fun onCreateView(inflater: LayoutInflater?,
-                              container: ViewGroup?,
-                              savedInstanceState: Bundle?): View {
+    override fun onCreateView(
+            inflater: LayoutInflater?,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
+    ): View {
         presenter.onCreateView()
         return super.onCreateView(
                 inflater,

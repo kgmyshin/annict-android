@@ -7,7 +7,6 @@ import com.kgmyshin.workDictionary.domain.work.episode.Episode
 import com.kgmyshin.workDictionary.domain.work.episode.EpisodeId
 import com.kgmyshin.workDictionary.domain.work.episode.EpisodeRepository
 import com.kgmyshin.workDictionary.infra.api.WorkDictionaryApiClient
-import com.kgmyshin.workDictionary.infra.api.json.GetEpisodeListRequestJson
 import io.reactivex.Maybe
 import io.reactivex.Scheduler
 import io.reactivex.Single
@@ -29,10 +28,8 @@ internal class EpisodeRepositoryImpl @Inject constructor(
             } else {
                 getAccessTokenService.execute().flatMap { accessToken ->
                     apiClient.getEpisodeList(
-                            GetEpisodeListRequestJson(
-                                    fields = id.value,
-                                    accessToken = accessToken
-                            )
+                            fields = id.value,
+                            accessToken = accessToken
                     )
                 }.map {
                     EpisodeConverter.convertToEpisode(it.episodeJsonList[0])
@@ -50,10 +47,8 @@ internal class EpisodeRepositoryImpl @Inject constructor(
             } else {
                 getAccessTokenService.execute().flatMap { accessToken ->
                     apiClient.getEpisodeList(
-                            GetEpisodeListRequestJson(
-                                    filterWorkId = workId.value,
-                                    accessToken = accessToken
-                            )
+                            filterWorkId = workId.value,
+                            accessToken = accessToken
                     )
                 }.map {
                     EpisodeConverter.convertToEpisode(it.episodeJsonList)

@@ -4,6 +4,7 @@ import com.kgmyshin.auth.hostService.AuthHostServiceModule
 import com.kgmyshin.common.di.Component
 import com.kgmyshin.workDictionary.ui.work.detail.WorkDetailContract
 import com.kgmyshin.workDictionary.ui.work.popular.*
+import com.kgmyshin.workDictionary.ui.work.search.SearchWorkListFragment
 import com.kgmyshin.workDictionary.ui.work.season.BeforeSeasonWorkListContract
 import com.kgmyshin.workDictionary.ui.work.season.NextSeasonWorkListContract
 import com.kgmyshin.workDictionary.ui.work.season.ThisSeasonWorkListContract
@@ -33,5 +34,7 @@ interface WorkDictionaryComponent : Component {
     fun inject(fragment: ThisSeasonWorkListFragment)
 
     fun inject(fragment: NextSeasonWorkListFragment)
+
+    fun inject(fragment: SearchWorkListFragment)
 
 }
