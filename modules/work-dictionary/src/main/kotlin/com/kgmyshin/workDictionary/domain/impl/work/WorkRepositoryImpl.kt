@@ -1,4 +1,4 @@
-package com.kgmyshin.workDictionary.domain.work.impl
+package com.kgmyshin.workDictionary.domain.impl.work
 
 import android.support.v4.util.LruCache
 import com.kgmyshin.auth.hostService.GetAccessTokenService
@@ -12,7 +12,6 @@ import io.reactivex.Scheduler
 import io.reactivex.Single
 import javax.inject.Inject
 import javax.inject.Named
-
 
 internal class WorkRepositoryImpl @Inject constructor(
         private val apiClient: WorkDictionaryApiClient,

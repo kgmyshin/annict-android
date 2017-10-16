@@ -1,4 +1,4 @@
-package com.kgmyshin.workDictionary.domain.work.impl
+package com.kgmyshin.workDictionary.domain.impl.work
 
 import com.kgmyshin.workDictionary.domain.work.Season
 import com.kgmyshin.workDictionary.domain.work.Work

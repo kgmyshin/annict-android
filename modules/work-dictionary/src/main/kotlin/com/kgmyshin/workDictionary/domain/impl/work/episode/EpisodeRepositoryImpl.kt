@@ -1,4 +1,4 @@
-package com.kgmyshin.workDictionary.domain.work.impl.episode
+package com.kgmyshin.workDictionary.domain.impl.work.episode
 
 import android.support.v4.util.LruCache
 import com.kgmyshin.auth.hostService.GetAccessTokenService

@@ -1,4 +1,4 @@
-package com.kgmyshin.workDictionary.domain.work.impl.episode
+package com.kgmyshin.workDictionary.domain.impl.work.episode
 
 import com.kgmyshin.workDictionary.domain.work.episode.Episode
 import com.kgmyshin.workDictionary.domain.work.episode.EpisodeId

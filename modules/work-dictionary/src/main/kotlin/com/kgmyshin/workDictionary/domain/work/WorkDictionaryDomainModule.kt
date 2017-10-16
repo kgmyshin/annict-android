@@ -1,8 +1,8 @@
 package com.kgmyshin.workDictionary.domain.work
 
 import com.kgmyshin.workDictionary.domain.work.episode.EpisodeRepository
-import com.kgmyshin.workDictionary.domain.work.impl.WorkRepositoryImpl
-import com.kgmyshin.workDictionary.domain.work.impl.episode.EpisodeRepositoryImpl
+import com.kgmyshin.workDictionary.domain.impl.work.WorkRepositoryImpl
+import com.kgmyshin.workDictionary.domain.impl.work.episode.EpisodeRepositoryImpl
 import dagger.Module
 import dagger.Provides
 
