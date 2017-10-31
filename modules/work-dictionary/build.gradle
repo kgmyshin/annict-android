@@ -54,4 +54,5 @@ dependencies {
     implementation deps.picasso
 
     testImplementation deps.junit
+    testImplementation deps.mockito
 }
