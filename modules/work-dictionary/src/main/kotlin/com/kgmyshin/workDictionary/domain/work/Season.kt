@@ -3,7 +3,7 @@ package com.kgmyshin.workDictionary.domain.work
 import com.kgmyshin.common.dddSupport.ValueObject
 import java.util.*
 
-internal class Season(val name: String) : ValueObject {
+internal data class Season(val name: String) : ValueObject {
 
     companion object {
 
