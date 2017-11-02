@@ -58,7 +58,5 @@ internal class ThisSeasonWorkListPresenter @Inject constructor(
         disposables.clear()
     }
 
-    override fun onClickWork(workViewModel: WorkViewModel) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    override fun onClickWork(workViewModel: WorkViewModel) = screenTransition.moveToDetail()
 }
