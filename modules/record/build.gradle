@@ -20,6 +20,8 @@ android {
     }
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
+        debug.java.srcDirs += 'src/debug/kotlin'
+        release.java.srcDirs += 'src/release/kotlin'
     }
     dataBinding {
         enabled = true
@@ -31,14 +33,27 @@ dependencies {
 
     implementation deps.kotlin
 
+    implementation project(":auth")
     implementation project(":common")
+    implementation project(":work-dictionary")
 
     implementation deps.support.appCompat
+    implementation deps.support.recyclerView
 
     kapt deps.binding.compiler
 
     implementation deps.dagger.runtime
     kapt deps.dagger.compiler
+
+    implementation deps.rxjava2.core
+    implementation deps.rxjava2.android
+    implementation deps.rxjava2.kotlin
+
+    implementation deps.retrofit.core
+    implementation deps.retrofit.adapterRxJava2
+    implementation deps.retrofit.converterGson
+
+    debugImplementation deps.loggingInterceptor
 
     testImplementation deps.junit
 }

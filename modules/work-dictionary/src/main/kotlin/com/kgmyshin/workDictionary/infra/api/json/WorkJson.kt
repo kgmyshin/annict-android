@@ -3,7 +3,7 @@ package com.kgmyshin.workDictionary.infra.api.json
 import com.google.gson.annotations.SerializedName
 
 
-internal data class WorkJson(
+data class WorkJson(
         @SerializedName("id") val id: String,
         @SerializedName("title") val title: String,
         @SerializedName("title_kana") val titleKana: String,

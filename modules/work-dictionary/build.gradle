@@ -51,7 +51,7 @@ dependencies {
     implementation deps.retrofit.adapterRxJava2
     implementation deps.retrofit.converterGson
 
-    implementation deps.loggingInterceptor
+    debugImplementation deps.loggingInterceptor
 
     implementation deps.picasso
 

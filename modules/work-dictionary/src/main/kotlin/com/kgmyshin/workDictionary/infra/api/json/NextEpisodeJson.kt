@@ -2,7 +2,7 @@ package com.kgmyshin.workDictionary.infra.api.json
 
 import com.google.gson.annotations.SerializedName
 
-internal data class NextEpisodeJson(
+data class NextEpisodeJson(
         @SerializedName("id") val id: String,
         @SerializedName("number") val number: Int,
         @SerializedName("number_text") val numberText: String,
