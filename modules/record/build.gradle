@@ -38,6 +38,7 @@ dependencies {
     implementation project(":work-dictionary")
 
     implementation deps.support.appCompat
+    implementation deps.support.recyclerView
 
     kapt deps.binding.compiler
 
