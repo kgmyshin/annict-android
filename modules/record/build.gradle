@@ -20,6 +20,8 @@ android {
     }
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
+        debug.java.srcDirs += 'src/debug/kotlin'
+        release.java.srcDirs += 'src/release/kotlin'
     }
     dataBinding {
         enabled = true
@@ -49,6 +51,8 @@ dependencies {
     implementation deps.retrofit.core
     implementation deps.retrofit.adapterRxJava2
     implementation deps.retrofit.converterGson
+
+    debugImplementation deps.loggingInterceptor
 
     testImplementation deps.junit
 }
