@@ -3,8 +3,12 @@ package com.kgmyshin.annict
 import com.kgmyshin.auth.AuthComponent
 import com.kgmyshin.auth.AuthModule
 import com.kgmyshin.auth.DaggerAuthComponent
+import com.kgmyshin.auth.hostService.AuthHostServiceModule
 import com.kgmyshin.common.di.Component
 import com.kgmyshin.common.di.ContainerApplication
+import com.kgmyshin.workDictionary.DaggerWorkDictionaryComponent
+import com.kgmyshin.workDictionary.WorkDictionaryComponent
+import com.kgmyshin.workDictionary.WorkDictionaryModule
 import java.util.*
 import kotlin.reflect.KClass
 
@@ -18,6 +22,13 @@ class AnnictApplication : ContainerApplication() {
                 AuthComponent::class,
                 DaggerAuthComponent.builder()
                         .authModule(AuthModule(this))
+                        .build()
+        )
+        componentMap.put(
+                WorkDictionaryComponent::class,
+                DaggerWorkDictionaryComponent.builder()
+                        .authHostServiceModule(AuthHostServiceModule(this))
+                        .workDictionaryModule(WorkDictionaryModule(this))
                         .build()
         )
     }

@@ -1,6 +1,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
+apply plugin: "com.kgmyshin.random"
 
 android {
     compileSdkVersion versions.compileSdk
@@ -28,14 +29,14 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-
+    kapt deps.binding.compiler
     implementation deps.kotlin
 
+    implementation project(":auth")
     implementation project(":common")
 
     implementation deps.support.appCompat
-
-    kapt deps.binding.compiler
+    implementation deps.support.recyclerView
 
     implementation deps.dagger.runtime
     kapt deps.dagger.compiler
@@ -44,5 +45,14 @@ dependencies {
     implementation deps.rxjava2.android
     implementation deps.rxjava2.kotlin
 
+    implementation deps.retrofit.core
+    implementation deps.retrofit.adapterRxJava2
+    implementation deps.retrofit.converterGson
+
+    implementation deps.loggingInterceptor
+
+    implementation deps.picasso
+
     testImplementation deps.junit
+    testImplementation deps.mockito
 }

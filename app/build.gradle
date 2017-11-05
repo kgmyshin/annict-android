@@ -32,8 +32,10 @@ dependencies {
 
     implementation project(":common")
     implementation project(":auth")
+    implementation project(":work-dictionary")
 
     implementation deps.support.appCompat
+    implementation deps.support.recyclerView
     implementation deps.support.constraintLayout
 
     kapt deps.binding.compiler

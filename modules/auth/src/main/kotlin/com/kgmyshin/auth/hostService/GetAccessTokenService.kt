@@ -1,9 +1,9 @@
 package com.kgmyshin.auth.hostService
 
-import io.reactivex.Maybe
+import io.reactivex.Single
 
 interface GetAccessTokenService {
 
-    fun execute(): Maybe<String>
+    fun execute(): Single<String>
 
 }

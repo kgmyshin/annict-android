@@ -5,8 +5,12 @@ import io.reactivex.Single
 
 internal interface WorkRepository {
 
-    fun findAll(): Single<List<Work>>
-
     fun find(id: WorkId): Maybe<Work>
+
+    fun findAllByKeyword(keyword: String): Single<List<Work>>
+
+    fun findAllBySeason(season: Season): Single<List<Work>>
+
+    fun findAllPopular(): Single<List<Work>>
 
 }

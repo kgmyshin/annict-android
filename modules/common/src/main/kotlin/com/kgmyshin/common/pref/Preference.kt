@@ -13,10 +13,6 @@ abstract class Preference(private val context: Context) {
                 Context.MODE_PRIVATE
         )
 
-    protected val editor: SharedPreferences.Editor
-        get() {
-            val prefs = sharedPreferences
-            return prefs.edit()
-        }
+    protected val editor: SharedPreferences.Editor = sharedPreferences.edit()
 
 }
