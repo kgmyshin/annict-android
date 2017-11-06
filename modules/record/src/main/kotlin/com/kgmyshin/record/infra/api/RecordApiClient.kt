@@ -4,6 +4,7 @@ import com.kgmyshin.record.infra.api.json.GetRecordListJson
 import com.kgmyshin.record.infra.api.json.GetReviewListJson
 import com.kgmyshin.record.infra.api.json.RecordJson
 import com.kgmyshin.record.infra.api.json.ReviewJson
+import io.reactivex.Completable
 import io.reactivex.Single
 import retrofit2.http.*
 
@@ -54,7 +55,7 @@ internal interface RecordApiClient {
     fun deleteReview(
             @Path("id") id: String,
             @Query("access_token") accessToken: String
-    ): Single<ReviewJson>
+    ): Completable
 
     @GET("/v1/records")
     fun getRecords(
@@ -92,6 +93,6 @@ internal interface RecordApiClient {
     fun deleteRecored(
             @Path("id") id: String,
             @Query("access_token") accessToken: String
-    ): Single<RecordJson>
+    ): Completable
 
 }

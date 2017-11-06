@@ -1,6 +1,6 @@
 package com.kgmyshin.record.domain.impl.work.review
 
-import android.util.LruCache
+import android.support.v4.util.LruCache
 import com.kgmyshin.auth.hostService.GetAccessTokenService
 import com.kgmyshin.record.domain.work.WorkId
 import com.kgmyshin.record.domain.work.review.Review
@@ -104,12 +104,12 @@ internal class ReviewRepositoryImpl(
             }.subscribeOn(ioScheduler)
 
     override fun delete(review: Review): Completable =
-            getAccessTokenService.execute().flatMap { accessToken ->
+            getAccessTokenService.execute().flatMapCompletable { accessToken ->
                 apiClient.deleteReview(
                         id = review.id.value,
                         accessToken = accessToken
                 )
-            }.toCompletable().doOnComplete {
+            }.doOnComplete {
                 workIdCache.get(review.workId)?.let {
                     workIdCache.put(
                             review.workId,

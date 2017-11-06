@@ -1,6 +1,6 @@
 package com.kgmyshin.record.domain.impl.episode.record
 
-import android.util.LruCache
+import android.support.v4.util.LruCache
 import com.kgmyshin.auth.hostService.GetAccessTokenService
 import com.kgmyshin.record.domain.episode.EpisodeId
 import com.kgmyshin.record.domain.episode.record.Record
@@ -94,12 +94,12 @@ internal class RecordRepositoryImpl(
             }.subscribeOn(ioScheduler)
 
     override fun delete(record: Record): Completable =
-            getAccessTokenService.execute().flatMap { accessToken ->
-                apiClient.deleteReview(
+            getAccessTokenService.execute().flatMapCompletable { accessToken ->
+                apiClient.deleteRecored(
                         id = record.id.value,
                         accessToken = accessToken
                 )
-            }.toCompletable().doOnComplete {
+            }.doOnComplete {
                 episodeIdCache.get(record.episodeId)?.let {
                     episodeIdCache.put(
                             record.episodeId,

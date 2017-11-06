@@ -16,7 +16,7 @@ internal object RecordConverter {
             Record(
                     id = RecordId(json.id),
                     comment = json.comment,
-                    ratingState = RatingState.valueOf(json.ratingState),
+                    ratingState = RatingState.rawValueOf(json.ratingState),
                     isModified = json.isModified,
                     likesCount = json.likesCount,
                     commentsCount = json.commentsCount,
