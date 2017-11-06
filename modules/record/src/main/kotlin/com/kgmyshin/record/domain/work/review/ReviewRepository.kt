@@ -8,9 +8,17 @@ internal interface ReviewRepository {
 
     fun findByWorkId(workId: WorkId): Single<List<Review>>
 
-    fun create(review: Review): Single<Review>
+    fun create(
+            review: Review,
+            shareTwitter: Boolean,
+            shareFacebook: Boolean
+    ): Single<Review>
 
-    fun update(review: Review): Single<Review>
+    fun update(
+            review: Review,
+            shareTwitter: Boolean,
+            shareFacebook: Boolean
+    ): Single<Review>
 
     fun delete(review: Review): Completable
 
