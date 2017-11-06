@@ -1,17 +1,14 @@
 package com.kgmyshin.record.infra.api.json
 
 import com.kgmyshin.random.RandomHelper
-import java.util.Date
-import kotlin.Boolean
-import kotlin.Int
-import kotlin.String
+import java.util.*
 
 object RecordJsonFactory {
   fun create(
       id: String = RandomHelper.randomString(),
       comment: String = RandomHelper.randomString(),
       rating: Int = RandomHelper.randomInt(),
-      ratingState: String = RandomHelper.randomString(),
+      ratingState: String = "good",
       isModified: Boolean = RandomHelper.randomBoolean(),
       likesCount: Int = RandomHelper.randomInt(),
       commentsCount: Int = RandomHelper.randomInt(),

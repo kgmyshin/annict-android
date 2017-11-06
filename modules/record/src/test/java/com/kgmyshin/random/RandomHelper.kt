@@ -15,24 +15,22 @@ object RandomHelper {
   fun randomLong() = random.nextLong()
   fun randomDouble() = random.nextDouble()
   fun randomFloat() = random.nextFloat()
-  fun randomDate() {
-    Date(
-            ThreadLocalRandom.current().nextLong(
-                    Calendar.getInstance().apply {
-                        set(
-                                Calendar.YEAR,
-                                2000
-                        )
-                        set(
-                                Calendar.MONTH,
-                                0
-                        )
-                        set(
-                                Calendar.DAY_OF_MONTH,
-                                1
-                        )
-                    }.timeInMillis,
-                    Calendar.getInstance().timeInMillis
-            )
-    )}
-}
+  fun randomDate() = Date(
+          ThreadLocalRandom.current().nextLong(
+                  Calendar.getInstance().apply {
+                      set(
+                              Calendar.YEAR,
+                              2000
+                      )
+                      set(
+                              Calendar.MONTH,
+                              0
+                      )
+                      set(
+                              Calendar.DAY_OF_MONTH,
+                              1
+                      )
+                  }.timeInMillis,
+                  Calendar.getInstance().timeInMillis
+          )
+  )}
