@@ -1,12 +1,12 @@
-package com.kgmyshin.workDictionary.ui.work.search
+package com.kgmyshin.workDictionary.ui.work.season
 
 import com.kgmyshin.common.errorHandler.ErrorHandler
-import com.kgmyshin.random.RandomHelper
 import com.kgmyshin.workDictionary.domain.DomainHelper
 import com.kgmyshin.workDictionary.ui.work.ScreenTransition
+import com.kgmyshin.workDictionary.ui.work.WorkListContract
 import com.kgmyshin.workDictionary.ui.work.WorkViewModelConverter
 import com.kgmyshin.workDictionary.ui.work.WorkViewModelFactory
-import com.kgmyshin.workDictionary.usecase.SearchWorkListUseCase
+import com.kgmyshin.workDictionary.usecase.GetThisSeasonWorkListUseCase
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
 import org.jetbrains.spek.api.dsl.given
@@ -18,16 +18,16 @@ import org.junit.runner.RunWith
 import org.mockito.Mockito
 
 @RunWith(JUnitPlatform::class)
-internal class SearchWorkListPresenterTest : SubjectSpek<SearchWorkListPresenter>({
+internal class ThisSeasonWorkListPresenterSpec : SubjectSpek<ThisSeasonWorkListPresenter>({
 
-    val searchWorkListUseCase = Mockito.mock(SearchWorkListUseCase::class.java)
+    val getThisSeasonWorkListUseCase = Mockito.mock(GetThisSeasonWorkListUseCase::class.java)
     val errorHandler = Mockito.mock(ErrorHandler::class.java)
-    val view = Mockito.mock(SearchWorkListContract.View::class.java)
+    val view = Mockito.mock(WorkListContract.View::class.java)
     val screenTransition = Mockito.mock(ScreenTransition::class.java)
 
     subject {
-        SearchWorkListPresenter(
-                searchWorkListUseCase,
+        ThisSeasonWorkListPresenter(
+                getThisSeasonWorkListUseCase,
                 Schedulers.trampoline(),
                 errorHandler
         ).apply {
@@ -38,17 +38,18 @@ internal class SearchWorkListPresenterTest : SubjectSpek<SearchWorkListPresenter
         }
     }
 
-    given("SearchWorkListUseCase return workList") {
-        val keyword = RandomHelper.randomString()
+    given("GetThisSeasonWorkListUseCase return workList") {
+
         val workList = listOf(
                 DomainHelper.work(),
                 DomainHelper.work(),
                 DomainHelper.work()
         )
-        Mockito.`when`(searchWorkListUseCase.execute(keyword)).thenReturn(Single.just(workList))
+        Mockito.`when`(getThisSeasonWorkListUseCase.execute()).thenReturn(Single.just(workList))
 
-        on("onUpdateKeyword") {
-            subject.onUpdateKeyword(keyword)
+        on("onCreateView") {
+
+            subject.onCreateView()
 
             it("should setUp ViewModel to view") {
                 val expected = WorkViewModelConverter.convertToViewModel(workList)
@@ -57,6 +58,7 @@ internal class SearchWorkListPresenterTest : SubjectSpek<SearchWorkListPresenter
                 Mockito.verify(view).dismissProgress()
             }
         }
+
     }
 
     given("") {

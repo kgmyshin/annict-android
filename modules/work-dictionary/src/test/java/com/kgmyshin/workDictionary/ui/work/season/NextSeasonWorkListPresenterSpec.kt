@@ -18,7 +18,7 @@ import org.junit.runner.RunWith
 import org.mockito.Mockito
 
 @RunWith(JUnitPlatform::class)
-internal class NextSeasonWorkListPresenterTest : SubjectSpek<NextSeasonWorkListPresenter>({
+internal class NextSeasonWorkListPresenterSpec : SubjectSpek<NextSeasonWorkListPresenter>({
 
     val getNextSeasonWorkListUseCase = Mockito.mock(GetNextSeasonWorkListUseCase::class.java)
     val errorHandler = Mockito.mock(ErrorHandler::class.java)

@@ -1,4 +1,4 @@
-package com.kgmyshin.workDictionary.ui.work.popular
+package com.kgmyshin.workDictionary.ui.work.season
 
 import com.kgmyshin.common.errorHandler.ErrorHandler
 import com.kgmyshin.workDictionary.domain.DomainHelper
@@ -6,7 +6,7 @@ import com.kgmyshin.workDictionary.ui.work.ScreenTransition
 import com.kgmyshin.workDictionary.ui.work.WorkListContract
 import com.kgmyshin.workDictionary.ui.work.WorkViewModelConverter
 import com.kgmyshin.workDictionary.ui.work.WorkViewModelFactory
-import com.kgmyshin.workDictionary.usecase.GetPopularWorkListUseCase
+import com.kgmyshin.workDictionary.usecase.GetBeforeSeasonWorkListUseCase
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
 import org.jetbrains.spek.api.dsl.given
@@ -18,16 +18,16 @@ import org.junit.runner.RunWith
 import org.mockito.Mockito
 
 @RunWith(JUnitPlatform::class)
-internal class PopularWorkListPresenterTest : SubjectSpek<PopularWorkListPresenter>({
+internal class BeforeSeasonWorkListPresenterSpec : SubjectSpek<BeforeSeasonWorkListPresenter>({
 
-    val getPopularWorkListUseCase = Mockito.mock(GetPopularWorkListUseCase::class.java)
+    val getBeforeSeasonWorkListUseCase = Mockito.mock(GetBeforeSeasonWorkListUseCase::class.java)
     val errorHandler = Mockito.mock(ErrorHandler::class.java)
     val view = Mockito.mock(WorkListContract.View::class.java)
     val screenTransition = Mockito.mock(ScreenTransition::class.java)
 
     subject {
-        PopularWorkListPresenter(
-                getPopularWorkListUseCase,
+        BeforeSeasonWorkListPresenter(
+                getBeforeSeasonWorkListUseCase,
                 Schedulers.trampoline(),
                 errorHandler
         ).apply {
@@ -38,16 +38,17 @@ internal class PopularWorkListPresenterTest : SubjectSpek<PopularWorkListPresent
         }
     }
 
-    given("GetPopularWorkListUseCase return workList") {
+    given("GetBeforeSeasonWorkListUseCase return workList") {
 
         val workList = listOf(
                 DomainHelper.work(),
                 DomainHelper.work(),
                 DomainHelper.work()
         )
-        Mockito.`when`(getPopularWorkListUseCase.execute()).thenReturn(Single.just(workList))
+        Mockito.`when`(getBeforeSeasonWorkListUseCase.execute()).thenReturn(Single.just(workList))
 
         on("onCreateView") {
+
             subject.onCreateView()
 
             it("should setUp ViewModel to view") {
@@ -57,8 +58,8 @@ internal class PopularWorkListPresenterTest : SubjectSpek<PopularWorkListPresent
                 Mockito.verify(view).dismissProgress()
             }
         }
-    }
 
+    }
 
     given("") {
 

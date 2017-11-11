@@ -18,7 +18,7 @@ import org.junit.runner.RunWith
 import org.mockito.Mockito
 
 @RunWith(JUnitPlatform::class)
-internal class WorkDetailPresenterTest : SubjectSpek<WorkDetailPresenter>({
+internal class WorkDetailPresenterSpec : SubjectSpek<WorkDetailPresenter>({
 
     val getWorkUseCase = Mockito.mock(GetWorkUseCase::class.java)
     val getEpisodeListUseCase = Mockito.mock(GetEpisodeListUseCase::class.java)
