@@ -8,6 +8,9 @@ buildscript {
         maven {
             url "https://plugins.gradle.org/m2/"
         }
+        maven {
+            url "http://dl.bintray.com/jetbrains/spek"
+        }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.0.0-beta5'
@@ -55,7 +58,13 @@ ext.deps = [
         ],
         junit             : "junit:junit:4.12",
         mockito           : "org.mockito:mockito-core:2.8.9",
-        picasso           : "com.squareup.picasso:picasso:2.5.2"
+        picasso           : "com.squareup.picasso:picasso:2.5.2",
+        spek              : [
+                api    : "org.jetbrains.spek:spek-api:1.1.5",
+                engine : "org.jetbrains.spek:spek-junit-platform-engine:1.1.5",
+                subject: "org.jetbrains.spek:spek-subject-extension:1.1.5",
+                runner : "org.junit.platform:junit-platform-runner:1.0.0"
+        ]
 ]
 
 ext.props = null

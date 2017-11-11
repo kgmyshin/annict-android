@@ -10,27 +10,29 @@ import com.kgmyshin.workDictionary.infra.api.WorkDictionaryApiClient
 import com.kgmyshin.workDictionary.infra.api.json.GetWorkListResponseJsonFactory
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
-import org.junit.Before
-import org.junit.Test
-import org.mockito.Mock
+import org.jetbrains.spek.api.dsl.given
+import org.jetbrains.spek.api.dsl.it
+import org.jetbrains.spek.api.dsl.on
+import org.jetbrains.spek.subject.SubjectSpek
+import org.junit.platform.runner.JUnitPlatform
+import org.junit.runner.RunWith
 import org.mockito.Mockito
-import org.mockito.MockitoAnnotations
 
-internal class WorkRepositoryImplTest {
+@RunWith(JUnitPlatform::class)
+internal class WorkRepositoryImplSpec : SubjectSpek<WorkRepositoryImpl>({
 
-    @Mock
-    private lateinit var apiClient: WorkDictionaryApiClient
-    @Mock
-    private lateinit var getAccessTokenService: GetAccessTokenService
+    val apiClient = Mockito.mock(WorkDictionaryApiClient::class.java)
+    val getAccessTokenService = Mockito.mock(GetAccessTokenService::class.java)
 
-    @Before
-    fun setUp() {
-        MockitoAnnotations.initMocks(this)
+    subject {
+        WorkRepositoryImpl(
+                apiClient,
+                getAccessTokenService,
+                Schedulers.trampoline()
+        )
     }
 
-    @Test
-    fun testFind() {
-        // given
+    given("WorkDictionaryApiClient.getWorkList with fitlerId return GetWorkListResponseJson") {
         val id = WorkId(RandomHelper.randomString())
         val accessToken = RandomHelper.randomString()
         val responseJson = GetWorkListResponseJsonFactory.create()
@@ -40,22 +42,17 @@ internal class WorkRepositoryImplTest {
                 accessToken = accessToken
         )).thenReturn(Single.just(responseJson))
 
-        // when
-        val repository = WorkRepositoryImpl(
-                apiClient,
-                getAccessTokenService,
-                Schedulers.trampoline()
-        )
-        val maybe = repository.find(id)
+        on("find") {
+            val maybe = subject.find(id)
 
-        // then
-        val expected = WorkConverter.convertToDomainModel(responseJson.workJsonList[0])
-        maybe.test().await().assertValue(expected).assertComplete()
+            it("should return work") {
+                val expected = WorkConverter.convertToDomainModel(responseJson.workJsonList[0])
+                maybe.test().await().assertValue(expected).assertComplete()
+            }
+        }
     }
 
-    @Test
-    fun testFindAllByKeyword() {
-        // given
+    given("WorkDictionaryApiClient.getWorkList with fitlerTitle return GetWorkListResponseJson") {
         val keyword = RandomHelper.randomString()
         val accessToken = RandomHelper.randomString()
         val responseJson = GetWorkListResponseJsonFactory.create()
@@ -65,23 +62,17 @@ internal class WorkRepositoryImplTest {
                 accessToken = accessToken
         )).thenReturn(Single.just(responseJson))
 
-        // when
-        val repository = WorkRepositoryImpl(
-                apiClient,
-                getAccessTokenService,
-                Schedulers.trampoline()
-        )
-        val single = repository.findAllByKeyword(keyword)
+        on("findAllByKeyword") {
+            val single = subject.findAllByKeyword(keyword)
 
-
-        // then
-        val expected = WorkConverter.convertToDomainModel(responseJson.workJsonList)
-        single.test().await().assertValue(expected).assertComplete()
+            it("should return workList") {
+                val expected = WorkConverter.convertToDomainModel(responseJson.workJsonList)
+                single.test().await().assertValue(expected).assertComplete()
+            }
+        }
     }
 
-    @Test
-    fun testFindAllBySeason() {
-        // given
+    given("WorkDictionaryApiClient.getWorkList with filterSeason return GetWorkListResponseJson") {
         val season = Season(RandomHelper.randomString())
         val accessToken = RandomHelper.randomString()
         val responseJson = GetWorkListResponseJsonFactory.create()
@@ -91,22 +82,17 @@ internal class WorkRepositoryImplTest {
                 accessToken = accessToken
         )).thenReturn(Single.just(responseJson))
 
-        // when
-        val repository = WorkRepositoryImpl(
-                apiClient,
-                getAccessTokenService,
-                Schedulers.trampoline()
-        )
-        val single = repository.findAllBySeason(season)
+        on("findAllBySeason") {
+            val single = subject.findAllBySeason(season)
 
-        // then
-        val expected = WorkConverter.convertToDomainModel(responseJson.workJsonList)
-        single.test().await().assertValue(expected).assertComplete()
+            it("should return workList") {
+                val expected = WorkConverter.convertToDomainModel(responseJson.workJsonList)
+                single.test().await().assertValue(expected).assertComplete()
+            }
+        }
     }
 
-    @Test
-    fun testFindAllPopular() {
-        // given
+    given("WorkDictionaryApiClient.getWorkList with sortWatchersCount=asc return GetWorkListResponseJson") {
         val accessToken = RandomHelper.randomString()
         val responseJson = GetWorkListResponseJsonFactory.create()
         Mockito.`when`(getAccessTokenService.execute()).thenReturn(Single.just(accessToken))
@@ -116,18 +102,14 @@ internal class WorkRepositoryImplTest {
                 perPage = 50
         )).thenReturn(Single.just(responseJson))
 
-        // when
-        val repository = WorkRepositoryImpl(
-                apiClient,
-                getAccessTokenService,
-                Schedulers.trampoline()
-        )
-        val single = repository.findAllPopular()
+        on("findAllPopular") {
+            val single = subject.findAllPopular()
 
-        // then
-        val expected = WorkConverter.convertToDomainModel(responseJson.workJsonList)
-        single.test().await().assertValue(expected).assertComplete()
+            it("should return workList") {
+                val expected = WorkConverter.convertToDomainModel(responseJson.workJsonList)
+                single.test().await().assertValue(expected).assertComplete()
+            }
+        }
     }
 
-
-}
+})

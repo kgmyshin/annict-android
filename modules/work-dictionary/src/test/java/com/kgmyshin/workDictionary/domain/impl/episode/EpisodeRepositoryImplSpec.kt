@@ -10,52 +10,49 @@ import com.kgmyshin.workDictionary.infra.api.WorkDictionaryApiClient
 import com.kgmyshin.workDictionary.infra.api.json.GetEpisodeListResponseJsonFactory
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
-import org.junit.Before
-import org.junit.Test
-import org.mockito.Mock
+import org.jetbrains.spek.api.dsl.given
+import org.jetbrains.spek.api.dsl.it
+import org.jetbrains.spek.api.dsl.on
+import org.jetbrains.spek.subject.SubjectSpek
+import org.junit.platform.runner.JUnitPlatform
+import org.junit.runner.RunWith
 import org.mockito.Mockito
-import org.mockito.MockitoAnnotations
 
-internal class EpisodeRepositoryImplTest {
+@RunWith(JUnitPlatform::class)
+internal class EpisodeRepositoryImplSpec : SubjectSpek<EpisodeRepositoryImpl>({
 
-    @Mock
-    private lateinit var apiClient: WorkDictionaryApiClient
-    @Mock
-    private lateinit var getAccessTokenService: GetAccessTokenService
+    val apiClient = Mockito.mock(WorkDictionaryApiClient::class.java)
+    val getAccessTokenService = Mockito.mock(GetAccessTokenService::class.java)
 
-    @Before
-    fun setUp() {
-        MockitoAnnotations.initMocks(this)
+    subject {
+        EpisodeRepositoryImpl(
+                apiClient,
+                getAccessTokenService,
+                Schedulers.trampoline()
+        )
     }
 
-    @Test
-    fun testFindById() {
-        // given
+    given("WorkDictionaryApiClient.getEpisodeList with filterIds return GetWorkListResponseJson") {
         val id = EpisodeId(RandomHelper.randomString())
         val accessToken = RandomHelper.randomString()
         val responseJson = GetEpisodeListResponseJsonFactory.create()
         Mockito.`when`(getAccessTokenService.execute()).thenReturn(Single.just(accessToken))
         Mockito.`when`(apiClient.getEpisodeList(
-                fields = id.value,
+                filterIds = id.value,
                 accessToken = accessToken
         )).thenReturn(Single.just(responseJson))
 
-        // when
-        val repository = EpisodeRepositoryImpl(
-                apiClient,
-                getAccessTokenService,
-                Schedulers.trampoline()
-        )
-        val maybe = repository.findById(id)
+        on("findById") {
+            val maybe = subject.findById(id)
 
-        // then
-        val expected = EpisodeConverter.convertToEpisode(responseJson.episodeJsonList[0])
-        maybe.test().await().assertValue(expected).assertComplete()
+            it("should return episode") {
+                val expected = EpisodeConverter.convertToEpisode(responseJson.episodeJsonList[0])
+                maybe.test().await().assertValue(expected).assertComplete()
+            }
+        }
     }
 
-    @Test
-    fun testFindAllByWorkId() {
-        // given
+    given("WorkDictionaryApiClient.getEpisodeList with filterWorkId return GetWorkListResponseJson") {
         val workId = WorkId(RandomHelper.randomString())
         val accessToken = RandomHelper.randomString()
         val responseJson = GetEpisodeListResponseJsonFactory.create()
@@ -65,17 +62,14 @@ internal class EpisodeRepositoryImplTest {
                 accessToken = accessToken
         )).thenReturn(Single.just(responseJson))
 
-        // when
-        val repository = EpisodeRepositoryImpl(
-                apiClient,
-                getAccessTokenService,
-                Schedulers.trampoline()
-        )
-        val single = repository.findAllByWorkId(workId)
+        on("findAllByWorkId") {
+            val single = subject.findAllByWorkId(workId)
 
-        // then
-        val expected = EpisodeConverter.convertToEpisode(responseJson.episodeJsonList)
-        single.test().await().assertValue(expected).assertComplete()
+            on("should return episodeList") {
+                val expected = EpisodeConverter.convertToEpisode(responseJson.episodeJsonList)
+                single.test().await().assertValue(expected).assertComplete()
+            }
+        }
     }
 
-}
+})

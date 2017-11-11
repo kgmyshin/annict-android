@@ -57,4 +57,9 @@ dependencies {
 
     testImplementation deps.junit
     testImplementation deps.mockito
+
+    testImplementation deps.spek.api
+    testImplementation deps.spek.engine
+    testImplementation deps.spek.runner
+    testImplementation deps.spek.subject
 }
