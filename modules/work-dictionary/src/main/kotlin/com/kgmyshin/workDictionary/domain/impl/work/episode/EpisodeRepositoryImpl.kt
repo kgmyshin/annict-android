@@ -28,7 +28,7 @@ internal class EpisodeRepositoryImpl @Inject constructor(
             } else {
                 getAccessTokenService.execute().flatMap { accessToken ->
                     apiClient.getEpisodeList(
-                            fields = id.value,
+                            filterIds = id.value,
                             accessToken = accessToken
                     )
                 }.map {

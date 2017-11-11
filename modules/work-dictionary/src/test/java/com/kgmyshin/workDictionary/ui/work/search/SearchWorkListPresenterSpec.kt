@@ -45,7 +45,10 @@ internal class SearchWorkListPresenterSpec : SubjectSpek<SearchWorkListPresenter
                 DomainHelper.work(),
                 DomainHelper.work()
         )
-        Mockito.`when`(searchWorkListUseCase.execute(keyword)).thenReturn(Single.just(workList))
+
+        beforeGroup {
+            Mockito.`when`(searchWorkListUseCase.execute(keyword)).thenReturn(Single.just(workList))
+        }
 
         on("onUpdateKeyword") {
             subject.onUpdateKeyword(keyword)

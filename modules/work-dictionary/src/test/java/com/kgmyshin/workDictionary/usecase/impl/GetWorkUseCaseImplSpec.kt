@@ -22,10 +22,13 @@ internal class GetWorkUseCaseImplSpec : SubjectSpek<GetWorkUseCaseImpl>({
         GetWorkUseCaseImpl(repository)
     }
 
-    given("WorkRepository.find return work") {
+    given("WorkRepository.findById return work") {
         val workId = WorkId(RandomHelper.randomString())
         val work = DomainHelper.work()
-        Mockito.`when`(repository.find(workId)).thenReturn(Maybe.just(work))
+
+        beforeGroup {
+            Mockito.`when`(repository.findById(workId)).thenReturn(Maybe.just(work))
+        }
 
         on("execute") {
             val maybe = subject.execute(workId)

@@ -28,7 +28,9 @@ internal class SearchWorkListUseCaseImplSpec : SubjectSpek<SearchWorkListUseCase
                 DomainHelper.work(),
                 DomainHelper.work()
         )
-        Mockito.`when`(repository.findAllByKeyword(keyword)).thenReturn(Single.just(workList))
+        beforeGroup {
+            Mockito.`when`(repository.findAllByKeyword(keyword)).thenReturn(Single.just(workList))
+        }
 
         on("execute") {
             val single = subject.execute(keyword)

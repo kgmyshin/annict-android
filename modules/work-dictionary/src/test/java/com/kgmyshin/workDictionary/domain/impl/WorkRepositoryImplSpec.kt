@@ -33,17 +33,21 @@ internal class WorkRepositoryImplSpec : SubjectSpek<WorkRepositoryImpl>({
     }
 
     given("WorkDictionaryApiClient.getWorkList with fitlerId return GetWorkListResponseJson") {
+
         val id = WorkId(RandomHelper.randomString())
         val accessToken = RandomHelper.randomString()
         val responseJson = GetWorkListResponseJsonFactory.create()
-        Mockito.`when`(getAccessTokenService.execute()).thenReturn(Single.just(accessToken))
-        Mockito.`when`(apiClient.getWorkList(
-                filterIds = id.value,
-                accessToken = accessToken
-        )).thenReturn(Single.just(responseJson))
 
-        on("find") {
-            val maybe = subject.find(id)
+        beforeGroup {
+            Mockito.`when`(getAccessTokenService.execute()).thenReturn(Single.just(accessToken))
+            Mockito.`when`(apiClient.getWorkList(
+                    filterIds = id.value,
+                    accessToken = accessToken
+            )).thenReturn(Single.just(responseJson))
+        }
+
+        on("findById") {
+            val maybe = subject.findById(id)
 
             it("should return work") {
                 val expected = WorkConverter.convertToDomainModel(responseJson.workJsonList[0])
@@ -56,11 +60,15 @@ internal class WorkRepositoryImplSpec : SubjectSpek<WorkRepositoryImpl>({
         val keyword = RandomHelper.randomString()
         val accessToken = RandomHelper.randomString()
         val responseJson = GetWorkListResponseJsonFactory.create()
-        Mockito.`when`(getAccessTokenService.execute()).thenReturn(Single.just(accessToken))
-        Mockito.`when`(apiClient.getWorkList(
-                filterTitle = keyword,
-                accessToken = accessToken
-        )).thenReturn(Single.just(responseJson))
+
+        beforeGroup {
+            Mockito.`when`(getAccessTokenService.execute()).thenReturn(Single.just(accessToken))
+            Mockito.`when`(apiClient.getWorkList(
+                    filterTitle = keyword,
+                    accessToken = accessToken
+            )).thenReturn(Single.just(responseJson))
+        }
+
 
         on("findAllByKeyword") {
             val single = subject.findAllByKeyword(keyword)
@@ -76,11 +84,14 @@ internal class WorkRepositoryImplSpec : SubjectSpek<WorkRepositoryImpl>({
         val season = Season(RandomHelper.randomString())
         val accessToken = RandomHelper.randomString()
         val responseJson = GetWorkListResponseJsonFactory.create()
-        Mockito.`when`(getAccessTokenService.execute()).thenReturn(Single.just(accessToken))
-        Mockito.`when`(apiClient.getWorkList(
-                filterSeason = season.name,
-                accessToken = accessToken
-        )).thenReturn(Single.just(responseJson))
+
+        beforeGroup {
+            Mockito.`when`(getAccessTokenService.execute()).thenReturn(Single.just(accessToken))
+            Mockito.`when`(apiClient.getWorkList(
+                    filterSeason = season.name,
+                    accessToken = accessToken
+            )).thenReturn(Single.just(responseJson))
+        }
 
         on("findAllBySeason") {
             val single = subject.findAllBySeason(season)
@@ -95,12 +106,15 @@ internal class WorkRepositoryImplSpec : SubjectSpek<WorkRepositoryImpl>({
     given("WorkDictionaryApiClient.getWorkList with sortWatchersCount=asc return GetWorkListResponseJson") {
         val accessToken = RandomHelper.randomString()
         val responseJson = GetWorkListResponseJsonFactory.create()
-        Mockito.`when`(getAccessTokenService.execute()).thenReturn(Single.just(accessToken))
-        Mockito.`when`(apiClient.getWorkList(
-                sortWatchersCount = "asc",
-                accessToken = accessToken,
-                perPage = 50
-        )).thenReturn(Single.just(responseJson))
+
+        beforeGroup {
+            Mockito.`when`(getAccessTokenService.execute()).thenReturn(Single.just(accessToken))
+            Mockito.`when`(apiClient.getWorkList(
+                    sortWatchersCount = "asc",
+                    accessToken = accessToken,
+                    perPage = 50
+            )).thenReturn(Single.just(responseJson))
+        }
 
         on("findAllPopular") {
             val single = subject.findAllPopular()
@@ -109,6 +123,7 @@ internal class WorkRepositoryImplSpec : SubjectSpek<WorkRepositoryImpl>({
                 val expected = WorkConverter.convertToDomainModel(responseJson.workJsonList)
                 single.test().await().assertValue(expected).assertComplete()
             }
+
         }
     }
 

@@ -28,7 +28,7 @@ internal class WorkRepositoryImpl @Inject constructor(
         private val SYMBOL_POPULAR = "popular"
     }
 
-    override fun find(id: WorkId): Maybe<Work> =
+    override fun findById(id: WorkId): Maybe<Work> =
             if (idCache.get(id) != null) {
                 Maybe.just(idCache.get(id))
             } else {
