@@ -45,7 +45,10 @@ internal class PopularWorkListPresenterSpec : SubjectSpek<PopularWorkListPresent
                 DomainHelper.work(),
                 DomainHelper.work()
         )
-        Mockito.`when`(getPopularWorkListUseCase.execute()).thenReturn(Single.just(workList))
+
+        beforeGroup {
+            Mockito.`when`(getPopularWorkListUseCase.execute()).thenReturn(Single.just(workList))
+        }
 
         on("onCreateView") {
             subject.onCreateView()

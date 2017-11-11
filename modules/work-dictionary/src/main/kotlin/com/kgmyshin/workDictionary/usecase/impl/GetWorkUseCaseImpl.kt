@@ -8,6 +8,6 @@ import io.reactivex.Maybe
 
 internal class GetWorkUseCaseImpl(private val repository: WorkRepository) : GetWorkUseCase {
 
-    override fun execute(id: WorkId): Maybe<Work> = repository.find(id)
+    override fun execute(id: WorkId): Maybe<Work> = repository.findById(id)
 
 }

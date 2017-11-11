@@ -29,7 +29,10 @@ internal class GetEpisodeListUseCaseImplSpec : SubjectSpek<GetEpisodeListUseCase
                 DomainHelper.episode(),
                 DomainHelper.episode()
         )
-        Mockito.`when`(repository.findAllByWorkId(workId)).thenReturn(Single.just(episodeList))
+
+        beforeGroup {
+            Mockito.`when`(repository.findAllByWorkId(workId)).thenReturn(Single.just(episodeList))
+        }
 
         on("execute") {
             val single = subject.execute(workId)

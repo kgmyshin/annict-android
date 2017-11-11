@@ -52,9 +52,11 @@ internal class WorkDetailPresenterSpec : SubjectSpek<WorkDetailPresenter>({
                 DomainHelper.episode(),
                 DomainHelper.episode()
         )
-        Mockito.`when`(getWorkUseCase.execute(workId)).thenReturn(Maybe.just(work))
-        Mockito.`when`(getEpisodeListUseCase.execute(workId)).thenReturn(Single.just(episodeList))
 
+        beforeGroup {
+            Mockito.`when`(getWorkUseCase.execute(workId)).thenReturn(Maybe.just(work))
+            Mockito.`when`(getEpisodeListUseCase.execute(workId)).thenReturn(Single.just(episodeList))
+        }
 
         on("onCreateView") {
             subject.onCreateView()

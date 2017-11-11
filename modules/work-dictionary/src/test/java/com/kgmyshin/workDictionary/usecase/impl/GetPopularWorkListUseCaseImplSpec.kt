@@ -26,7 +26,9 @@ internal class GetPopularWorkListUseCaseImplSpec : SubjectSpek<GetPopularWorkLis
                 DomainHelper.work(),
                 DomainHelper.work()
         )
-        Mockito.`when`(repository.findAllPopular()).thenReturn(Single.just(workList))
+        beforeGroup {
+            Mockito.`when`(repository.findAllPopular()).thenReturn(Single.just(workList))
+        }
 
         on("execute") {
             val single = subject.execute()

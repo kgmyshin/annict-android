@@ -36,11 +36,14 @@ internal class EpisodeRepositoryImplSpec : SubjectSpek<EpisodeRepositoryImpl>({
         val id = EpisodeId(RandomHelper.randomString())
         val accessToken = RandomHelper.randomString()
         val responseJson = GetEpisodeListResponseJsonFactory.create()
-        Mockito.`when`(getAccessTokenService.execute()).thenReturn(Single.just(accessToken))
-        Mockito.`when`(apiClient.getEpisodeList(
-                filterIds = id.value,
-                accessToken = accessToken
-        )).thenReturn(Single.just(responseJson))
+
+        beforeGroup {
+            Mockito.`when`(getAccessTokenService.execute()).thenReturn(Single.just(accessToken))
+            Mockito.`when`(apiClient.getEpisodeList(
+                    filterIds = id.value,
+                    accessToken = accessToken
+            )).thenReturn(Single.just(responseJson))
+        }
 
         on("findById") {
             val maybe = subject.findById(id)
@@ -56,11 +59,14 @@ internal class EpisodeRepositoryImplSpec : SubjectSpek<EpisodeRepositoryImpl>({
         val workId = WorkId(RandomHelper.randomString())
         val accessToken = RandomHelper.randomString()
         val responseJson = GetEpisodeListResponseJsonFactory.create()
-        Mockito.`when`(getAccessTokenService.execute()).thenReturn(Single.just(accessToken))
-        Mockito.`when`(apiClient.getEpisodeList(
-                filterWorkId = workId.value,
-                accessToken = accessToken
-        )).thenReturn(Single.just(responseJson))
+
+        beforeGroup {
+            Mockito.`when`(getAccessTokenService.execute()).thenReturn(Single.just(accessToken))
+            Mockito.`when`(apiClient.getEpisodeList(
+                    filterWorkId = workId.value,
+                    accessToken = accessToken
+            )).thenReturn(Single.just(responseJson))
+        }
 
         on("findAllByWorkId") {
             val single = subject.findAllByWorkId(workId)

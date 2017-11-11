@@ -45,7 +45,10 @@ internal class NextSeasonWorkListPresenterSpec : SubjectSpek<NextSeasonWorkListP
                 DomainHelper.work(),
                 DomainHelper.work()
         )
-        Mockito.`when`(getNextSeasonWorkListUseCase.execute()).thenReturn(Single.just(workList))
+
+        beforeGroup {
+            Mockito.`when`(getNextSeasonWorkListUseCase.execute()).thenReturn(Single.just(workList))
+        }
 
         on("onCreateView") {
 

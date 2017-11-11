@@ -5,7 +5,7 @@ import io.reactivex.Single
 
 internal interface WorkRepository {
 
-    fun find(id: WorkId): Maybe<Work>
+    fun findById(id: WorkId): Maybe<Work>
 
     fun findAllByKeyword(keyword: String): Single<List<Work>>
 

@@ -27,7 +27,10 @@ internal class GetNextSeasonWorkListUseCaseImplSpec : SubjectSpek<GetNextSeasonW
                 DomainHelper.work(),
                 DomainHelper.work()
         )
-        Mockito.`when`(repository.findAllBySeason(Season.nextSeason())).thenReturn(Single.just(workList))
+
+        beforeGroup {
+            Mockito.`when`(repository.findAllBySeason(Season.nextSeason())).thenReturn(Single.just(workList))
+        }
 
         on("execute") {
             val single = subject.execute()
