@@ -9,21 +9,34 @@ import com.kgmyshin.workDictionary.ui.work.WorkViewModelFactory
 import com.kgmyshin.workDictionary.usecase.GetBeforeSeasonWorkListUseCase
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
-import org.jetbrains.spek.api.Spek
 import org.jetbrains.spek.api.dsl.given
 import org.jetbrains.spek.api.dsl.it
 import org.jetbrains.spek.api.dsl.on
+import org.jetbrains.spek.subject.SubjectSpek
 import org.junit.platform.runner.JUnitPlatform
 import org.junit.runner.RunWith
 import org.mockito.Mockito
 
 @RunWith(JUnitPlatform::class)
-class BeforeSeasonWorkListPresenterTest1 : Spek({
+internal class BeforeSeasonWorkListPresenterTest : SubjectSpek<BeforeSeasonWorkListPresenter>({
 
     val getBeforeSeasonWorkListUseCase = Mockito.mock(GetBeforeSeasonWorkListUseCase::class.java)
     val errorHandler = Mockito.mock(ErrorHandler::class.java)
     val view = Mockito.mock(WorkListContract.View::class.java)
     val screenTransition = Mockito.mock(ScreenTransition::class.java)
+
+    subject {
+        BeforeSeasonWorkListPresenter(
+                getBeforeSeasonWorkListUseCase,
+                Schedulers.trampoline(),
+                errorHandler
+        ).apply {
+            setUp(
+                    view,
+                    screenTransition
+            )
+        }
+    }
 
     given("GetBeforeSeasonWorkListUseCase return workList") {
 
@@ -35,16 +48,8 @@ class BeforeSeasonWorkListPresenterTest1 : Spek({
         Mockito.`when`(getBeforeSeasonWorkListUseCase.execute()).thenReturn(Single.just(workList))
 
         on("onCreateView") {
-            val presenter = BeforeSeasonWorkListPresenter(
-                    getBeforeSeasonWorkListUseCase,
-                    Schedulers.trampoline(),
-                    errorHandler
-            )
-            presenter.setUp(
-                    view,
-                    screenTransition
-            )
-            presenter.onCreateView()
+
+            subject.onCreateView()
 
             it("should setUp ViewModel to view") {
                 val expected = WorkViewModelConverter.convertToViewModel(workList)
@@ -60,16 +65,8 @@ class BeforeSeasonWorkListPresenterTest1 : Spek({
 
         on("onClickWork") {
             val viewModel = WorkViewModelFactory.create()
-            val presenter = BeforeSeasonWorkListPresenter(
-                    getBeforeSeasonWorkListUseCase,
-                    Schedulers.trampoline(),
-                    errorHandler
-            )
-            presenter.setUp(
-                    view,
-                    screenTransition
-            )
-            presenter.onClickWork(viewModel)
+
+            subject.onClickWork(viewModel)
 
             it("should move to Detail") {
                 Mockito.verify(screenTransition).moveToDetail()

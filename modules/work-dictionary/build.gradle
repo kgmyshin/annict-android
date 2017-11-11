@@ -61,4 +61,5 @@ dependencies {
     testImplementation deps.spek.api
     testImplementation deps.spek.engine
     testImplementation deps.spek.runner
+    testImplementation deps.spek.subject
 }
