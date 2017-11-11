@@ -9,77 +9,69 @@ import com.kgmyshin.workDictionary.ui.work.WorkViewModelFactory
 import com.kgmyshin.workDictionary.usecase.GetThisSeasonWorkListUseCase
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
-import org.junit.Before
-import org.junit.Test
-import org.mockito.Mock
+import org.jetbrains.spek.api.dsl.given
+import org.jetbrains.spek.api.dsl.it
+import org.jetbrains.spek.api.dsl.on
+import org.jetbrains.spek.subject.SubjectSpek
+import org.junit.platform.runner.JUnitPlatform
+import org.junit.runner.RunWith
 import org.mockito.Mockito
-import org.mockito.MockitoAnnotations
 
-class ThisSeasonWorkListPresenterTest {
+@RunWith(JUnitPlatform::class)
+internal class ThisSeasonWorkListPresenterTest : SubjectSpek<ThisSeasonWorkListPresenter>({
 
-    @Mock
-    private lateinit var GetThisSeasonWorkListUseCase: GetThisSeasonWorkListUseCase
-    @Mock
-    private lateinit var errorHandler: ErrorHandler
-    @Mock
-    private lateinit var view: WorkListContract.View
-    @Mock
-    private lateinit var screenTransition: ScreenTransition
+    val getThisSeasonWorkListUseCase = Mockito.mock(GetThisSeasonWorkListUseCase::class.java)
+    val errorHandler = Mockito.mock(ErrorHandler::class.java)
+    val view = Mockito.mock(WorkListContract.View::class.java)
+    val screenTransition = Mockito.mock(ScreenTransition::class.java)
 
-    @Before
-    fun setUp() {
-        MockitoAnnotations.initMocks(this)
+    subject {
+        ThisSeasonWorkListPresenter(
+                getThisSeasonWorkListUseCase,
+                Schedulers.trampoline(),
+                errorHandler
+        ).apply {
+            setUp(
+                    view,
+                    screenTransition
+            )
+        }
     }
 
-    @Test
-    fun testOnCreateView() {
-        // given
+    given("GetThisSeasonWorkListUseCase return workList") {
+
         val workList = listOf(
                 DomainHelper.work(),
                 DomainHelper.work(),
                 DomainHelper.work()
         )
-        Mockito.`when`(GetThisSeasonWorkListUseCase.execute()).thenReturn(Single.just(workList))
+        Mockito.`when`(getThisSeasonWorkListUseCase.execute()).thenReturn(Single.just(workList))
 
-        // when
-        val presenter = ThisSeasonWorkListPresenter(
-                GetThisSeasonWorkListUseCase,
-                Schedulers.trampoline(),
-                errorHandler
-        )
-        presenter.setUp(
-                view,
-                screenTransition
-        )
-        presenter.onCreateView()
+        on("onCreateView") {
 
-        // then
-        val expected = WorkViewModelConverter.convertToViewModel(workList)
-        Mockito.verify(view).showProgress()
-        Mockito.verify(view).setUp(expected)
-        Mockito.verify(view).dismissProgress()
+            subject.onCreateView()
+
+            it("should setUp ViewModel to view") {
+                val expected = WorkViewModelConverter.convertToViewModel(workList)
+                Mockito.verify(view).showProgress()
+                Mockito.verify(view).setUp(expected)
+                Mockito.verify(view).dismissProgress()
+            }
+        }
+
     }
 
-    @Test
-    fun testOnClickWork() {
-        // given
-        val viewModel = WorkViewModelFactory.create()
+    given("") {
 
-        // when
-        val presenter = ThisSeasonWorkListPresenter(
-                GetThisSeasonWorkListUseCase,
-                Schedulers.trampoline(),
-                errorHandler
-        )
-        presenter.setUp(
-                view,
-                screenTransition
-        )
-        presenter.onClickWork(viewModel)
+        on("onClickWork") {
+            val viewModel = WorkViewModelFactory.create()
 
-        // then
-        Mockito.verify(screenTransition).moveToDetail()
+            subject.onClickWork(viewModel)
+
+            it("should move to Detail") {
+                Mockito.verify(screenTransition).moveToDetail()
+            }
+        }
     }
 
-
-}
+})

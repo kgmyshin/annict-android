@@ -9,31 +9,36 @@ import com.kgmyshin.workDictionary.ui.work.WorkViewModelFactory
 import com.kgmyshin.workDictionary.usecase.SearchWorkListUseCase
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
-import org.junit.Before
-import org.junit.Test
-import org.mockito.Mock
+import org.jetbrains.spek.api.dsl.given
+import org.jetbrains.spek.api.dsl.it
+import org.jetbrains.spek.api.dsl.on
+import org.jetbrains.spek.subject.SubjectSpek
+import org.junit.platform.runner.JUnitPlatform
+import org.junit.runner.RunWith
 import org.mockito.Mockito
-import org.mockito.MockitoAnnotations
 
-class SearchWorkListPresenterTest {
+@RunWith(JUnitPlatform::class)
+internal class SearchWorkListPresenterTest : SubjectSpek<SearchWorkListPresenter>({
 
-    @Mock
-    private lateinit var searchWorkListUseCase: SearchWorkListUseCase
-    @Mock
-    private lateinit var errorHandler: ErrorHandler
-    @Mock
-    private lateinit var view: SearchWorkListContract.View
-    @Mock
-    private lateinit var screenTransition: ScreenTransition
+    val searchWorkListUseCase = Mockito.mock(SearchWorkListUseCase::class.java)
+    val errorHandler = Mockito.mock(ErrorHandler::class.java)
+    val view = Mockito.mock(SearchWorkListContract.View::class.java)
+    val screenTransition = Mockito.mock(ScreenTransition::class.java)
 
-    @Before
-    fun setUp() {
-        MockitoAnnotations.initMocks(this)
+    subject {
+        SearchWorkListPresenter(
+                searchWorkListUseCase,
+                Schedulers.trampoline(),
+                errorHandler
+        ).apply {
+            setUp(
+                    view,
+                    screenTransition
+            )
+        }
     }
 
-    @Test
-    fun testOnUpdateKeyword() {
-        // given
+    given("SearchWorkListUseCase return workList") {
         val keyword = RandomHelper.randomString()
         val workList = listOf(
                 DomainHelper.work(),
@@ -42,45 +47,29 @@ class SearchWorkListPresenterTest {
         )
         Mockito.`when`(searchWorkListUseCase.execute(keyword)).thenReturn(Single.just(workList))
 
-        // when
-        val presenter = SearchWorkListPresenter(
-                searchWorkListUseCase,
-                Schedulers.trampoline(),
-                errorHandler
-        )
-        presenter.setUp(
-                view,
-                screenTransition
-        )
-        presenter.onUpdateKeyword(keyword)
+        on("onUpdateKeyword") {
+            subject.onUpdateKeyword(keyword)
 
-        // then
-        val expected = WorkViewModelConverter.convertToViewModel(workList)
-        Mockito.verify(view).showProgress()
-        Mockito.verify(view).setUp(expected)
-        Mockito.verify(view).dismissProgress()
+            it("should setUp ViewModel to view") {
+                val expected = WorkViewModelConverter.convertToViewModel(workList)
+                Mockito.verify(view).showProgress()
+                Mockito.verify(view).setUp(expected)
+                Mockito.verify(view).dismissProgress()
+            }
+        }
     }
 
-    @Test
-    fun testOnClickWork() {
-        // given
-        val viewModel = WorkViewModelFactory.create()
+    given("") {
 
-        // when
-        val presenter = SearchWorkListPresenter(
-                searchWorkListUseCase,
-                Schedulers.trampoline(),
-                errorHandler
-        )
-        presenter.setUp(
-                view,
-                screenTransition
-        )
-        presenter.onClickWork(viewModel)
+        on("onClickWork") {
+            val viewModel = WorkViewModelFactory.create()
 
-        // then
-        Mockito.verify(screenTransition).moveToDetail()
+            subject.onClickWork(viewModel)
+
+            it("should move to Detail") {
+                Mockito.verify(screenTransition).moveToDetail()
+            }
+        }
     }
 
-
-}
+})

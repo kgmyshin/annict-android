@@ -9,31 +9,37 @@ import com.kgmyshin.workDictionary.ui.work.WorkViewModelFactory
 import com.kgmyshin.workDictionary.usecase.GetPopularWorkListUseCase
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
-import org.junit.Before
-import org.junit.Test
-import org.mockito.Mock
+import org.jetbrains.spek.api.dsl.given
+import org.jetbrains.spek.api.dsl.it
+import org.jetbrains.spek.api.dsl.on
+import org.jetbrains.spek.subject.SubjectSpek
+import org.junit.platform.runner.JUnitPlatform
+import org.junit.runner.RunWith
 import org.mockito.Mockito
-import org.mockito.MockitoAnnotations
 
-class PopularWorkListPresenterTest {
+@RunWith(JUnitPlatform::class)
+internal class PopularWorkListPresenterTest : SubjectSpek<PopularWorkListPresenter>({
 
-    @Mock
-    private lateinit var getPopularWorkListUseCase: GetPopularWorkListUseCase
-    @Mock
-    private lateinit var errorHandler: ErrorHandler
-    @Mock
-    private lateinit var view: WorkListContract.View
-    @Mock
-    private lateinit var screenTransition: ScreenTransition
+    val getPopularWorkListUseCase = Mockito.mock(GetPopularWorkListUseCase::class.java)
+    val errorHandler = Mockito.mock(ErrorHandler::class.java)
+    val view = Mockito.mock(WorkListContract.View::class.java)
+    val screenTransition = Mockito.mock(ScreenTransition::class.java)
 
-    @Before
-    fun setUp() {
-        MockitoAnnotations.initMocks(this)
+    subject {
+        PopularWorkListPresenter(
+                getPopularWorkListUseCase,
+                Schedulers.trampoline(),
+                errorHandler
+        ).apply {
+            setUp(
+                    view,
+                    screenTransition
+            )
+        }
     }
 
-    @Test
-    fun testOnCreateView() {
-        // given
+    given("GetPopularWorkListUseCase return workList") {
+
         val workList = listOf(
                 DomainHelper.work(),
                 DomainHelper.work(),
@@ -41,44 +47,30 @@ class PopularWorkListPresenterTest {
         )
         Mockito.`when`(getPopularWorkListUseCase.execute()).thenReturn(Single.just(workList))
 
-        // when
-        val presenter = PopularWorkListPresenter(
-                getPopularWorkListUseCase,
-                Schedulers.trampoline(),
-                errorHandler
-        )
-        presenter.setUp(
-                view,
-                screenTransition
-        )
-        presenter.onCreateView()
+        on("onCreateView") {
+            subject.onCreateView()
 
-        // then
-        val expected = WorkViewModelConverter.convertToViewModel(workList)
-        Mockito.verify(view).showProgress()
-        Mockito.verify(view).setUp(expected)
-        Mockito.verify(view).dismissProgress()
+            it("should setUp ViewModel to view") {
+                val expected = WorkViewModelConverter.convertToViewModel(workList)
+                Mockito.verify(view).showProgress()
+                Mockito.verify(view).setUp(expected)
+                Mockito.verify(view).dismissProgress()
+            }
+        }
     }
 
-    @Test
-    fun testOnClickWork() {
-        // given
-        val viewModel = WorkViewModelFactory.create()
 
-        // when
-        val presenter = PopularWorkListPresenter(
-                getPopularWorkListUseCase,
-                Schedulers.trampoline(),
-                errorHandler
-        )
-        presenter.setUp(
-                view,
-                screenTransition
-        )
-        presenter.onClickWork(viewModel)
+    given("") {
 
-        // then
-        Mockito.verify(screenTransition).moveToDetail()
+        on("onClickWork") {
+            val viewModel = WorkViewModelFactory.create()
+
+            subject.onClickWork(viewModel)
+
+            it("should move to Detail") {
+                Mockito.verify(screenTransition).moveToDetail()
+            }
+        }
     }
 
-}
+})

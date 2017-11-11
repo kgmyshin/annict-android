@@ -9,35 +9,43 @@ import com.kgmyshin.workDictionary.usecase.GetWorkUseCase
 import io.reactivex.Maybe
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
-import org.junit.Before
-import org.junit.Test
-import org.mockito.Mock
+import org.jetbrains.spek.api.dsl.given
+import org.jetbrains.spek.api.dsl.it
+import org.jetbrains.spek.api.dsl.on
+import org.jetbrains.spek.subject.SubjectSpek
+import org.junit.platform.runner.JUnitPlatform
+import org.junit.runner.RunWith
 import org.mockito.Mockito
-import org.mockito.MockitoAnnotations
 
-class WorkDetailPresenterTest {
+@RunWith(JUnitPlatform::class)
+internal class WorkDetailPresenterTest : SubjectSpek<WorkDetailPresenter>({
 
-    @Mock
-    private lateinit var getWorkUseCase: GetWorkUseCase
-    @Mock
-    private lateinit var getEpisodeListUseCase: GetEpisodeListUseCase
-    @Mock
-    private lateinit var errorHandler: ErrorHandler
+    val getWorkUseCase = Mockito.mock(GetWorkUseCase::class.java)
+    val getEpisodeListUseCase = Mockito.mock(GetEpisodeListUseCase::class.java)
+    val errorHandler = Mockito.mock(ErrorHandler::class.java)
+    val view = Mockito.mock(WorkDetailContract.View::class.java)
+    val screenTransition = Mockito.mock(ScreenTransition::class.java)
+    val rawWorkId = RandomHelper.randomString()
+    val workId = WorkId(rawWorkId)
 
-    @Mock
-    private lateinit var view: WorkDetailContract.View
-    @Mock
-    private lateinit var screenTransition: ScreenTransition
-
-    @Before
-    fun setUp() {
-        MockitoAnnotations.initMocks(this)
+    subject {
+        WorkDetailPresenter(
+                getWorkUseCase,
+                getEpisodeListUseCase,
+                Schedulers.trampoline(),
+                errorHandler
+        ).apply {
+            setUp(
+                    view,
+                    screenTransition,
+                    rawWorkId
+            )
+        }
     }
 
-    @Test
-    fun testOnCreateView() {
-        // given
-        val workId = WorkId(RandomHelper.randomString())
+
+    given("GetWorkUseCase return work and GetEpisodeListUseCase return episodeList") {
+
         val work = DomainHelper.work()
         val episodeList = listOf(
                 DomainHelper.episode(),
@@ -47,29 +55,20 @@ class WorkDetailPresenterTest {
         Mockito.`when`(getWorkUseCase.execute(workId)).thenReturn(Maybe.just(work))
         Mockito.`when`(getEpisodeListUseCase.execute(workId)).thenReturn(Single.just(episodeList))
 
-        // when
-        val presenter = WorkDetailPresenter(
-                getWorkUseCase,
-                getEpisodeListUseCase,
-                Schedulers.trampoline(),
-                errorHandler
-        )
-        presenter.setUp(
-                view,
-                screenTransition,
-                workId.value
-        )
-        presenter.onCreateView()
 
-        // test
-        val expected = WorkDetailViewModelConverter.convertToViewModel(
-                work,
-                episodeList
-        )
-        Mockito.verify(view).showProgress()
-        Mockito.verify(view).setUp(expected)
-        Mockito.verify(view).dismissProgress()
+        on("onCreateView") {
+            subject.onCreateView()
+
+            it("should setUp ViewModel to view") {
+                val expected = WorkDetailViewModelConverter.convertToViewModel(
+                        work,
+                        episodeList
+                )
+                Mockito.verify(view).showProgress()
+                Mockito.verify(view).setUp(expected)
+                Mockito.verify(view).dismissProgress()
+            }
+
+        }
     }
-
-
-}
+})
