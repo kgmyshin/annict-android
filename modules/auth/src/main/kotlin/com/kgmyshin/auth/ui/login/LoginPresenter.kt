@@ -17,8 +17,8 @@ internal class LoginPresenter @Inject constructor(
 ) : LoginContract.Presenter {
 
     companion object {
-        private val LOGIN_URL = "https://annict.jp/sign_in?back=%2Foauth%2Fauthorize%3Fclient_id%3D${BuildConfig.ANNICT_CLIENT_ID}%26response_type%3Dcode%26redirect_uri%3Durn%3Aietf%3Awg%3Aoauth%3A2.0%3Aoob%26scope%3Dread%2Bwrite"
-        private val LOGIN_COMPLETE_URL_PATTERN = "https://annict.jp/oauth/authorize/(.*)#_=_"
+        private const val LOGIN_URL = "https://annict.jp/sign_in?back=%2Foauth%2Fauthorize%3Fclient_id%3D${BuildConfig.ANNICT_CLIENT_ID}%26response_type%3Dcode%26redirect_uri%3Durn%3Aietf%3Awg%3Aoauth%3A2.0%3Aoob%26scope%3Dread%2Bwrite"
+        private const val LOGIN_COMPLETE_URL_PATTERN = "https://(jp.annict.com|annict.jp)/oauth/authorize/(.*)(#_=_)?"
 
     }
 
@@ -50,17 +50,17 @@ internal class LoginPresenter @Inject constructor(
                     }
                     .observeOn(uiScheduler)
                     .subscribe({
-                                   screenTransition.moveToHome()
-                                   view.dismissProgress()
-                               },
-                               { throwable ->
-                                   errorHandler.showDialog(
-                                           view.getContext(),
-                                           throwable,
-                                           null
-                                   )
-                                   view.dismissProgress()
-                               })
+                        screenTransition.moveToHome()
+                        view.dismissProgress()
+                    },
+                            { throwable ->
+                                errorHandler.showDialog(
+                                        view.getContext(),
+                                        throwable,
+                                        null
+                                )
+                                view.dismissProgress()
+                            })
                     .addTo(disposables)
         }
     }

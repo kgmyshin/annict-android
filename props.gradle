@@ -1,0 +1,15 @@
+ext.props = null
+
+loadProperties("properties/secrets.properties")
+
+def loadProperties(filename) {
+    def props = new Properties()
+    file("$rootDir/" + filename).withInputStream {
+        props.load(it)
+    }
+    if (ext.props == null) {
+        ext.props = props
+    } else {
+        ext.props.putAll(props)
+    }
+}
