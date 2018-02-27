@@ -12,23 +12,8 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
     }
-    buildTypes {
-        debug {
-            buildConfigField "String", "ANNICT_CLIENT_ID", "\"${props.debugAnnictClientId}\""
-            buildConfigField "String", "ANNICT_CLIENT_SECRET", "\"${props.debugAnnictClientScret}\""
-        }
-        release {
-            buildConfigField "String", "ANNICT_CLIENT_ID", "\"${props.releaseAnnictClientId}\""
-            buildConfigField "String", "ANNICT_CLIENT_SECRET", "\"${props.releaseAnnictClientScret}\""
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
-    }
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
-    }
-    dataBinding {
-        enabled = true
     }
 }
 
@@ -38,21 +23,17 @@ dependencies {
     implementation deps.kotlin
 
     implementation project(":common")
-
-    implementation deps.support.appCompat
-
-    kapt deps.binding.compiler
-
-    implementation deps.dagger.runtime
-    kapt deps.dagger.compiler
+    implementation project(":auth-domain")
+    implementation project(":auth-infra")
 
     implementation deps.rxjava2.core
-    implementation deps.rxjava2.android
-    implementation deps.rxjava2.kotlin
 
     implementation deps.retrofit.core
     implementation deps.retrofit.adapterRxJava2
     implementation deps.retrofit.converterGson
+
+    implementation deps.dagger.runtime
+    kapt deps.dagger.compiler
 
     testImplementation deps.junit
     testImplementation deps.mockito

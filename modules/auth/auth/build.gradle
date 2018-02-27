@@ -1,0 +1,52 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion versions.compileSdk
+    buildToolsVersion versions.buildTools
+    publishNonDefault true
+    defaultConfig {
+        minSdkVersion versions.minSdk
+        targetSdkVersion versions.targetSdk
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+    buildTypes {
+        debug {
+            buildConfigField "String", "ANNICT_CLIENT_ID", "\"${props.debugAnnictClientId}\""
+            buildConfigField "String", "ANNICT_CLIENT_SECRET", "\"${props.debugAnnictClientScret}\""
+        }
+        release {
+            buildConfigField "String", "ANNICT_CLIENT_ID", "\"${props.releaseAnnictClientId}\""
+            buildConfigField "String", "ANNICT_CLIENT_SECRET", "\"${props.releaseAnnictClientScret}\""
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+    }
+    dataBinding {
+        enabled = true
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation deps.kotlin
+
+    implementation project(":common")
+    implementation project(":auth-domain")
+    implementation project(":auth-usecase")
+    implementation project(":auth-infra")
+
+    kapt deps.binding.compiler
+
+    implementation deps.dagger.runtime
+    kapt deps.dagger.compiler
+
+    testImplementation deps.junit
+    testImplementation deps.mockito
+}
