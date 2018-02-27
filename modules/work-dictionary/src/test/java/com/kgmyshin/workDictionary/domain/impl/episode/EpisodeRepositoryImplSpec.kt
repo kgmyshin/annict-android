@@ -1,6 +1,6 @@
 package com.kgmyshin.workDictionary.domain.impl.episode
 
-import com.kgmyshin.auth.hostService.GetAccessTokenService
+import com.kgmyshin.annict.auth.hostService.GetAccessTokenService
 import com.kgmyshin.random.RandomHelper
 import com.kgmyshin.workDictionary.domain.impl.work.episode.EpisodeConverter
 import com.kgmyshin.workDictionary.domain.impl.work.episode.EpisodeRepositoryImpl

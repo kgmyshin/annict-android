@@ -1,6 +1,6 @@
-package com.kgmyshin.auth.infra.localStore.impl
+package com.kgmyshin.annict.auth.infra.localStore.impl
 
-import com.kgmyshin.auth.infra.pref.AccessTokenPreference
+import com.kgmyshin.annict.auth.infra.pref.AccessTokenPreference
 import org.junit.Before
 import org.junit.Test
 import org.mockito.Mock

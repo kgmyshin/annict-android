@@ -1,8 +1,10 @@
 package com.kgmyshin.auth.domain.impl
 
-import com.kgmyshin.auth.infra.api.AuthApiClient
-import com.kgmyshin.auth.infra.api.json.PublishTokenRequestJson
-import com.kgmyshin.auth.infra.api.json.PublishTokenResponseJson
+import com.kgmyshin.annict.auth.infra.api.AuthApiClient
+import com.kgmyshin.annict.auth.infra.api.json.PublishTokenRequestJson
+import com.kgmyshin.annict.auth.infra.api.json.PublishTokenResponseJson
+import com.kgmyshin.annict.auth.infra.domain.AccessTokenConverter
+import com.kgmyshin.annict.auth.infra.domain.AuthorizeServiceImpl
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
 import org.junit.Before

@@ -1,6 +1,7 @@
 package com.kgmyshin.auth.hostService.impl
 
-import com.kgmyshin.auth.usecase.ExistsAccessTokenUseCase
+import com.kgmyshin.annict.auth.hostService.impl.ExistsAccessTokenServiceImpl
+import com.kgmyshin.annict.auth.usecase.ExistsAccessTokenUseCase
 import io.reactivex.Single
 import org.junit.Before
 import org.junit.Test

@@ -1,7 +1,7 @@
-package com.kgmyshin.auth.domain.impl
+package com.kgmyshin.annict.auth.infra.domain
 
-import com.kgmyshin.auth.domain.AccessToken
-import com.kgmyshin.auth.infra.localStore.AccessTokenLocalStore
+import com.kgmyshin.annict.auth.domain.AccessToken
+import com.kgmyshin.annict.auth.infra.localStore.AccessTokenLocalStore
 import io.reactivex.Completable
 import io.reactivex.Maybe
 import org.junit.Before

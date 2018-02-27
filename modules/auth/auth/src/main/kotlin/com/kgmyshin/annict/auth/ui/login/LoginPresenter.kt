@@ -78,7 +78,7 @@ internal class LoginPresenter @Inject constructor(
         val p = Pattern.compile(LOGIN_COMPLETE_URL_PATTERN)
         val m = p.matcher(url)
         if (m.find()) {
-            return m.group(1)
+            return m.group(2).replace("#_=_", "")
         } else {
             throw IllegalArgumentException("can't extract code from $url")
         }

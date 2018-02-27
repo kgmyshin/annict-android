@@ -1,7 +1,7 @@
-package com.kgmyshin.auth.usecase.impl
+package com.kgmyshin.annict.auth.usecase.impl
 
-import com.kgmyshin.auth.domain.AccessToken
-import com.kgmyshin.auth.domain.AccessTokenRepository
+import com.kgmyshin.annict.auth.domain.AccessToken
+import com.kgmyshin.annict.auth.domain.AccessTokenRepository
 import io.reactivex.Maybe
 import org.junit.Before
 import org.junit.Test

@@ -1,8 +1,11 @@
 package com.kgmyshin.auth.ui.login
 
 import android.content.Context
-import com.kgmyshin.auth.BuildConfig
-import com.kgmyshin.auth.usecase.AuthorizeUseCase
+import com.kgmyshin.annict.auth.BuildConfig
+import com.kgmyshin.annict.auth.ui.login.LoginContract
+import com.kgmyshin.annict.auth.ui.login.LoginPresenter
+import com.kgmyshin.annict.auth.ui.login.ScreenTransition
+import com.kgmyshin.annict.auth.usecase.AuthorizeUseCase
 import com.kgmyshin.common.errorHandler.ErrorHandler
 import io.reactivex.Completable
 import io.reactivex.schedulers.Schedulers
