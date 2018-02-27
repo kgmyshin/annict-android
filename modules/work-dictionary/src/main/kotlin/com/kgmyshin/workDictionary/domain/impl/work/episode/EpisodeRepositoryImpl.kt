@@ -1,7 +1,7 @@
 package com.kgmyshin.workDictionary.domain.impl.work.episode
 
 import android.support.v4.util.LruCache
-import com.kgmyshin.auth.hostService.GetAccessTokenService
+import com.kgmyshin.annict.auth.hostService.GetAccessTokenService
 import com.kgmyshin.workDictionary.domain.work.WorkId
 import com.kgmyshin.workDictionary.domain.work.episode.Episode
 import com.kgmyshin.workDictionary.domain.work.episode.EpisodeId
@@ -32,13 +32,13 @@ internal class EpisodeRepositoryImpl @Inject constructor(
                             accessToken = accessToken
                     )
                 }.map {
-                    EpisodeConverter.convertToEpisode(it.episodeJsonList[0])
-                }.doOnSuccess { episode ->
-                    idCache.put(
-                            episode.id,
-                            episode
-                    )
-                }.toMaybe().subscribeOn(ioScheduler)
+                            EpisodeConverter.convertToEpisode(it.episodeJsonList[0])
+                        }.doOnSuccess { episode ->
+                            idCache.put(
+                                    episode.id,
+                                    episode
+                            )
+                        }.toMaybe().subscribeOn(ioScheduler)
             }
 
     override fun findAllByWorkId(workId: WorkId): Single<List<Episode>> =
@@ -51,19 +51,19 @@ internal class EpisodeRepositoryImpl @Inject constructor(
                             accessToken = accessToken
                     )
                 }.map {
-                    EpisodeConverter.convertToEpisode(it.episodeJsonList)
-                }.doOnSuccess { episodeList ->
-                    workIdCache.put(
-                            workId,
-                            episodeList
-                    )
-                    episodeList.forEach {
-                        idCache.put(
-                                it.id,
-                                it
-                        )
-                    }
-                }.subscribeOn(ioScheduler)
+                            EpisodeConverter.convertToEpisode(it.episodeJsonList)
+                        }.doOnSuccess { episodeList ->
+                            workIdCache.put(
+                                    workId,
+                                    episodeList
+                            )
+                            episodeList.forEach {
+                                idCache.put(
+                                        it.id,
+                                        it
+                                )
+                            }
+                        }.subscribeOn(ioScheduler)
             }
 
 }

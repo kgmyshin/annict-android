@@ -3,8 +3,13 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/annict-android.iml" filepath="$PROJECT_DIR$/annict-android.iml" />
+      <module fileurl="file://$PROJECT_DIR$/auth-hostservice/annict-android-auth-hostservice.iml" filepath="$PROJECT_DIR$/auth-hostservice/annict-android-auth-hostservice.iml" />
+      <module fileurl="file://$PROJECT_DIR$/auth-ui/annict-android-auth-ui.iml" filepath="$PROJECT_DIR$/auth-ui/annict-android-auth-ui.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/modules/auth/auth.iml" filepath="$PROJECT_DIR$/modules/auth/auth.iml" />
+      <module fileurl="file://$PROJECT_DIR$/modules/auth/auth/auth.iml" filepath="$PROJECT_DIR$/modules/auth/auth/auth.iml" />
+      <module fileurl="file://$PROJECT_DIR$/modules/auth/auth-domain/auth-domain.iml" filepath="$PROJECT_DIR$/modules/auth/auth-domain/auth-domain.iml" />
+      <module fileurl="file://$PROJECT_DIR$/modules/auth/auth-infra/auth-infra.iml" filepath="$PROJECT_DIR$/modules/auth/auth-infra/auth-infra.iml" />
+      <module fileurl="file://$PROJECT_DIR$/modules/auth/auth-usecase/auth-usecase.iml" filepath="$PROJECT_DIR$/modules/auth/auth-usecase/auth-usecase.iml" />
       <module fileurl="file://$PROJECT_DIR$/modules/common/common.iml" filepath="$PROJECT_DIR$/modules/common/common.iml" />
       <module fileurl="file://$PROJECT_DIR$/modules/record/record.iml" filepath="$PROJECT_DIR$/modules/record/record.iml" />
       <module fileurl="file://$PROJECT_DIR$/modules/resource/resource.iml" filepath="$PROJECT_DIR$/modules/resource/resource.iml" />

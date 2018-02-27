@@ -1,7 +1,7 @@
 package com.kgmyshin.workDictionary.domain.impl.work
 
 import android.support.v4.util.LruCache
-import com.kgmyshin.auth.hostService.GetAccessTokenService
+import com.kgmyshin.annict.auth.hostService.GetAccessTokenService
 import com.kgmyshin.workDictionary.domain.work.Season
 import com.kgmyshin.workDictionary.domain.work.Work
 import com.kgmyshin.workDictionary.domain.work.WorkId
@@ -38,13 +38,13 @@ internal class WorkRepositoryImpl @Inject constructor(
                             accessToken = accessToken
                     )
                 }.map {
-                    WorkConverter.convertToDomainModel(it.workJsonList[0])
-                }.doOnSuccess { work ->
-                    idCache.put(
-                            work.id,
-                            work
-                    )
-                }.toMaybe().subscribeOn(ioScheduler)
+                            WorkConverter.convertToDomainModel(it.workJsonList[0])
+                        }.doOnSuccess { work ->
+                            idCache.put(
+                                    work.id,
+                                    work
+                            )
+                        }.toMaybe().subscribeOn(ioScheduler)
             }
 
     override fun findAllByKeyword(keyword: String): Single<List<Work>> =
@@ -57,19 +57,19 @@ internal class WorkRepositoryImpl @Inject constructor(
                             accessToken = accessToken
                     )
                 }.map {
-                    WorkConverter.convertToDomainModel(it.workJsonList)
-                }.doOnSuccess { workList ->
-                    keywordCache.put(
-                            keyword,
-                            workList
-                    )
-                    workList.forEach {
-                        idCache.put(
-                                it.id,
-                                it
-                        )
-                    }
-                }.subscribeOn(ioScheduler)
+                            WorkConverter.convertToDomainModel(it.workJsonList)
+                        }.doOnSuccess { workList ->
+                            keywordCache.put(
+                                    keyword,
+                                    workList
+                            )
+                            workList.forEach {
+                                idCache.put(
+                                        it.id,
+                                        it
+                                )
+                            }
+                        }.subscribeOn(ioScheduler)
             }
 
     override fun findAllBySeason(season: Season): Single<List<Work>> =
@@ -82,19 +82,19 @@ internal class WorkRepositoryImpl @Inject constructor(
                             accessToken = accessToken
                     )
                 }.map {
-                    WorkConverter.convertToDomainModel(it.workJsonList)
-                }.doOnSuccess { workList ->
-                    seasonCache.put(
-                            season,
-                            workList
-                    )
-                    workList.forEach {
-                        idCache.put(
-                                it.id,
-                                it
-                        )
-                    }
-                }.subscribeOn(ioScheduler)
+                            WorkConverter.convertToDomainModel(it.workJsonList)
+                        }.doOnSuccess { workList ->
+                            seasonCache.put(
+                                    season,
+                                    workList
+                            )
+                            workList.forEach {
+                                idCache.put(
+                                        it.id,
+                                        it
+                                )
+                            }
+                        }.subscribeOn(ioScheduler)
             }
 
     override fun findAllPopular(): Single<List<Work>> =
@@ -108,15 +108,15 @@ internal class WorkRepositoryImpl @Inject constructor(
                             perPage = 50
                     )
                 }.map {
-                    WorkConverter.convertToDomainModel(it.workJsonList)
-                }.doOnSuccess { workList ->
-                    workList.forEach {
-                        idCache.put(
-                                it.id,
-                                it
-                        )
-                    }
-                }.subscribeOn(ioScheduler)
+                            WorkConverter.convertToDomainModel(it.workJsonList)
+                        }.doOnSuccess { workList ->
+                            workList.forEach {
+                                idCache.put(
+                                        it.id,
+                                        it
+                                )
+                            }
+                        }.subscribeOn(ioScheduler)
             }
 
 }

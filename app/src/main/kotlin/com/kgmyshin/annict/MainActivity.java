@@ -4,7 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
-import com.kgmyshin.auth.ui.login.LoginActivity;
+import com.kgmyshin.annict.auth.ui.login.LoginActivity;
 
 public class MainActivity extends AppCompatActivity {
 

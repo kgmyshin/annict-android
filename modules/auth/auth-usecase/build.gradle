@@ -1,0 +1,40 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion versions.compileSdk
+    buildToolsVersion versions.buildTools
+    publishNonDefault true
+    defaultConfig {
+        minSdkVersion versions.minSdk
+        targetSdkVersion versions.targetSdk
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation deps.kotlin
+
+    implementation project(":common")
+    implementation project(":auth-domain")
+    implementation project(":auth-infra")
+
+    implementation deps.rxjava2.core
+
+    implementation deps.retrofit.core
+    implementation deps.retrofit.adapterRxJava2
+    implementation deps.retrofit.converterGson
+
+    implementation deps.dagger.runtime
+    kapt deps.dagger.compiler
+
+    testImplementation deps.junit
+    testImplementation deps.mockito
+}

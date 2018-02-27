@@ -1,6 +1,6 @@
 package com.kgmyshin.workDictionary
 
-import com.kgmyshin.auth.hostService.AuthHostServiceModule
+import com.kgmyshin.annict.auth.hostService.AuthHostServiceModule
 import com.kgmyshin.common.di.Component
 import com.kgmyshin.workDictionary.ui.work.detail.WorkDetailContract
 import com.kgmyshin.workDictionary.ui.work.popular.*
