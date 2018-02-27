@@ -2,16 +2,12 @@ include ':app'
 
 def modulesRopotDir = new File('modules')
 
-
 include ':auth', ':auth-domain', ':auth-infra', ':auth-usecase', ':auth-hostservice', ':auth-ui'
-
 def authModuleDir = new File(modulesRopotDir, "auth")
 project(':auth').projectDir = new File(authModuleDir, 'auth')
 project(':auth-domain').projectDir = new File(authModuleDir, 'auth-domain')
 project(':auth-infra').projectDir = new File(authModuleDir, 'auth-infra')
 project(':auth-usecase').projectDir = new File(authModuleDir, 'auth-usecase')
-project(':auth-hostservice').projectDir = new File(authModuleDir, 'auth-hostservice')
-project(':auth-ui').projectDir = new File(authModuleDir, 'auth-ui')
 
 include ':record'
 project(':record').projectDir = new File(modulesRopotDir, 'record')

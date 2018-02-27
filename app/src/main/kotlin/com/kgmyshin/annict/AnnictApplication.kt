@@ -1,9 +1,9 @@
 package com.kgmyshin.annict
 
-import com.kgmyshin.auth.AuthComponent
-import com.kgmyshin.auth.AuthModule
-import com.kgmyshin.auth.DaggerAuthComponent
-import com.kgmyshin.auth.hostService.AuthHostServiceModule
+import com.kgmyshin.annict.auth.AuthComponent
+import com.kgmyshin.annict.auth.AuthModule
+import com.kgmyshin.annict.auth.DaggerAuthComponent
+import com.kgmyshin.annict.auth.hostService.AuthHostServiceModule
 import com.kgmyshin.common.di.Component
 import com.kgmyshin.common.di.ContainerApplication
 import com.kgmyshin.workDictionary.DaggerWorkDictionaryComponent

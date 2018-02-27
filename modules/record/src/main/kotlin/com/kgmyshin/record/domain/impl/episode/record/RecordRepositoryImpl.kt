@@ -1,7 +1,7 @@
 package com.kgmyshin.record.domain.impl.episode.record
 
 import android.support.v4.util.LruCache
-import com.kgmyshin.auth.hostService.GetAccessTokenService
+import com.kgmyshin.annict.auth.hostService.GetAccessTokenService
 import com.kgmyshin.record.domain.episode.EpisodeId
 import com.kgmyshin.record.domain.episode.record.Record
 import com.kgmyshin.record.domain.episode.record.RecordRepository
@@ -29,13 +29,13 @@ internal class RecordRepositoryImpl(
                             accessToken = accessToken
                     )
                 }.map {
-                    RecordConverter.convertToRecord(it.recordList)
-                }.doOnSuccess { recordList ->
-                    episodeIdCache.put(
-                            episodeId,
-                            recordList
-                    )
-                }.subscribeOn(ioScheduler)
+                            RecordConverter.convertToRecord(it.recordList)
+                        }.doOnSuccess { recordList ->
+                            episodeIdCache.put(
+                                    episodeId,
+                                    recordList
+                            )
+                        }.subscribeOn(ioScheduler)
             }
 
     override fun create(
@@ -53,15 +53,15 @@ internal class RecordRepositoryImpl(
                         accessToken = accessToken
                 )
             }.map {
-                RecordConverter.convertToRecord(it)
-            }.doOnSuccess { createdRecord ->
-                episodeIdCache.get(createdRecord.episodeId)?.let {
-                    episodeIdCache.put(
-                            createdRecord.episodeId,
-                            listOf(createdRecord).plus(it)
-                    )
-                }
-            }.subscribeOn(ioScheduler)
+                        RecordConverter.convertToRecord(it)
+                    }.doOnSuccess { createdRecord ->
+                        episodeIdCache.get(createdRecord.episodeId)?.let {
+                            episodeIdCache.put(
+                                    createdRecord.episodeId,
+                                    listOf(createdRecord).plus(it)
+                            )
+                        }
+                    }.subscribeOn(ioScheduler)
 
     override fun update(
             record: Record,
@@ -78,20 +78,20 @@ internal class RecordRepositoryImpl(
                         accessToken = accessToken
                 )
             }.map {
-                RecordConverter.convertToRecord(it)
-            }.doOnSuccess {
-                episodeIdCache.get(record.episodeId)?.let {
-                    episodeIdCache.put(
-                            record.episodeId,
-                            it.toMutableList().apply {
-                                set(
-                                        it.indexOfFirst { it.id == record.id },
-                                        record
-                                )
-                            }.toList()
-                    )
-                }
-            }.subscribeOn(ioScheduler)
+                        RecordConverter.convertToRecord(it)
+                    }.doOnSuccess {
+                        episodeIdCache.get(record.episodeId)?.let {
+                            episodeIdCache.put(
+                                    record.episodeId,
+                                    it.toMutableList().apply {
+                                        set(
+                                                it.indexOfFirst { it.id == record.id },
+                                                record
+                                        )
+                                    }.toList()
+                            )
+                        }
+                    }.subscribeOn(ioScheduler)
 
     override fun delete(record: Record): Completable =
             getAccessTokenService.execute().flatMapCompletable { accessToken ->
@@ -100,12 +100,12 @@ internal class RecordRepositoryImpl(
                         accessToken = accessToken
                 )
             }.doOnComplete {
-                episodeIdCache.get(record.episodeId)?.let {
-                    episodeIdCache.put(
-                            record.episodeId,
-                            it.minus(record)
-                    )
-                }
-            }.subscribeOn(ioScheduler)
+                        episodeIdCache.get(record.episodeId)?.let {
+                            episodeIdCache.put(
+                                    record.episodeId,
+                                    it.minus(record)
+                            )
+                        }
+                    }.subscribeOn(ioScheduler)
 
 }

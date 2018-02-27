@@ -1,5 +1,5 @@
 ext.deps = [
-        kotlin            : "org.jetbrains.kotlin:kotlin-stdlib:1.1.3-2",
+        kotlin            : "org.jetbrains.kotlin:kotlin-stdlib:1.2.21",
         support           : [
                 annotations     : "com.android.support:support-annotations:26.0.2",
                 v4              : "com.android.support:support-v4:26.0.2",
