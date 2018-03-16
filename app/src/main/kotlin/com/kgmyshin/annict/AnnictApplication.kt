@@ -4,11 +4,11 @@ import com.kgmyshin.annict.auth.AuthComponent
 import com.kgmyshin.annict.auth.AuthModule
 import com.kgmyshin.annict.auth.DaggerAuthComponent
 import com.kgmyshin.annict.auth.hostService.AuthHostServiceModule
+import com.kgmyshin.annict.workDictionary.DaggerWorkDictionaryComponent
+import com.kgmyshin.annict.workDictionary.WorkDictionaryComponent
+import com.kgmyshin.annict.workDictionary.WorkDictionaryModule
 import com.kgmyshin.common.di.Component
 import com.kgmyshin.common.di.ContainerApplication
-import com.kgmyshin.workDictionary.DaggerWorkDictionaryComponent
-import com.kgmyshin.workDictionary.WorkDictionaryComponent
-import com.kgmyshin.workDictionary.WorkDictionaryModule
 import java.util.*
 import kotlin.reflect.KClass
 

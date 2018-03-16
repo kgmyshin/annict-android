@@ -5,21 +5,22 @@ apply plugin: 'kotlin-kapt'
 android {
     compileSdkVersion versions.compileSdk
     buildToolsVersion versions.buildTools
-    publishNonDefault true
+
     defaultConfig {
         minSdkVersion versions.minSdk
         targetSdkVersion versions.targetSdk
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
     }
     buildTypes {
         debug {
             buildConfigField "String", "ANNICT_CLIENT_ID", "\"${props.debugAnnictClientId}\""
             buildConfigField "String", "ANNICT_CLIENT_SECRET", "\"${props.debugAnnictClientScret}\""
+            buildConfigField "String", "ANNICT_CALLBACK", "\"${props.debugAnnictCallback}\""
         }
         release {
             buildConfigField "String", "ANNICT_CLIENT_ID", "\"${props.releaseAnnictClientId}\""
             buildConfigField "String", "ANNICT_CLIENT_SECRET", "\"${props.releaseAnnictClientScret}\""
+            buildConfigField "String", "ANNICT_CALLBACK", "\"${props.relaseAnnictCallback}\""
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
@@ -42,6 +43,8 @@ dependencies {
     implementation deps.retrofit.core
     implementation deps.retrofit.adapterRxJava2
     implementation deps.retrofit.converterGson
+
+    debugImplementation deps.loggingInterceptor
 
     implementation deps.dagger.runtime
     kapt deps.dagger.compiler

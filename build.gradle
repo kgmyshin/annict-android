@@ -16,19 +16,22 @@ buildscript {
         }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.0.1'
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.2.21"
+        classpath 'com.android.tools.build:gradle:3.2.0-alpha05'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.2.30"
         classpath "gradle.plugin.kgmyshin:gradle-random-data-class-plugin:0.9.20"
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
 }
+plugins {
+    id "io.gitlab.arturbosch.detekt" version "1.0.0.RC6-3"
+}
 
 ext.versions = [
-        compileSdk: 26,
-        buildTools: "26.0.2",
+        compileSdk: 27,
+        buildTools: "27.0.3",
         minSdk    : 16,
-        targetSdk : 26
+        targetSdk : 27
 ]
 
 allprojects {
@@ -40,4 +43,13 @@ allprojects {
 
 task clean(type: Delete) {
     delete rootProject.buildDir
+}
+
+detekt {
+//    version = "1.0.0.[version]"
+    profile("main") {
+//        input = "$projectDir/app"
+        config = "$projectDir/detekt.yml"
+        filters = ".*test.*,.*/resources/.*,.*/tmp/.*"
+    }
 }

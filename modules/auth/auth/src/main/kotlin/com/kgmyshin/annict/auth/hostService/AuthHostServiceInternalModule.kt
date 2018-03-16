@@ -20,8 +20,12 @@ internal class AuthHostServiceInternalModule(private val application: Applicatio
     fun provideApplication(): Application = application
 
     @Provides
-    fun provideExistsAccessTokenService(useCase: ExistsAccessTokenUseCase): ExistsAccessTokenService = ExistsAccessTokenServiceImpl(useCase)
+    fun provideExistsAccessTokenService(
+            useCase: ExistsAccessTokenUseCase
+    ): ExistsAccessTokenService = ExistsAccessTokenServiceImpl(useCase)
 
     @Provides
-    fun provideGetAccessTokenService(useCaxe: GetAccessTokenUseCase): GetAccessTokenService = GetAccessTokenServiceImpl(useCaxe)
+    fun provideGetAccessTokenService(
+            useCase: GetAccessTokenUseCase
+    ): GetAccessTokenService = GetAccessTokenServiceImpl(useCase)
 }

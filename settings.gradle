@@ -2,7 +2,7 @@ include ':app'
 
 def modulesRopotDir = new File('modules')
 
-include ':auth', ':auth-domain', ':auth-infra', ':auth-usecase', ':auth-hostservice', ':auth-ui'
+include ':auth', ':auth-domain', ':auth-infra', ':auth-usecase'
 def authModuleDir = new File(modulesRopotDir, "auth")
 project(':auth').projectDir = new File(authModuleDir, 'auth')
 project(':auth-domain').projectDir = new File(authModuleDir, 'auth-domain')
@@ -15,8 +15,12 @@ project(':record').projectDir = new File(modulesRopotDir, 'record')
 include ':watch-management'
 project(':watch-management').projectDir = new File(modulesRopotDir, 'watch-management')
 
-include ':work-dictionary'
-project(':work-dictionary').projectDir = new File(modulesRopotDir, 'work-dictionary')
+include ':work-dictionary', ':work-dictionary-domain', ':work-dictionary-usecase', ':work-dictionary-infra'
+def workDictionaryModuleDir = new File(modulesRopotDir, "work-dictionary")
+project(':work-dictionary').projectDir = new File(workDictionaryModuleDir, 'work-dictionary')
+project(':work-dictionary-domain').projectDir = new File(workDictionaryModuleDir, 'work-dictionary-domain')
+project(':work-dictionary-usecase').projectDir = new File(workDictionaryModuleDir, 'work-dictionary-usecase')
+project(':work-dictionary-infra').projectDir = new File(workDictionaryModuleDir, 'work-dictionary-infra')
 
 include ':social-network'
 project(':social-network').projectDir = new File(modulesRopotDir, 'social-network')

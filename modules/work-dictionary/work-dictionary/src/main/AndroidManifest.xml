@@ -1,0 +1,30 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.kgmyshin.annict.workDictionary">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+
+    <application>
+
+        <activity
+            android:name=".ui.work.search.SearchWorkListActivity"
+            android:launchMode="singleTop"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+        </activity>
+
+
+        <provider
+            android:name=".ui.work.search.SearchWorkListRecentSuggestionsProvider"
+            android:authorities="com.kgmyshin.workDictionary.ui.work.search.SearchWorkListRecentSuggestionsProvider" />
+
+    </application>
+
+</manifest>

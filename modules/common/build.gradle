@@ -41,7 +41,7 @@ dependencies {
 
     implementation deps.support.appCompat
 
-    kapt deps.binding.compiler
+
 
     implementation deps.dagger.runtime
     kapt deps.dagger.compiler
