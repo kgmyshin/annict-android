@@ -1,5 +1,6 @@
 package com.kgmyshin.workDictionary.ui.work.detail
 
+import com.kgmyshin.annict.workDictionary.ui.work.detail.WorkDetailPresenter
 import com.kgmyshin.common.errorHandler.ErrorHandler
 import com.kgmyshin.random.RandomHelper
 import com.kgmyshin.workDictionary.domain.DomainHelper

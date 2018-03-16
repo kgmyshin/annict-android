@@ -12,6 +12,10 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
     }
+    buildTypes {
+        debug
+        release
+    }
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
     }
