@@ -1,12 +1,14 @@
 package com.kgmyshin.workDictionary.ui.work.search
 
+import com.kgmyshin.annict.workDictionary.ui.work.ScreenTransition
+import com.kgmyshin.annict.workDictionary.ui.work.WorkViewModelConverter
+import com.kgmyshin.annict.workDictionary.ui.work.search.SearchWorkListContract
+import com.kgmyshin.annict.workDictionary.ui.work.search.SearchWorkListPresenter
+import com.kgmyshin.annict.workDictionary.usecase.SearchWorkListUseCase
 import com.kgmyshin.common.errorHandler.ErrorHandler
 import com.kgmyshin.random.RandomHelper
 import com.kgmyshin.workDictionary.domain.DomainHelper
-import com.kgmyshin.workDictionary.ui.work.ScreenTransition
-import com.kgmyshin.workDictionary.ui.work.WorkViewModelConverter
 import com.kgmyshin.workDictionary.ui.work.WorkViewModelFactory
-import com.kgmyshin.workDictionary.usecase.SearchWorkListUseCase
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
 import org.jetbrains.spek.api.dsl.given

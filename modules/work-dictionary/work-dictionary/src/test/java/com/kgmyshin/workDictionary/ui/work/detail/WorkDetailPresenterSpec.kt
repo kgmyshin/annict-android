@@ -1,12 +1,15 @@
 package com.kgmyshin.workDictionary.ui.work.detail
 
+import com.kgmyshin.annict.workDictionary.domain.work.WorkId
+import com.kgmyshin.annict.workDictionary.ui.work.detail.ScreenTransition
+import com.kgmyshin.annict.workDictionary.ui.work.detail.WorkDetailContract
 import com.kgmyshin.annict.workDictionary.ui.work.detail.WorkDetailPresenter
+import com.kgmyshin.annict.workDictionary.ui.work.detail.WorkDetailViewModelConverter
+import com.kgmyshin.annict.workDictionary.usecase.GetEpisodeListUseCase
+import com.kgmyshin.annict.workDictionary.usecase.GetWorkUseCase
 import com.kgmyshin.common.errorHandler.ErrorHandler
 import com.kgmyshin.random.RandomHelper
 import com.kgmyshin.workDictionary.domain.DomainHelper
-import com.kgmyshin.workDictionary.domain.work.WorkId
-import com.kgmyshin.workDictionary.usecase.GetEpisodeListUseCase
-import com.kgmyshin.workDictionary.usecase.GetWorkUseCase
 import io.reactivex.Maybe
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers

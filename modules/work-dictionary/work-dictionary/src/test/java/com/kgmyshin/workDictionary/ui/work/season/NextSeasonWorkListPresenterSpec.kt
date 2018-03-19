@@ -1,12 +1,13 @@
 package com.kgmyshin.workDictionary.ui.work.season
 
+import com.kgmyshin.annict.workDictionary.ui.work.ScreenTransition
+import com.kgmyshin.annict.workDictionary.ui.work.WorkListContract
+import com.kgmyshin.annict.workDictionary.ui.work.WorkViewModelConverter
+import com.kgmyshin.annict.workDictionary.ui.work.season.NextSeasonWorkListPresenter
+import com.kgmyshin.annict.workDictionary.usecase.GetNextSeasonWorkListUseCase
 import com.kgmyshin.common.errorHandler.ErrorHandler
 import com.kgmyshin.workDictionary.domain.DomainHelper
-import com.kgmyshin.workDictionary.ui.work.ScreenTransition
-import com.kgmyshin.workDictionary.ui.work.WorkListContract
-import com.kgmyshin.workDictionary.ui.work.WorkViewModelConverter
 import com.kgmyshin.workDictionary.ui.work.WorkViewModelFactory
-import com.kgmyshin.workDictionary.usecase.GetNextSeasonWorkListUseCase
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
 import org.jetbrains.spek.api.dsl.given
