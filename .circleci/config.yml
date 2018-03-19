@@ -11,6 +11,16 @@ jobs:
       - restore_cache:
           key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
       - run:
+          name: Prepare dummy secret.properties
+          command: |
+            mkdir properties
+            echo debugAnnictClientId=debugAnnictClientId >> properties/secrets.properties
+            echo debugAnnictClientScret=debugAnnictClientScret >> properties/secrets.properties
+            echo debugAnnictCallback=https://kgmyshin.com/annict >> properties/secrets.properties
+            echo releaseAnnictClientId=releaseAnnictClientId >> properties/secrets.properties
+            echo releaseAnnictClientScret=releaseAnnictClientScret >> properties/secrets.properties
+            echo relaseAnnictCallback=https://kgmyshin.com/annict >> properties/secrets.properties
+      - run:
           name: Download Dependencies
           command: ./gradlew androidDependencies
       - save_cache:
