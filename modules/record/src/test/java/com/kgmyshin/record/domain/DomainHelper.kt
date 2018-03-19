@@ -1,6 +1,6 @@
 package com.kgmyshin.record.domain
 
-import com.kgmyshin.random.RandomHelper
+import com.kgmyshin.common.random.RandomHelper
 import com.kgmyshin.record.domain.episode.EpisodeId
 import com.kgmyshin.record.domain.episode.record.Record
 import com.kgmyshin.record.domain.episode.record.RecordId

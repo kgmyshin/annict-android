@@ -10,12 +10,17 @@ import retrofit2.http.*
 
 internal interface RecordApiClient {
 
+    companion object {
+        private const val START_PAGE = 1
+        private const val PER_PAGE = 50
+    }
+
     @GET("/v1/reviews")
     fun getReviews(
             @Query("filter_ids") filterIds: String? = null,
             @Query("filter_work_id") filterWorkId: String? = null,
-            @Query("page") page: Int = 1,
-            @Query("per_page") prePage: Int = 50, // default: 25, max: 50
+            @Query("page") page: Int = START_PAGE,
+            @Query("per_page") prePage: Int = PER_PAGE, // default: 25, max: 50
             @Query("sort_id") sordId: String? = null, // "asc" or "desc"
             @Query("sort_likes_count") sortLikesCount: String? = null, // "asc" or "desc"
             @Query("access_token") accessToken: String
@@ -62,8 +67,8 @@ internal interface RecordApiClient {
             @Query("filter_ids") filterIds: String? = null,
             @Query("filter_episode_id") filterEpisodeId: String? = null,
             @Query("filter_has_record_comment") filterHasRecordComment: Boolean? = null,
-            @Query("page") page: Int = 1,
-            @Query("per_page") prePage: Int = 50, // default: 25, max: 50
+            @Query("page") page: Int = START_PAGE,
+            @Query("per_page") prePage: Int = PER_PAGE, // default: 25, max: 50
             @Query("sort_id") sordId: String? = null, // "asc" or "desc"
             @Query("sort_likes_count") sortLikesCount: String? = null, // "asc" or "desc"
             @Query("access_token") accessToken: String

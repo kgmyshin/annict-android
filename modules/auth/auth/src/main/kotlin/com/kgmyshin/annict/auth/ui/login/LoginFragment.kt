@@ -40,7 +40,7 @@ class LoginFragment : Fragment(), LoginContract.View {
     }
 
     @SuppressLint("SetJavaScriptEnabled")
-    override fun onCreateView(inflater: LayoutInflater?,
+    override fun onCreateView(inflater: LayoutInflater,
                               container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         binding = FragmentLoginBinding.inflate(
@@ -52,7 +52,7 @@ class LoginFragment : Fragment(), LoginContract.View {
             CookieManager.getInstance().removeAllCookies(null)
             CookieManager.getInstance().flush()
         } else {
-            val cookieSyncMngr = CookieSyncManager.createInstance(context.applicationContext)
+            val cookieSyncMngr = CookieSyncManager.createInstance(context?.applicationContext)
             cookieSyncMngr.startSync()
             val cookieManager = CookieManager.getInstance()
             cookieManager.removeAllCookie()
@@ -72,7 +72,11 @@ class LoginFragment : Fragment(), LoginContract.View {
                         url: String?
                 ): Boolean {
                     if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-                        url?.let { presenter.onLoaded(it) }
+                        return url?.let { presenter.onLoaded(it) }
+                                ?: super.shouldOverrideUrlLoading(
+                                        view,
+                                        url
+                                )
                     }
                     return super.shouldOverrideUrlLoading(
                             view,
@@ -85,11 +89,11 @@ class LoginFragment : Fragment(), LoginContract.View {
                         view: WebView?,
                         request: WebResourceRequest?
                 ): Boolean {
-                    request?.let { presenter.onLoaded(it.url.toString()) }
-                    return super.shouldOverrideUrlLoading(
-                            view,
-                            request
-                    )
+                    return request?.let { presenter.onLoaded(it.url.toString()) }
+                            ?: super.shouldOverrideUrlLoading(
+                                    view,
+                                    request
+                            )
                 }
             }
             webChromeClient = WebChromeClient()

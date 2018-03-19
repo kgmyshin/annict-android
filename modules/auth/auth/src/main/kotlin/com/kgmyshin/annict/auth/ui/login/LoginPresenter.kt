@@ -1,6 +1,6 @@
 package com.kgmyshin.annict.auth.ui.login
 
-import com.kgmyshin.annict.auth.BuildConfig
+import com.kgmyshin.annict.auth.infra.BuildConfig
 import com.kgmyshin.annict.auth.usecase.AuthorizeUseCase
 import com.kgmyshin.common.errorHandler.ErrorHandler
 import io.reactivex.Scheduler
@@ -17,9 +17,8 @@ internal class LoginPresenter @Inject constructor(
 ) : LoginContract.Presenter {
 
     companion object {
-        private const val LOGIN_URL = "https://annict.jp/sign_in?back=%2Foauth%2Fauthorize%3Fclient_id%3D${BuildConfig.ANNICT_CLIENT_ID}%26response_type%3Dcode%26redirect_uri%3Durn%3Aietf%3Awg%3Aoauth%3A2.0%3Aoob%26scope%3Dread%2Bwrite"
-        private const val LOGIN_COMPLETE_URL_PATTERN = "https://(jp.annict.com|annict.jp)/oauth/authorize/(.*)(#_=_)?"
-
+        private const val LOGIN_URL = "https://api.annict.com/oauth/authorize?client_id=${BuildConfig.ANNICT_CLIENT_ID}&response_type=code&redirect_uri=${BuildConfig.ANNICT_CALLBACK}&scope=read write"
+        private const val LOGIN_COMPLETE_URL_PATTERN = "https://kgmyshin\\.com/annict\\?code=(.*)(#_=_)?"
     }
 
     private lateinit var view: LoginContract.View
@@ -41,7 +40,7 @@ internal class LoginPresenter @Inject constructor(
     override fun onAttach() {
     }
 
-    override fun onLoaded(url: String) {
+    override fun onLoaded(url: String): Boolean {
         if (isLoginCompletedUrl(url)) {
             val code = extractAuthCode(url)
             authorizeUseCase.execute(code)
@@ -53,15 +52,19 @@ internal class LoginPresenter @Inject constructor(
                         screenTransition.moveToHome()
                         view.dismissProgress()
                     }, { throwable ->
-                        errorHandler.showDialog(
-                                view.getContext(),
-                                throwable,
-                                null
-                        )
+                        view.getContext()?.let {
+                            errorHandler.showDialog(
+                                    it,
+                                    throwable,
+                                    null
+                            )
+                        }
                         view.dismissProgress()
                     })
                     .addTo(disposables)
+            return true
         }
+        return false
     }
 
     override fun onDetach() {
@@ -78,7 +81,7 @@ internal class LoginPresenter @Inject constructor(
         val p = Pattern.compile(LOGIN_COMPLETE_URL_PATTERN)
         val m = p.matcher(url)
         if (m.find()) {
-            return m.group(2).replace("#_=_", "")
+            return m.group(1).replace("#_=_", "")
         } else {
             throw IllegalArgumentException("can't extract code from $url")
         }

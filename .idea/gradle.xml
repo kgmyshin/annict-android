@@ -9,8 +9,6 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
-            <option value="$PROJECT_DIR$/auth-hostservice" />
-            <option value="$PROJECT_DIR$/auth-ui" />
             <option value="$PROJECT_DIR$/modules/auth/auth" />
             <option value="$PROJECT_DIR$/modules/auth/auth-domain" />
             <option value="$PROJECT_DIR$/modules/auth/auth-infra" />
@@ -20,7 +18,10 @@
             <option value="$PROJECT_DIR$/modules/resource" />
             <option value="$PROJECT_DIR$/modules/social-network" />
             <option value="$PROJECT_DIR$/modules/watch-management" />
-            <option value="$PROJECT_DIR$/modules/work-dictionary" />
+            <option value="$PROJECT_DIR$/modules/work-dictionary/work-dictionary" />
+            <option value="$PROJECT_DIR$/modules/work-dictionary/work-dictionary-domain" />
+            <option value="$PROJECT_DIR$/modules/work-dictionary/work-dictionary-infra" />
+            <option value="$PROJECT_DIR$/modules/work-dictionary/work-dictionary-usecase" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

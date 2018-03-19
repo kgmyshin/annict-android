@@ -1,6 +1,7 @@
 package com.kgmyshin.record.infra.api.json
 
-import com.kgmyshin.random.RandomHelper
+import com.kgmyshin.annict.workDictionary.infra.api.json.WorkJson
+import com.kgmyshin.common.random.RandomHelper
 import java.util.*
 
 object ReviewJsonFactory {
@@ -18,19 +19,19 @@ object ReviewJsonFactory {
             modifiedAt: Date = RandomHelper.randomDate(),
             createdAt: Date = RandomHelper.randomDate(),
             user: com.kgmyshin.record.infra.api.json.UserJson = com.kgmyshin.record.infra.api.json.UserJsonFactory.create(),
-            work: com.kgmyshin.workDictionary.infra.api.json.WorkJson = com.kgmyshin.workDictionary.infra.api.json.WorkJsonFactory.create()
+            work: WorkJson = com.kgmyshin.workDictionary.infra.api.json.WorkJsonFactory.create()
     ): ReviewJson = com.kgmyshin.record.infra.api.json.ReviewJson(id,
-                                                                  title,
-                                                                  body,
-                                                                  ratingAnimationState,
-                                                                  ratingMusicState,
-                                                                  ratingStoryState,
-                                                                  ratingCharacterState,
-                                                                  ratingOverallState,
-                                                                  likesCount,
-                                                                  impressionsCount,
-                                                                  modifiedAt,
-                                                                  createdAt,
-                                                                  user,
-                                                                  work)
+            title,
+            body,
+            ratingAnimationState,
+            ratingMusicState,
+            ratingStoryState,
+            ratingCharacterState,
+            ratingOverallState,
+            likesCount,
+            impressionsCount,
+            modifiedAt,
+            createdAt,
+            user,
+            work)
 }

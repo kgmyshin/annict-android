@@ -1,7 +1,7 @@
 package com.kgmyshin.record.infra.api.json
 
 import com.google.gson.annotations.SerializedName
-import com.kgmyshin.workDictionary.infra.api.json.WorkJson
+import com.kgmyshin.annict.workDictionary.infra.api.json.WorkJson
 import java.util.*
 
 data class ReviewJson(

@@ -6,7 +6,7 @@ apply plugin: "com.kgmyshin.random"
 android {
     compileSdkVersion versions.compileSdk
     buildToolsVersion versions.buildTools
-    publishNonDefault true
+
     defaultConfig {
         minSdkVersion versions.minSdk
         targetSdkVersion versions.targetSdk
@@ -37,11 +37,10 @@ dependencies {
     implementation project(":auth")
     implementation project(":common")
     implementation project(":work-dictionary")
+    implementation project(":work-dictionary-infra") // apiのため。apiはそのうちモジュールにする
 
     implementation deps.support.appCompat
     implementation deps.support.recyclerView
-
-    kapt deps.binding.compiler
 
     implementation deps.dagger.runtime
     kapt deps.dagger.compiler

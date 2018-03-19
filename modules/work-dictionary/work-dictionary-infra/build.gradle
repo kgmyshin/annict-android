@@ -1,0 +1,62 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion versions.compileSdk
+    buildToolsVersion versions.buildTools
+
+    defaultConfig {
+        minSdkVersion versions.minSdk
+        targetSdkVersion versions.targetSdk
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+    buildTypes {
+        debug {
+            buildConfigField "String", "ANNICT_CLIENT_ID", "\"${props.debugAnnictClientId}\""
+            buildConfigField "String", "ANNICT_CLIENT_SECRET", "\"${props.debugAnnictClientScret}\""
+        }
+        release {
+            buildConfigField "String", "ANNICT_CLIENT_ID", "\"${props.releaseAnnictClientId}\""
+            buildConfigField "String", "ANNICT_CLIENT_SECRET", "\"${props.releaseAnnictClientScret}\""
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+        debug.java.srcDirs += 'src/debug/kotlin'
+        release.java.srcDirs += 'src/release/kotlin'
+    }
+}
+
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation deps.kotlin
+
+    implementation project(":auth")
+    implementation project(":common")
+    implementation project(":work-dictionary-domain")
+
+    implementation deps.rxjava2.core
+
+    implementation deps.retrofit.core
+    implementation deps.retrofit.adapterRxJava2
+    implementation deps.retrofit.converterGson
+
+    debugImplementation deps.loggingInterceptor
+
+    implementation deps.dagger.runtime
+    kapt deps.dagger.compiler
+
+    testImplementation deps.junit
+    testImplementation deps.mockito
+
+    testImplementation deps.spek.api
+    testImplementation deps.spek.engine
+    testImplementation deps.spek.runner
+    testImplementation deps.spek.subject
+}

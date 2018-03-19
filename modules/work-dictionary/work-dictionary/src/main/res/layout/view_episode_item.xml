@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="episodeViewModel"
+            type="com.kgmyshin.annict.workDictionary.ui.work.detail.EpisodeViewModel"
+            />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/padding_m"
+        >
+
+        <TextView
+            android:id="@+id/number_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:text="@{@string/episode_number(episodeViewModel.number)}"
+            />
+
+        <TextView
+            android:id="@+id/title_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/number_text_view"
+            android:layout_marginTop="@dimen/margin_s"
+            android:text="@{episodeViewModel.title}"
+            />
+
+    </RelativeLayout>
+</layout>

@@ -15,7 +15,11 @@
       <module fileurl="file://$PROJECT_DIR$/modules/resource/resource.iml" filepath="$PROJECT_DIR$/modules/resource/resource.iml" />
       <module fileurl="file://$PROJECT_DIR$/modules/social-network/social-network.iml" filepath="$PROJECT_DIR$/modules/social-network/social-network.iml" />
       <module fileurl="file://$PROJECT_DIR$/modules/watch-management/watch-management.iml" filepath="$PROJECT_DIR$/modules/watch-management/watch-management.iml" />
+      <module fileurl="file://$PROJECT_DIR$/modules/work-dictionary/work-dictionary/work-dictionary.iml" filepath="$PROJECT_DIR$/modules/work-dictionary/work-dictionary/work-dictionary.iml" />
       <module fileurl="file://$PROJECT_DIR$/modules/work-dictionary/work-dictionary.iml" filepath="$PROJECT_DIR$/modules/work-dictionary/work-dictionary.iml" />
+      <module fileurl="file://$PROJECT_DIR$/modules/work-dictionary/work-dictionary-domain/work-dictionary-domain.iml" filepath="$PROJECT_DIR$/modules/work-dictionary/work-dictionary-domain/work-dictionary-domain.iml" />
+      <module fileurl="file://$PROJECT_DIR$/modules/work-dictionary/work-dictionary-infra/work-dictionary-infra.iml" filepath="$PROJECT_DIR$/modules/work-dictionary/work-dictionary-infra/work-dictionary-infra.iml" />
+      <module fileurl="file://$PROJECT_DIR$/modules/work-dictionary/work-dictionary-usecase/work-dictionary-usecase.iml" filepath="$PROJECT_DIR$/modules/work-dictionary/work-dictionary-usecase/work-dictionary-usecase.iml" />
     </modules>
   </component>
 </project>

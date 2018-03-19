@@ -12,7 +12,8 @@ class AccessTokenRepositoryImpl(private val accessTokenLocalStore: AccessTokenLo
 
     override fun exists(): Single<Boolean> = accessTokenLocalStore.get().exists()
 
-    override fun find(): Maybe<AccessToken> = accessTokenLocalStore.get().map { AccessToken(it) }
+    override fun find(): Maybe<AccessToken> =
+            accessTokenLocalStore.get().map { AccessToken(it) }
 
     override fun store(accessToken: AccessToken): Completable = accessTokenLocalStore.put(accessToken.value)
 }

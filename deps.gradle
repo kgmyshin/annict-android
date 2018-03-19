@@ -1,15 +1,12 @@
 ext.deps = [
         kotlin            : "org.jetbrains.kotlin:kotlin-stdlib:1.2.21",
         support           : [
-                annotations     : "com.android.support:support-annotations:26.0.2",
-                v4              : "com.android.support:support-v4:26.0.2",
-                appCompat       : "com.android.support:appcompat-v7:26.0.2",
-                design          : "com.android.support:design:26.0.2",
-                recyclerView    : "com.android.support:recyclerview-v7:26.0.2",
+                annotations     : "com.android.support:support-annotations:27.1.0",
+                v4              : "com.android.support:support-v4:27.1.0",
+                appCompat       : "com.android.support:appcompat-v7:27.1.0",
+                design          : "com.android.support:design:27.1.0",
+                recyclerView    : "com.android.support:recyclerview-v7:27.1.0",
                 constraintLayout: "com.android.support.constraint:constraint-layout:1.0.2"
-        ],
-        binding           : [
-                compiler: "com.android.databinding:compiler:2.3.0"
         ],
         dagger            : [
                 runtime : "com.google.dagger:dagger:2.11",

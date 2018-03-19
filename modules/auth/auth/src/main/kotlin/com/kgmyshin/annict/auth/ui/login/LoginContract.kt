@@ -14,7 +14,7 @@ interface LoginContract {
 
         fun onCreateView()
 
-        fun onLoaded(url: String)
+        fun onLoaded(url: String): Boolean
 
         fun onAttach()
 
