@@ -1,7 +1,6 @@
 package com.kgmyshin.common.random
 
 import java.util.*
-import java.util.concurrent.ThreadLocalRandom
 
 object RandomHelper {
     private val random: Random = Random()
@@ -13,22 +12,19 @@ object RandomHelper {
     fun randomDouble() = random.nextDouble()
     fun randomFloat() = random.nextFloat()
     fun randomDate() = Date(
-            ThreadLocalRandom.current().nextLong(
-                    Calendar.getInstance().apply {
-                        set(
-                                Calendar.YEAR,
-                                2000
-                        )
-                        set(
-                                Calendar.MONTH,
-                                0
-                        )
-                        set(
-                                Calendar.DAY_OF_MONTH,
-                                1
-                        )
-                    }.timeInMillis,
-                    Calendar.getInstance().timeInMillis
-            )
+            Calendar.getInstance().apply {
+                set(
+                        Calendar.YEAR,
+                        2000 + random.nextInt(100)
+                )
+                set(
+                        Calendar.MONTH,
+                        random.nextInt(12)
+                )
+                set(
+                        Calendar.DAY_OF_MONTH,
+                        random.nextInt(29)
+                )
+            }.timeInMillis
     )
 }

@@ -6,7 +6,7 @@ import com.kgmyshin.annict.workDictionary.ui.work.search.SearchWorkListContract
 import com.kgmyshin.annict.workDictionary.ui.work.search.SearchWorkListPresenter
 import com.kgmyshin.annict.workDictionary.usecase.SearchWorkListUseCase
 import com.kgmyshin.common.errorHandler.ErrorHandler
-import com.kgmyshin.random.RandomHelper
+import com.kgmyshin.common.random.RandomHelper
 import com.kgmyshin.workDictionary.domain.DomainHelper
 import com.kgmyshin.workDictionary.ui.work.WorkViewModelFactory
 import io.reactivex.Single

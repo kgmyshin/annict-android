@@ -1,7 +1,7 @@
 package com.kgmyshin.workDictionary.infra.api.json
 
 import com.kgmyshin.annict.workDictionary.infra.api.json.TwitterImageJson
-import com.kgmyshin.random.RandomHelper
+import com.kgmyshin.common.random.RandomHelper
 
 object TwitterImageJsonFactory {
     fun create(

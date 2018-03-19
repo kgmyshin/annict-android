@@ -1,6 +1,6 @@
 package com.kgmyshin.record.usecase.impl.work.review
 
-import com.kgmyshin.random.RandomHelper
+import com.kgmyshin.common.random.RandomHelper
 import com.kgmyshin.record.domain.DomainHelper
 import com.kgmyshin.record.domain.work.WorkId
 import com.kgmyshin.record.domain.work.review.ReviewRepository

@@ -1,6 +1,6 @@
 package com.kgmyshin.record.usecase.impl.episode.record
 
-import com.kgmyshin.random.RandomHelper
+import com.kgmyshin.common.random.RandomHelper
 import com.kgmyshin.record.domain.DomainHelper
 import com.kgmyshin.record.domain.episode.record.RecordRepository
 import io.reactivex.Single

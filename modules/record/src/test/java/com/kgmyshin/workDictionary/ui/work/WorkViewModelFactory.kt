@@ -2,7 +2,7 @@ package com.kgmyshin.workDictionary.ui.work
 
 import com.kgmyshin.annict.workDictionary.ui.work.SeasonViewModel
 import com.kgmyshin.annict.workDictionary.ui.work.WorkViewModel
-import com.kgmyshin.random.RandomHelper
+import com.kgmyshin.common.random.RandomHelper
 
 object WorkViewModelFactory {
     fun create(

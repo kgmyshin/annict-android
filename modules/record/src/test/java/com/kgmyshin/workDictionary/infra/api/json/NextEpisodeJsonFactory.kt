@@ -1,7 +1,7 @@
 package com.kgmyshin.workDictionary.infra.api.json
 
 import com.kgmyshin.annict.workDictionary.infra.api.json.NextEpisodeJson
-import com.kgmyshin.random.RandomHelper
+import com.kgmyshin.common.random.RandomHelper
 
 object NextEpisodeJsonFactory {
     fun create(

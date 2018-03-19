@@ -1,11 +1,10 @@
 package com.kgmyshin.record.usecase.impl.episode.record
 
-import com.kgmyshin.random.RandomHelper
+import com.kgmyshin.common.random.RandomHelper
 import com.kgmyshin.record.domain.DomainHelper
 import com.kgmyshin.record.domain.episode.EpisodeId
 import com.kgmyshin.record.domain.episode.record.RecordRepository
 import io.reactivex.Single
-import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Test
 import org.mockito.Mock

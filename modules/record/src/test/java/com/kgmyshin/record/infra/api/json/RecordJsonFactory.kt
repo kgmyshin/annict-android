@@ -1,6 +1,6 @@
 package com.kgmyshin.record.infra.api.json
 
-import com.kgmyshin.random.RandomHelper
+import com.kgmyshin.common.random.RandomHelper
 import com.kgmyshin.workDictionary.infra.api.json.EpisodeJsonFactory
 import com.kgmyshin.workDictionary.infra.api.json.WorkJsonFactory
 import java.util.*

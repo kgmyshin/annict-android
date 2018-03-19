@@ -5,7 +5,7 @@ import com.kgmyshin.annict.workDictionary.domain.work.Work
 import com.kgmyshin.annict.workDictionary.domain.work.WorkId
 import com.kgmyshin.annict.workDictionary.domain.work.episode.Episode
 import com.kgmyshin.annict.workDictionary.domain.work.episode.EpisodeId
-import com.kgmyshin.random.RandomHelper
+import com.kgmyshin.common.random.RandomHelper
 
 internal object DomainHelper {
 

@@ -8,7 +8,7 @@ import com.kgmyshin.annict.workDictionary.ui.work.detail.WorkDetailViewModelConv
 import com.kgmyshin.annict.workDictionary.usecase.GetEpisodeListUseCase
 import com.kgmyshin.annict.workDictionary.usecase.GetWorkUseCase
 import com.kgmyshin.common.errorHandler.ErrorHandler
-import com.kgmyshin.random.RandomHelper
+import com.kgmyshin.common.random.RandomHelper
 import com.kgmyshin.workDictionary.domain.DomainHelper
 import io.reactivex.Maybe
 import io.reactivex.Single

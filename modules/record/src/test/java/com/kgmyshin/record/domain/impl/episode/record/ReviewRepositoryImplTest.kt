@@ -1,7 +1,7 @@
 package com.kgmyshin.record.domain.impl.episode.record
 
 import com.kgmyshin.annict.auth.hostService.GetAccessTokenService
-import com.kgmyshin.random.RandomHelper
+import com.kgmyshin.common.random.RandomHelper
 import com.kgmyshin.record.domain.DomainHelper
 import com.kgmyshin.record.domain.impl.work.review.ReviewConverter
 import com.kgmyshin.record.domain.impl.work.review.ReviewRepositoryImpl
