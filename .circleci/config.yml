@@ -32,7 +32,9 @@ jobs:
           command: ./gradlew lint test
       - run:
           name: run Danger
-          command: bundle exec danger
+          command: |
+            bundle install --path vendor/bundle
+            bundle exec danger
       - store_artifacts:
           path: app/build/reports
           destination: reports
