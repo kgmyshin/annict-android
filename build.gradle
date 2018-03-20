@@ -23,9 +23,6 @@ buildscript {
         // in the individual module build.gradle files
     }
 }
-plugins {
-    id "io.gitlab.arturbosch.detekt" version "1.0.0.RC6-3"
-}
 
 ext.versions = [
         compileSdk: 27,
@@ -43,11 +40,4 @@ allprojects {
 
 task clean(type: Delete) {
     delete rootProject.buildDir
-}
-
-detekt {
-    profile("main") {
-        config = "$projectDir/detekt.yml"
-        filters = ".*test.*,.*/resources/.*,.*/tmp/.*"
-    }
 }
