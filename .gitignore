@@ -8,3 +8,5 @@
 /captures
 .externalNativeBuild
 properties/secrets.properties
+/.bundle/
+/vendor/bundle
