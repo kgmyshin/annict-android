@@ -24,7 +24,9 @@ android {
     dataBinding {
         enabled = true
     }
-    buildToolsVersion '27.0.3'
+    lintOptions {
+        lintConfig file('../../lint.xml')
+    }
 }
 
 dependencies {
