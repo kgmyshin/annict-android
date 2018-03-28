@@ -10,8 +10,8 @@ import com.kgmyshin.annict.workDictionary.WorkDictionaryComponent
 import com.kgmyshin.annict.workDictionary.databinding.FragmentWorkListBinding
 import com.kgmyshin.annict.workDictionary.ui.work.OnClickWorkListener
 import com.kgmyshin.annict.workDictionary.ui.work.ScreenTransition
+import com.kgmyshin.annict.workDictionary.ui.work.WorkBindingModel
 import com.kgmyshin.annict.workDictionary.ui.work.WorkListAdapter
-import com.kgmyshin.annict.workDictionary.ui.work.WorkViewModel
 import com.kgmyshin.common.di.ContainerApplicationHelper
 import javax.inject.Inject
 
@@ -61,12 +61,12 @@ class SearchWorkListFragment : Fragment(), SearchWorkListContract.View {
         binding.progressContainer.visibility = View.VISIBLE
     }
 
-    override fun setUp(viewModelList: List<WorkViewModel>) {
-        binding.workViewModelList = viewModelList
+    override fun setUp(bindingModelList: List<WorkBindingModel>) {
+        binding.workBindingModelList = bindingModelList
         val adapter = binding.recyclerView.adapter as? WorkListAdapter
         adapter?.onClickListener = object : OnClickWorkListener {
-            override fun onClick(workViewModel: WorkViewModel) {
-                presenter.onClickWork(workViewModel)
+            override fun onClick(workBindingModel: WorkBindingModel) {
+                presenter.onClickWork(workBindingModel)
             }
         }
     }

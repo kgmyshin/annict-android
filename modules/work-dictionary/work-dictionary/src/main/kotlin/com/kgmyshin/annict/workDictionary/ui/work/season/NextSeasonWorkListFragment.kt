@@ -9,7 +9,7 @@ import com.kgmyshin.annict.workDictionary.WorkDictionaryComponent
 import com.kgmyshin.annict.workDictionary.ui.work.ScreenTransition
 import com.kgmyshin.annict.workDictionary.ui.work.WorkListContract
 import com.kgmyshin.annict.workDictionary.ui.work.WorkListFragment
-import com.kgmyshin.annict.workDictionary.ui.work.WorkViewModel
+import com.kgmyshin.annict.workDictionary.ui.work.WorkBindingModel
 import com.kgmyshin.common.di.ContainerApplicationHelper
 import javax.inject.Inject
 
@@ -50,8 +50,8 @@ class NextSeasonWorkListFragment : WorkListFragment(), WorkListContract.View {
         super.onDetach()
     }
 
-    override fun onClickWork(workViewModel: WorkViewModel) {
-        presenter.onClickWork(workViewModel)
+    override fun onClickWork(workBindingModel: WorkBindingModel) {
+        presenter.onClickWork(workBindingModel)
     }
 
 

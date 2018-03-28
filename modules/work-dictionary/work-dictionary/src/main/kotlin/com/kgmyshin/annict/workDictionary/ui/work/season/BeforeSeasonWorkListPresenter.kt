@@ -2,8 +2,8 @@ package com.kgmyshin.annict.workDictionary.ui.work.season
 
 import com.kgmyshin.annict.workDictionary.ui.work.ScreenTransition
 import com.kgmyshin.annict.workDictionary.ui.work.WorkListContract
-import com.kgmyshin.annict.workDictionary.ui.work.WorkViewModel
-import com.kgmyshin.annict.workDictionary.ui.work.WorkViewModelConverter
+import com.kgmyshin.annict.workDictionary.ui.work.WorkBindingModel
+import com.kgmyshin.annict.workDictionary.ui.work.WorkBindingModelConverter
 import com.kgmyshin.annict.workDictionary.usecase.GetBeforeSeasonWorkListUseCase
 import com.kgmyshin.common.errorHandler.ErrorHandler
 import io.reactivex.Scheduler
@@ -35,7 +35,7 @@ internal class BeforeSeasonWorkListPresenter @Inject constructor(
                 .observeOn(uiScheduler)
                 .doOnSubscribe { view.showProgress() }
                 .subscribe({ workList ->
-                    view.setUp(WorkViewModelConverter.convertToViewModel(workList))
+                    view.setUp(WorkBindingModelConverter.convertToViewModel(workList))
                     view.dismissProgress()
                 }, { throwable ->
                     view.getContext()?.let {
@@ -57,5 +57,5 @@ internal class BeforeSeasonWorkListPresenter @Inject constructor(
         disposables.clear()
     }
 
-    override fun onClickWork(workViewModel: WorkViewModel) = screenTransition.moveToDetail()
+    override fun onClickWork(workBindingModel: WorkBindingModel) = screenTransition.moveToDetail()
 }

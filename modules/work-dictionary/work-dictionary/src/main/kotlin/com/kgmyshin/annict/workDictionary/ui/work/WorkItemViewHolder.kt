@@ -21,8 +21,8 @@ class WorkItemViewHolder private constructor(
         ))
     }
 
-    fun bind(workViewModel: WorkViewModel) {
-        binding.workViewModel = workViewModel
+    fun bind(workBindingModel: WorkBindingModel) {
+        binding.workBindingModel = workBindingModel
         binding.executePendingBindings()
     }
 

@@ -1,8 +1,8 @@
 package com.kgmyshin.annict.workDictionary.ui.work.search
 
 import com.kgmyshin.annict.workDictionary.ui.work.ScreenTransition
-import com.kgmyshin.annict.workDictionary.ui.work.WorkViewModel
-import com.kgmyshin.annict.workDictionary.ui.work.WorkViewModelConverter
+import com.kgmyshin.annict.workDictionary.ui.work.WorkBindingModel
+import com.kgmyshin.annict.workDictionary.ui.work.WorkBindingModelConverter
 import com.kgmyshin.annict.workDictionary.usecase.SearchWorkListUseCase
 import com.kgmyshin.common.errorHandler.ErrorHandler
 import io.reactivex.Scheduler
@@ -43,7 +43,7 @@ internal class SearchWorkListPresenter @Inject constructor(
                 }
                 .observeOn(uiScheduler)
                 .subscribe({ workList ->
-                    view.setUp(WorkViewModelConverter.convertToViewModel(workList))
+                    view.setUp(WorkBindingModelConverter.convertToViewModel(workList))
                     view.dismissProgress()
                 }, { throwable ->
                     view.getContext()?.let {
@@ -58,5 +58,5 @@ internal class SearchWorkListPresenter @Inject constructor(
                 .addTo(disposables)
     }
 
-    override fun onClickWork(workViewModel: WorkViewModel) = screenTransition.moveToDetail()
+    override fun onClickWork(workBindingModel: WorkBindingModel) = screenTransition.moveToDetail()
 }

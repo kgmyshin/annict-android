@@ -1,7 +1,7 @@
 package com.kgmyshin.workDictionary.ui.work
 
-import com.kgmyshin.annict.workDictionary.ui.work.SeasonViewModel
-import com.kgmyshin.annict.workDictionary.ui.work.WorkViewModel
+import com.kgmyshin.annict.workDictionary.ui.work.SeasonBindingModel
+import com.kgmyshin.annict.workDictionary.ui.work.WorkBindingModel
 import com.kgmyshin.common.random.RandomHelper
 
 object WorkViewModelFactory {
@@ -9,11 +9,11 @@ object WorkViewModelFactory {
             id: String = RandomHelper.randomString(),
             title: String = RandomHelper.randomString(),
             titleKana: String = RandomHelper.randomString(),
-            season: SeasonViewModel = com.kgmyshin.workDictionary.ui.work.SeasonViewModelFactory.create(),
+            season: SeasonBindingModel = com.kgmyshin.workDictionary.ui.work.SeasonViewModelFactory.create(),
             officialSiteUrl: String = RandomHelper.randomString(),
             twitterUserName: String = RandomHelper.randomString(),
             imageUrl: String = RandomHelper.randomString(),
             episodesCount: Int = RandomHelper.randomInt(),
             watchersCount: Int = RandomHelper.randomInt()
-    ): WorkViewModel = WorkViewModel(id, title, titleKana, season, officialSiteUrl, twitterUserName, imageUrl, episodesCount, watchersCount)
+    ): WorkBindingModel = WorkBindingModel(id, title, titleKana, season, officialSiteUrl, twitterUserName, imageUrl, episodesCount, watchersCount)
 }

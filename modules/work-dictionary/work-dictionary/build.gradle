@@ -66,4 +66,5 @@ dependencies {
     testImplementation deps.spek.engine
     testImplementation deps.spek.runner
     testImplementation deps.spek.subject
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
 }

@@ -5,8 +5,8 @@
     <data>
 
         <variable
-            name="workViewModel"
-            type="com.kgmyshin.annict.workDictionary.ui.work.WorkViewModel"/>
+            name="workBindingModel"
+            type="com.kgmyshin.annict.workDictionary.ui.work.WorkBindingModel"/>
 
     </data>
 
@@ -23,7 +23,7 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            app:imageUrl="@{workViewModel.imageUrl}"
+            app:imageUrl="@{workBindingModel.imageUrl}"
             />
 
         <TextView
@@ -35,7 +35,7 @@
             android:layout_alignParentTop="true"
             android:layout_toEndOf="@id/image_view"
             android:layout_toRightOf="@id/image_view"
-            android:text="@{workViewModel.title}"
+            android:text="@{workBindingModel.title}"
             />
 
         <TextView
@@ -47,7 +47,7 @@
             android:layout_alignParentRight="true"
             android:layout_alignStart="@+id/title_text_view"
             android:layout_below="@+id/title_text_view"
-            android:text="@{workViewModel.titleKana}"
+            android:text="@{workBindingModel.titleKana}"
             />
 
         <TextView
@@ -59,7 +59,7 @@
             android:layout_alignParentRight="true"
             android:layout_alignStart="@+id/title_kana_text_view"
             android:layout_below="@+id/title_kana_text_view"
-            android:text="@{workViewModel.season.name}"
+            android:text="@{workBindingModel.season.name}"
             />
 
     </RelativeLayout>

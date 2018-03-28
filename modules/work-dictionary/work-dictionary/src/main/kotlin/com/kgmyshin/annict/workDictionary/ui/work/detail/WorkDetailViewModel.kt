@@ -1,8 +1,8 @@
 package com.kgmyshin.annict.workDictionary.ui.work.detail
 
-import com.kgmyshin.annict.workDictionary.ui.work.WorkViewModel
+import com.kgmyshin.annict.workDictionary.ui.work.WorkBindingModel
 
 data class WorkDetailViewModel(
-        val workViewModel: WorkViewModel,
+        val workBindingModel: WorkBindingModel,
         val episodeViewModelList: List<EpisodeViewModel>
 )

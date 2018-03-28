@@ -1,10 +1,10 @@
 package com.kgmyshin.annict.workDictionary.ui.work
 
-data class WorkViewModel(
+data class WorkBindingModel(
         val id: String,
         val title: String,
         val titleKana: String,
-        val season: SeasonViewModel?,
+        val season: SeasonBindingModel?,
         val officialSiteUrl: String,
         val twitterUserName: String?,
         val imageUrl: String?,

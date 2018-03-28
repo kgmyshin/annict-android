@@ -2,7 +2,7 @@ package com.kgmyshin.annict.workDictionary.ui.work.detail
 
 import com.kgmyshin.annict.workDictionary.domain.work.Work
 import com.kgmyshin.annict.workDictionary.domain.work.episode.Episode
-import com.kgmyshin.annict.workDictionary.ui.work.WorkViewModelConverter
+import com.kgmyshin.annict.workDictionary.ui.work.WorkBindingModelConverter
 
 internal object WorkDetailViewModelConverter {
 
@@ -10,7 +10,7 @@ internal object WorkDetailViewModelConverter {
             work: Work,
             episodeList: List<Episode>
     ): WorkDetailViewModel = WorkDetailViewModel(
-            WorkViewModelConverter.convertToViewModel(work),
+            WorkBindingModelConverter.convertToViewModel(work),
             EpisodeViewModelConverter.convertToViewModel(episodeList)
     )
 

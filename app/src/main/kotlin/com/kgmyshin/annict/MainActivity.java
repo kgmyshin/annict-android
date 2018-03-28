@@ -12,6 +12,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         // debug
+//        startActivity(
+//                new Intent(
+//                        this,
+//                        LoginActivity.class
+//                )
+//        );
         startActivity(SearchWorkListActivity.Companion.createIntent(this));
     }
 }

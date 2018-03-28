@@ -7,7 +7,7 @@ import android.view.ViewGroup
 
 class WorkListAdapter(
         context: Context,
-        private val workViewModelList: List<WorkViewModel>
+        private val workBindingModelList: List<WorkBindingModel>
 ) : RecyclerView.Adapter<WorkItemViewHolder>() {
 
     private val inflater = LayoutInflater.from(context)
@@ -18,9 +18,9 @@ class WorkListAdapter(
             holder: WorkItemViewHolder,
             position: Int
     ) {
-        holder.bind(workViewModelList[position])
+        holder.bind(workBindingModelList[position])
         holder.itemView.setOnClickListener {
-            onClickListener?.onClick(workViewModelList[position])
+            onClickListener?.onClick(workBindingModelList[position])
         }
     }
 
@@ -33,6 +33,6 @@ class WorkListAdapter(
             false
     )
 
-    override fun getItemCount(): Int = workViewModelList.size
+    override fun getItemCount(): Int = workBindingModelList.size
 
 }

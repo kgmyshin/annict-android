@@ -3,10 +3,10 @@ package com.kgmyshin.annict.workDictionary.ui.work
 import com.kgmyshin.annict.workDictionary.domain.work.Season
 import java.util.regex.Pattern
 
-internal object SeasonViewModelConverter {
+internal object SeasonBindingModelConverter {
 
-    fun convertToViewModel(season: Season): SeasonViewModel =
-            SeasonViewModel(
+    fun convertToViewModel(season: Season): SeasonBindingModel =
+            SeasonBindingModel(
                     name = convertToViewName(season.name),
                     identifierName = season.name
             )

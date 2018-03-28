@@ -2,7 +2,7 @@ package com.kgmyshin.workDictionary.ui.work.popular
 
 import com.kgmyshin.annict.workDictionary.ui.work.ScreenTransition
 import com.kgmyshin.annict.workDictionary.ui.work.WorkListContract
-import com.kgmyshin.annict.workDictionary.ui.work.WorkViewModelConverter
+import com.kgmyshin.annict.workDictionary.ui.work.WorkBindingModelConverter
 import com.kgmyshin.annict.workDictionary.ui.work.popular.PopularWorkListPresenter
 import com.kgmyshin.annict.workDictionary.usecase.GetPopularWorkListUseCase
 import com.kgmyshin.common.errorHandler.ErrorHandler
@@ -55,7 +55,7 @@ internal class PopularWorkListPresenterSpec : SubjectSpek<PopularWorkListPresent
             subject.onCreateView()
 
             it("should setUp ViewModel to view") {
-                val expected = WorkViewModelConverter.convertToViewModel(workList)
+                val expected = WorkBindingModelConverter.convertToViewModel(workList)
                 Mockito.verify(view).showProgress()
                 Mockito.verify(view).setUp(expected)
                 Mockito.verify(view).dismissProgress()

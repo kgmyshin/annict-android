@@ -1,7 +1,7 @@
 package com.kgmyshin.workDictionary.ui.work.search
 
 import com.kgmyshin.annict.workDictionary.ui.work.ScreenTransition
-import com.kgmyshin.annict.workDictionary.ui.work.WorkViewModelConverter
+import com.kgmyshin.annict.workDictionary.ui.work.WorkBindingModelConverter
 import com.kgmyshin.annict.workDictionary.ui.work.search.SearchWorkListContract
 import com.kgmyshin.annict.workDictionary.ui.work.search.SearchWorkListPresenter
 import com.kgmyshin.annict.workDictionary.usecase.SearchWorkListUseCase
@@ -56,7 +56,7 @@ internal class SearchWorkListPresenterSpec : SubjectSpek<SearchWorkListPresenter
             subject.onUpdateKeyword(keyword)
 
             it("should setUp ViewModel to view") {
-                val expected = WorkViewModelConverter.convertToViewModel(workList)
+                val expected = WorkBindingModelConverter.convertToViewModel(workList)
                 Mockito.verify(view).showProgress()
                 Mockito.verify(view).setUp(expected)
                 Mockito.verify(view).dismissProgress()

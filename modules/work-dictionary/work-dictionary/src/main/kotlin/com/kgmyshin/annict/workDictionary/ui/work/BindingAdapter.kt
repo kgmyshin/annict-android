@@ -22,6 +22,7 @@ internal object BindingAdapter {
         }
         Picasso.with(view.context)
                 .load(imageUrl)
+                .transform(CropSquareTransformation(imageUrl))
                 .into(view)
     }
 
@@ -29,7 +30,7 @@ internal object BindingAdapter {
     @JvmStatic
     fun setItemList(
             view: RecyclerView?,
-            workList: List<WorkViewModel>?
+            workList: List<WorkBindingModel>?
     ) {
         if (view == null || workList == null) {
             return

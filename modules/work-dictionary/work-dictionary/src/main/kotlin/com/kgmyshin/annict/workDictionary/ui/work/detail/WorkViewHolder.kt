@@ -4,7 +4,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.kgmyshin.annict.workDictionary.databinding.ViewWorkBinding
-import com.kgmyshin.annict.workDictionary.ui.work.WorkViewModel
+import com.kgmyshin.annict.workDictionary.ui.work.WorkBindingModel
 
 class WorkViewHolder private constructor(
         private val binding: ViewWorkBinding
@@ -23,8 +23,8 @@ class WorkViewHolder private constructor(
         ))
     }
 
-    fun bind(workViewModel: WorkViewModel) {
-        binding.workViewModel = workViewModel
+    fun bind(workBindingModel: WorkBindingModel) {
+        binding.workBindingModel = workBindingModel
         binding.executePendingBindings()
     }
 

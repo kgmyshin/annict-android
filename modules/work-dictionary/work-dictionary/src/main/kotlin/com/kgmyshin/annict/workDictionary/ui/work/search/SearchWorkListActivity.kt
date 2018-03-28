@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.SearchView
 import android.support.v7.widget.Toolbar
 import android.view.Menu
+import android.view.View
 import com.kgmyshin.annict.workDictionary.R
 import com.kgmyshin.annict.workDictionary.ui.work.ScreenTransition
 
@@ -72,6 +73,7 @@ class SearchWorkListActivity : AppCompatActivity(), ScreenTransition {
         val fragment = supportFragmentManager.findFragmentById(R.id.container)
         if (fragment != null && fragment is SearchWorkListFragment) {
             fragment.onUpdateKeyword(keyword)
+            findViewById<Toolbar>(R.id.toolbar).visibility = View.GONE
         }
     }
 

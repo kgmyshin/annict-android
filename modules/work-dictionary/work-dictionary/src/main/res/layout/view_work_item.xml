@@ -1,67 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
-            name="workViewModel"
-            type="com.kgmyshin.annict.workDictionary.ui.work.WorkViewModel"/>
+            name="workBindingModel"
+            type="com.kgmyshin.annict.workDictionary.ui.work.WorkBindingModel" />
 
     </data>
 
-    <RelativeLayout
+    <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/padding_m"
-        >
+        android:padding="@dimen/padding_m">
+
+        <TextView
+            android:id="@+id/no_image_text_view"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="#aaa"
+            android:gravity="center"
+            android:text="no image"
+            android:textColor="#fff"
+            android:textStyle="bold"
+            android:visibility="@{(workBindingModel.imageUrl == null || workBindingModel.imageUrl.length() == 0) ? View.VISIBLE : View.INVISIBLE}"
+            app:layout_constraintBottom_toBottomOf="@+id/image_view"
+            app:layout_constraintEnd_toEndOf="@+id/image_view"
+            app:layout_constraintLeft_toLeftOf="@+id/image_view"
+            app:layout_constraintRight_toRightOf="@+id/image_view"
+            app:layout_constraintStart_toStartOf="@+id/image_view"
+            app:layout_constraintTop_toTopOf="@+id/image_view" />
 
         <ImageView
             android:id="@+id/image_view"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            app:imageUrl="@{workViewModel.imageUrl}"
-            />
+            app:imageUrl="@{workBindingModel.imageUrl}"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/title_text_view"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentTop="true"
-            android:layout_toEndOf="@id/image_view"
-            android:layout_toRightOf="@id/image_view"
-            android:text="@{workViewModel.title}"
-            />
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:ellipsize="end"
+            android:lines="1"
+            android:text="@{workBindingModel.title}"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/image_view"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="ここにタイトルが入りますここにタイトルが入りますここにタイトルが入りますここにタイトルが入ります" />
 
         <TextView
             android:id="@+id/title_kana_text_view"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/title_text_view"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignStart="@+id/title_text_view"
-            android:layout_below="@+id/title_text_view"
-            android:text="@{workViewModel.titleKana}"
-            />
+            android:layout_marginTop="8dp"
+            android:ellipsize="end"
+            android:lines="1"
+            android:text="@{workBindingModel.titleKana}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintLeft_toLeftOf="@+id/title_text_view"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/title_text_view"
+            app:layout_constraintTop_toBottomOf="@+id/title_text_view"
+            tools:text="ここにタイトルが入りますここにタイトルが入りますここにタイトルが入りますここにタイトルが入ります" />
 
         <TextView
             android:id="@+id/season_text_view"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/title_kana_text_view"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignStart="@+id/title_kana_text_view"
-            android:layout_below="@+id/title_kana_text_view"
-            android:text="@{workViewModel.season.name}"
-            />
+            android:layout_marginTop="8dp"
+            android:text="@{workBindingModel.season.name}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintLeft_toLeftOf="@+id/title_kana_text_view"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/title_kana_text_view"
+            app:layout_constraintTop_toBottomOf="@+id/title_kana_text_view" />
 
-    </RelativeLayout>
+    </android.support.constraint.ConstraintLayout>
 
 </layout>

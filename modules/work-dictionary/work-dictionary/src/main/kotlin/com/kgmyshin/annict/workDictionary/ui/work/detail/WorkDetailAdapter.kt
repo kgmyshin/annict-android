@@ -24,7 +24,7 @@ class WorkDetailAdapter(
             position: Int
     ) {
         if (holder is WorkViewHolder) {
-            holder.bind(workViewDetailViewModel.workViewModel)
+            holder.bind(workViewDetailViewModel.workBindingModel)
         } else if (holder is EpisodeViewHolder) {
             holder.bind(workViewDetailViewModel.episodeViewModelList[position - 1])
         }

@@ -6,11 +6,11 @@
 
         <import type="java.util.List"/>
 
-        <import type="com.kgmyshin.annict.workDictionary.ui.work.WorkViewModel"/>
+        <import type="com.kgmyshin.annict.workDictionary.ui.work.WorkBindingModel"/>
 
         <variable
-            name="workViewModelList"
-            type="List&lt;WorkViewModel>"/>
+            name="workBindingModelList"
+            type="List&lt;WorkBindingModel>"/>
     </data>
 
     <FrameLayout
@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:clipToPadding="false"
             app:layoutManager="android.support.v7.widget.LinearLayoutManager"
-            app:workList="@{workViewModelList}"
+            app:workList="@{workBindingModelList}"
             />
 
         <FrameLayout

@@ -24,7 +24,7 @@ abstract class WorkListFragment : Fragment(), WorkListContract.View {
         return binding.root
     }
 
-    abstract fun onClickWork(workViewModel: WorkViewModel)
+    abstract fun onClickWork(workBindingModel: WorkBindingModel)
 
     override fun dismissProgress() {
         binding.progressContainer.visibility = View.GONE
@@ -34,12 +34,12 @@ abstract class WorkListFragment : Fragment(), WorkListContract.View {
         binding.progressContainer.visibility = View.VISIBLE
     }
 
-    override fun setUp(viewModelList: List<WorkViewModel>) {
-        binding.workViewModelList = viewModelList
+    override fun setUp(bindingModelList: List<WorkBindingModel>) {
+        binding.workBindingModelList = bindingModelList
         val adapter = binding.recyclerView.adapter as? WorkListAdapter
         adapter?.onClickListener = object : OnClickWorkListener {
-            override fun onClick(workViewModel: WorkViewModel) {
-                onClickWork(workViewModel)
+            override fun onClick(workBindingModel: WorkBindingModel) {
+                onClickWork(workBindingModel)
             }
         }
     }
